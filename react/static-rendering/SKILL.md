@@ -4,6 +4,7 @@ description: Deliver pre-rendered HTML content that was generated at build time 
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

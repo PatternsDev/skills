@@ -1,6 +1,7 @@
 ---
 name: static-import
 description: Import code that has been exported by another module using static ES2015 import syntax.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

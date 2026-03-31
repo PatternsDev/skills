@@ -4,6 +4,7 @@ description: Pass JSX elements to components through props for flexible, reusabl
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

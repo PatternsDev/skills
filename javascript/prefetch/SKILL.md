@@ -1,6 +1,7 @@
 ---
 name: prefetch
 description: Fetch and cache resources that may be requested soon to reduce future loading times.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

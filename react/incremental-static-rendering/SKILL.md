@@ -4,6 +4,7 @@ description: Update static content after you have built your site using Incremen
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

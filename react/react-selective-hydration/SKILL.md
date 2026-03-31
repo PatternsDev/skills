@@ -4,6 +4,7 @@ description: Combine streaming server-side rendering with selective hydration fo
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

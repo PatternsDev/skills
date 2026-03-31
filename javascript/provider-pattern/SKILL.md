@@ -1,6 +1,7 @@
 ---
 name: provider-pattern
 description: Make data available to multiple child components without prop drilling using React Context.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

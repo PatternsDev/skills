@@ -4,6 +4,7 @@ description: Components that don't render their own markup, providing logic to c
 paths:
   - "**/*.vue"
   - "**/composables/**/*.ts"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

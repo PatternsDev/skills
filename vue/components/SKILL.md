@@ -4,6 +4,7 @@ description: Self-contained modules that couple markup (HTML), logic (JS), and s
 paths:
   - "**/*.vue"
   - "**/composables/**/*.ts"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

@@ -4,6 +4,7 @@ description: Create multiple components that work together to perform a single t
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

@@ -4,6 +4,7 @@ description: Compile-time syntactic sugar for a more concise Composition API syn
 paths:
   - "**/*.vue"
   - "**/composables/**/*.ts"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

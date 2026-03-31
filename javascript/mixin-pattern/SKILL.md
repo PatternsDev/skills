@@ -1,6 +1,7 @@
 ---
 name: mixin-pattern
 description: Add functionality to objects or classes without inheritance using mixins.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

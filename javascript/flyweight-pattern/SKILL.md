@@ -1,6 +1,7 @@
 ---
 name: flyweight-pattern
 description: Conserve memory by reusing existing instances when working with large numbers of similar objects.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

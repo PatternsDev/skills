@@ -1,6 +1,7 @@
 ---
 name: tree-shaking
 description: Reduce bundle size by eliminating dead code that is never used in your application.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

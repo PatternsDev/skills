@@ -4,6 +4,7 @@ description: Generate HTML on the server in response to user requests for faster
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

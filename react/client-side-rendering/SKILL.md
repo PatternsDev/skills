@@ -4,6 +4,7 @@ description: Render your application's UI entirely on the client using JavaScrip
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

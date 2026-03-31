@@ -1,6 +1,7 @@
 ---
 name: dynamic-import
 description: Import parts of your code on demand using dynamic import() to reduce initial bundle size.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

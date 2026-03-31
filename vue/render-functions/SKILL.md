@@ -4,6 +4,7 @@ description: Create component templates programmatically with JavaScript using V
 paths:
   - "**/*.vue"
   - "**/composables/**/*.ts"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

@@ -1,6 +1,7 @@
 ---
 name: prototype-pattern
 description: Share properties among many objects of the same type through JavaScript's prototype chain.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

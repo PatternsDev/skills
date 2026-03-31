@@ -1,6 +1,7 @@
 ---
 name: bundle-splitting
 description: Split your code into smaller bundles to reduce initial load time and improve performance.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

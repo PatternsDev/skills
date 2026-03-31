@@ -1,6 +1,7 @@
 ---
 name: observer-pattern
 description: Use observables to notify subscribers when an event occurs for decoupled event-driven communication.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

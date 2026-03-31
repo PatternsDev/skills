@@ -4,6 +4,7 @@ description: Stream server-rendered HTML to the client in chunks for faster Time
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

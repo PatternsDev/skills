@@ -1,6 +1,7 @@
 ---
 name: virtual-lists
 description: Optimize rendering of large lists by only displaying items visible in the viewport (windowing).
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

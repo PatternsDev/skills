@@ -1,6 +1,7 @@
 ---
 name: mediator-pattern
 description: Use a central mediator object to handle communication between components instead of direct coupling.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

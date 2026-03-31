@@ -4,6 +4,7 @@ description: Delay loading JavaScript for less important parts of the page to im
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

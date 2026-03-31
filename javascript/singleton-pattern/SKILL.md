@@ -1,6 +1,7 @@
 ---
 name: singleton-pattern
 description: Share a single global instance throughout your application to manage global state.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

@@ -4,6 +4,7 @@ description: Render components on the server without sending their JavaScript to
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

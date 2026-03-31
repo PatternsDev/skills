@@ -1,6 +1,7 @@
 ---
 name: proxy-pattern
 description: Intercept and control interactions with target objects using JavaScript Proxies.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

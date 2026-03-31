@@ -1,6 +1,7 @@
 ---
 name: command-pattern
 description: Decouple methods that execute tasks by sending commands to a commander object.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

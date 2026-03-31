@@ -1,6 +1,7 @@
 ---
 name: prpl
 description: Optimize initial load through precaching, lazy loading, and minimizing roundtrips using the PRPL pattern.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

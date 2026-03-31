@@ -1,6 +1,7 @@
 ---
 name: factory-pattern
 description: Use factory functions to create new objects without the `new` keyword.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

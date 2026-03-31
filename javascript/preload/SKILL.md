@@ -1,6 +1,7 @@
 ---
 name: preload
 description: Inform the browser of critical resources before they are naturally discovered to speed up loading.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

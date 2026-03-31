@@ -4,6 +4,7 @@ description: Enforce separation of concerns by separating the view from the appl
 paths:
   - "**/*.vue"
   - "**/composables/**/*.ts"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

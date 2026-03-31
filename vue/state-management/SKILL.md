@@ -4,6 +4,7 @@ description: Manage application-level state between components using stores, Pin
 paths:
   - "**/*.vue"
   - "**/composables/**/*.ts"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

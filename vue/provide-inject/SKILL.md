@@ -4,6 +4,7 @@ description: Have nested components access data without prop drilling using Vue'
 paths:
   - "**/*.vue"
   - "**/composables/**/*.ts"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

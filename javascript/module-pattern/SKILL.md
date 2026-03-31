@@ -1,6 +1,7 @@
 ---
 name: module-pattern
 description: Split your code into smaller, reusable pieces with proper encapsulation using ES2015 modules.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

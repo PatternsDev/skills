@@ -1,6 +1,7 @@
 ---
 name: import-on-visibility
 description: Load non-critical components when they become visible in the viewport.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

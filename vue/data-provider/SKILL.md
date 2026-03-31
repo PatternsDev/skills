@@ -4,6 +4,7 @@ description: Utilize renderless components for managing and providing data to ch
 paths:
   - "**/*.vue"
   - "**/composables/**/*.ts"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

@@ -4,6 +4,7 @@ description: Pass reusable logic down as props to components using Higher Order 
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"

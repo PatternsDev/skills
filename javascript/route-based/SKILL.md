@@ -1,6 +1,7 @@
 ---
 name: route-based
 description: Dynamically load components based on the current route to reduce initial bundle size.
+license: MIT
 metadata:
   author: patterns.dev
   version: "1.0"
