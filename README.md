@@ -113,6 +113,8 @@ The [patterns.dev](https://patterns.dev) website includes interactive CodeSandbo
 
 For the full visual learning experience, visit [patterns.dev](https://patterns.dev).
 
+If you want a more explicit comparison of positioning and scope, see [KEY-DIFFS.md](KEY-DIFFS.md) for notes on how these skills differ from Vercel's skills approach.
+
 ## Resources
 
 - [github.com/PatternsDev/skills](https://github.com/PatternsDev/skills) — source repository
