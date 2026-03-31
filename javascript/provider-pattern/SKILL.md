@@ -4,7 +4,13 @@ description: Make data available to multiple child components without prop drill
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Provider Pattern
@@ -25,7 +31,6 @@ We often end up with something called _prop drilling_, which is the case when we
 - Create custom hooks (e.g., `useThemeContext`) to encapsulate context consumption logic
 - Avoid overusing context for frequently updated values as all consumers re-render on change
 - Split contexts by concern to minimize unnecessary re-renders
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -95,8 +100,10 @@ function App() {
 
   return (
     <div>
-      <SideBar />
-      <Content />
+      <DataContext.Provider value={data}>
+        <SideBar />
+        <Content />
+      </DataContext.Provider>
     </div>
   )
 }
@@ -224,7 +231,7 @@ function useThemeContext() {
 }
 ```
 
-Instead of wrapping the components directly with the `ThemeContext.Provider` component, we can create a HOC that wraps the component to provide its values. This way, we can separate the context logic from the rendering components, which improves the reusability of the provider.
+Instead of wrapping the components directly with the `ThemeContext.Provider` component, we can extract a dedicated provider component. This keeps the context logic separate from the rendering components and improves reusability.
 
 ```js
 function ThemeProvider({ children }) {
@@ -248,12 +255,12 @@ function ThemeProvider({ children }) {
 
 export default function App() {
   return (
-    <div className={`App theme-${theme}`}>
-      <ThemeProvider>
+    <ThemeProvider>
+      <div className="App">
         <Toggle />
         <List />
-      </ThemeProvider>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
 ```
@@ -351,7 +358,7 @@ To make sure that components aren't consuming providers that contain unnecessary
 
 - [patterns.dev/vanilla/provider-pattern](https://patterns.dev/vanilla/provider-pattern)
 
-## References
+### References
 
 - [Context - React](https://reactjs.org/docs/context.html)
 - [How To Use React Context Effectively - Kent C. Dodds](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
