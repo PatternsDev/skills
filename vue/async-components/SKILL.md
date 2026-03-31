@@ -1,6 +1,9 @@
 ---
 name: async-components
 description: Optimize web app performance by loading components asynchronously only when they are needed.
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
 metadata:
   author: patterns.dev
   version: "1.0"

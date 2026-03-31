@@ -1,6 +1,9 @@
 ---
 name: data-provider
 description: Utilize renderless components for managing and providing data to child components via scoped slots.
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
 metadata:
   author: patterns.dev
   version: "1.0"

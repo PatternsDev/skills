@@ -1,6 +1,9 @@
 ---
 name: render-functions
 description: Create component templates programmatically with JavaScript using Vue's `h()` render function or JSX.
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
 metadata:
   author: patterns.dev
   version: "1.0"

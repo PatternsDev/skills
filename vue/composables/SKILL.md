@@ -1,6 +1,9 @@
 ---
 name: composables
 description: Functions that encapsulate and reuse stateful logic among multiple components using the Composition API.
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
 metadata:
   author: patterns.dev
   version: "1.0"

@@ -1,6 +1,9 @@
 ---
 name: dynamic-components
 description: Dynamically switch between components using Vue's special `<component>` element with the `is` attribute.
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
 metadata:
   author: patterns.dev
   version: "1.0"

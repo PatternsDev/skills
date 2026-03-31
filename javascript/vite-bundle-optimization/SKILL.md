@@ -1,6 +1,8 @@
 ---
 name: vite-bundle-optimization
 description: Vite-specific bundle optimization patterns. Use when configuring builds, code splitting, managing dependencies, or troubleshooting slow Vite builds.
+paths:
+  - "**/vite.config.*"
 license: MIT
 metadata:
   author: patterns.dev

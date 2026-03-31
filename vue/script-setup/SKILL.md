@@ -1,6 +1,9 @@
 ---
 name: script-setup
 description: Compile-time syntactic sugar for a more concise Composition API syntax in Vue single-file components.
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
 metadata:
   author: patterns.dev
   version: "1.0"

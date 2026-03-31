@@ -1,6 +1,9 @@
 ---
 name: renderless-components
 description: Components that don't render their own markup, providing logic to children via scoped slots.
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
 metadata:
   author: patterns.dev
   version: "1.0"

@@ -1,6 +1,9 @@
 ---
 name: provide-inject
 description: Have nested components access data without prop drilling using Vue's provide/inject mechanism.
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
 metadata:
   author: patterns.dev
   version: "1.0"

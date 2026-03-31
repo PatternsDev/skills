@@ -1,6 +1,9 @@
 ---
 name: components
 description: Self-contained modules that couple markup (HTML), logic (JS), and styles (CSS) as the building blocks of Vue apps.
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
 metadata:
   author: patterns.dev
   version: "1.0"

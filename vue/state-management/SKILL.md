@@ -1,6 +1,9 @@
 ---
 name: state-management
 description: Manage application-level state between components using stores, Pinia, or the Composition API.
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
 metadata:
   author: patterns.dev
   version: "1.0"

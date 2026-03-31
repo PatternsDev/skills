@@ -1,6 +1,9 @@
 ---
 name: container-presentational
 description: Enforce separation of concerns by separating the view from the application logic in Vue components.
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
 metadata:
   author: patterns.dev
   version: "1.0"
