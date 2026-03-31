@@ -1,6 +1,6 @@
 ---
 name: vite-bundle-optimization
-description: Vite-specific bundle optimization patterns for React applications. Use when configuring Vite builds, optimizing bundle size, setting up code splitting, managing third-party dependencies, or troubleshooting slow builds. Covers Vite config, Rollup output, dynamic imports, barrel file workarounds, and dependency pre-bundling.
+description: Vite-specific bundle optimization patterns. Use when configuring builds, code splitting, managing dependencies, or troubleshooting slow Vite builds.
 license: MIT
 metadata:
   author: patterns.dev

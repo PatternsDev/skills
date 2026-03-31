@@ -1,6 +1,6 @@
 ---
 name: js-performance-patterns
-description: JavaScript runtime performance patterns for hot paths. Use when optimizing loops, lookups, DOM operations, caching, or data structure choices. Framework-agnostic patterns that apply to React, Vue, vanilla JS, and any web application. Focus on measurable improvements in real-world hot paths.
+description: JavaScript runtime performance patterns for hot paths, loops, DOM operations, caching, and data structures. Framework-agnostic.
 license: MIT
 metadata:
   author: patterns.dev
