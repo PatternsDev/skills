@@ -3,11 +3,13 @@ name: container-presentational
 description: Enforce separation of concerns by separating the view from the application logic in Vue components.
 paths:
   - "**/*.vue"
-  - "**/composables/**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "composables"
+  - "components"
 ---
 
 # Container/Presentational Pattern
@@ -28,7 +30,6 @@ In 2015, Dan Abramov wrote an article titled ["Presentational and Container Comp
 - Prefer composables over container components in Vue 3 for the same separation of concerns
 - Keep presentational components stateless — they receive data only through props
 - Use the `useDogImages()` composable pattern as a modern alternative to container wrappers
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -149,7 +150,7 @@ Composables make it easy to separate logic and view in a component, just like th
 
 - [patterns.dev/vue/container-presentational](https://patterns.dev/vue/container-presentational)
 
-## Helpful Resources
+### References
 
 - [Presentational and Container Components - Dan Abramov](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 - [Composables | Vue Documentation](https://vuejs.org/guide/reusability/composables.html)

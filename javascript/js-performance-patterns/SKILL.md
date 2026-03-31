@@ -4,7 +4,13 @@ description: JavaScript runtime performance patterns for hot paths, loops, DOM o
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # JavaScript Performance Patterns
@@ -20,19 +26,19 @@ Reference these patterns when:
 - Optimizing build-time or server-side scripts
 - Reviewing code for performance in critical paths
 
-## Overview
+## Instructions
+
+- Apply these patterns only in **measured hot paths** — code that runs frequently or processes large datasets. Don't apply them to cold code paths where readability is more important than nanosecond gains.
+
+## Details
+
+### Overview
 
 Micro-optimizations are **not** a substitute for algorithmic improvements. Always address the algorithm first (O(n^2) to O(n), removing waterfalls, reducing DOM mutations). Once the algorithm is right, these patterns squeeze additional performance from hot paths.
 
 ---
 
-## Instructions
-
-Apply these patterns only in **measured hot paths** — code that runs frequently or processes large datasets. Don't apply them to cold code paths where readability is more important than nanosecond gains.
-
----
-
-## 1. Use `Set` and `Map` for Lookups
+### 1. Use `Set` and `Map` for Lookups
 
 **Impact: HIGH for large collections** — O(1) vs O(n) per lookup.
 
@@ -76,7 +82,7 @@ const user = userMap.get(targetId) // O(1)
 
 ---
 
-## 2. Batch DOM Reads and Writes
+### 2. Batch DOM Reads and Writes
 
 **Impact: HIGH** — Prevents layout thrashing.
 
@@ -122,7 +128,7 @@ el.style.cssText = 'width:100px;height:200px;margin:10px;'
 
 ---
 
-## 3. Cache Property Access in Tight Loops
+### 3. Cache Property Access in Tight Loops
 
 **Impact: MEDIUM** — Reduces repeated property resolution.
 
@@ -150,7 +156,7 @@ This matters for arrays with 10,000+ items or when called at 60fps. For small ar
 
 ---
 
-## 4. Memoize Expensive Function Results
+### 4. Memoize Expensive Function Results
 
 **Impact: MEDIUM-HIGH** — Avoids recomputing the same result.
 
@@ -195,7 +201,7 @@ For caches that can grow unbounded, use an LRU strategy or `WeakMap` for object 
 
 ---
 
-## 5. Combine Iterations Over the Same Data
+### 5. Combine Iterations Over the Same Data
 
 **Impact: MEDIUM** — Single pass instead of multiple.
 
@@ -225,7 +231,7 @@ For small arrays (< 100 items), the chained version is fine and more readable. O
 
 ---
 
-## 6. Short-Circuit with Length Checks First
+### 6. Short-Circuit with Length Checks First
 
 **Impact: LOW-MEDIUM** — Avoids expensive operations on empty inputs.
 
@@ -244,7 +250,7 @@ function findMatchingItems(items: Item[], query: string): Item[] {
 
 ---
 
-## 7. Return Early to Skip Unnecessary Work
+### 7. Return Early to Skip Unnecessary Work
 
 **Impact: LOW-MEDIUM** — Reduces average-case execution.
 
@@ -276,7 +282,7 @@ function processEvent(event: AppEvent) {
 
 ---
 
-## 8. Hoist RegExp and Constant Creation Outside Loops
+### 8. Hoist RegExp and Constant Creation Outside Loops
 
 **Impact: LOW-MEDIUM** — Avoids repeated compilation.
 
@@ -305,7 +311,7 @@ function validate(items: string[]) {
 
 ---
 
-## 9. Use `toSorted()`, `toReversed()`, `toSpliced()` for Immutability
+### 9. Use `toSorted()`, `toReversed()`, `toSpliced()` for Immutability
 
 **Impact: LOW** — Correct immutability without manual copying.
 
@@ -331,7 +337,7 @@ These are available in all modern browsers and Node.js 20+.
 
 ---
 
-## 10. Use `requestAnimationFrame` for Visual Updates
+### 10. Use `requestAnimationFrame` for Visual Updates
 
 **Impact: MEDIUM** — Syncs with the browser's render cycle.
 
@@ -366,7 +372,7 @@ window.addEventListener('scroll', () => {
 
 ---
 
-## 11. Use `structuredClone` for Deep Copies
+### 11. Use `structuredClone` for Deep Copies
 
 **Impact: LOW** — Correct deep cloning without libraries.
 
@@ -384,7 +390,7 @@ Note: `structuredClone` cannot clone functions or DOM nodes. For those cases, im
 
 ---
 
-## 12. Prefer `Map` Over Plain Objects for Dynamic Keys
+### 12. Prefer `Map` Over Plain Objects for Dynamic Keys
 
 **Impact: LOW-MEDIUM** — Better performance for frequent additions/deletions.
 

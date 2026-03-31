@@ -7,7 +7,10 @@ paths:
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # Progressive Hydration
@@ -27,7 +30,6 @@ Although server rendering provides a faster First Contentful Paint, it doesn't a
 - Use `React.lazy()` with code-splitting to defer loading of below-the-fold or rarely-used components
 - In React 18+, leverage selective hydration which automatically prioritizes user-interacted areas
 - Use `next/dynamic` with `{ ssr: false }` in Next.js for truly client-only widgets
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

@@ -4,7 +4,13 @@ description: Split your code into smaller bundles to reduce initial load time an
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Bundle Splitting
@@ -24,7 +30,6 @@ JavaScript engines such as [V8](https://v8.dev/docs) are able to parse and compi
 - Use bundlers like Webpack or Rollup to split code into multiple smaller bundles
 - Separate code that isn't needed for the initial render into its own bundle
 - Consider the impact on Time To Interactive (TTI) and prioritize critical rendering code
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

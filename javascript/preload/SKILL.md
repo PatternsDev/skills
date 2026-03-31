@@ -4,7 +4,13 @@ description: Inform the browser of critical resources before they are naturally 
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Preload
@@ -22,7 +28,6 @@ metadata:
 - Be careful not to delay First Contentful Paint by preloading too many resources
 - Use `as` attribute to specify the resource type (script, style, font, image)
 - Only preload resources that must be visible within ~1 second of initial render
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

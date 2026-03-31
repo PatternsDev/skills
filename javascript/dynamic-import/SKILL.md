@@ -4,7 +4,13 @@ description: Import parts of your code on demand using dynamic import() to reduc
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Dynamic Import
@@ -25,7 +31,6 @@ In order to solve this, we can _dynamically import_ the `EmojiPicker` component.
 - Provide meaningful fallback UI while dynamically imported modules are loading
 - Consider using `loadable-components` for SSR applications where React Suspense isn't supported
 - Only dynamically import modules that aren't critical to the initial render
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

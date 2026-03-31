@@ -3,11 +3,13 @@ name: provide-inject
 description: Have nested components access data without prop drilling using Vue's provide/inject mechanism.
 paths:
   - "**/*.vue"
-  - "**/composables/**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "composables"
+  - "components"
 ---
 
 # Provide/Inject
@@ -28,7 +30,6 @@ Using props works well in most cases. However, when working in large application
 - Use app-level `app.provide()` for data needed across the entire application (e.g., plugins)
 - Prefer props for data isolated to a specific set of components; use provide/inject for cross-cutting concerns
 - Be aware that debugging can be harder with provide/inject in large apps with many providers
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -112,10 +113,10 @@ The provide/inject pattern is most suitable for application-wide client data, su
 
 On the other hand, props are ideal when data needs to be isolated within a specific set of components only.
 
+### Helpful resources
+
+- [Provide / Inject | Vue Documentation](https://vuejs.org/guide/components/provide-inject.html)
+
 ## Source
 
 - [patterns.dev/vue/provide-inject](https://patterns.dev/vue/provide-inject)
-
-## Helpful resources
-
-- [Provide / Inject | Vue Documentation](https://vuejs.org/guide/components/provide-inject.html)

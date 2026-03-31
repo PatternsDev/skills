@@ -4,7 +4,13 @@ description: Decouple methods that execute tasks by sending commands to a comman
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Command Pattern
@@ -23,7 +29,6 @@ Let's say we have an online food delivery platform. Users can place, track, and 
 - Create a Command class with an `execute` method that encapsulates the action
 - Replace direct method calls with command objects passed to a single `execute` method on the manager
 - Use this pattern sparingly as it can add unnecessary boilerplate in simpler JavaScript applications
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -113,11 +118,11 @@ function TrackOrderCommand(id) {
 
 Perfect! Instead of having the methods directly coupled to the `OrderManager` instance, they're now separate, decoupled functions that we can invoke through the `execute` method that's available on the `OrderManager`.
 
-## Pros
+### Pros
 
 The command pattern allows us to decouple methods from the object that executes the operation. It gives you more control if you're dealing with commands that have a certain lifespan, or commands that should be queued and executed at specific times.
 
-## Cons
+### Cons
 
 The use cases for the command pattern are quite limited, and often adds unnecessary boilerplate to an application.
 
@@ -125,7 +130,7 @@ The use cases for the command pattern are quite limited, and often adds unnecess
 
 - [patterns.dev/vanilla/command-pattern](https://patterns.dev/vanilla/command-pattern)
 
-## References
+### References
 
 - [Command Design Pattern](https://sourcemaking.com/design_patterns/command) - SourceMaking
 - [Command Pattern](https://refactoring.guru/design-patterns/command) - Refactoring Guru

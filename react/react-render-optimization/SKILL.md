@@ -9,7 +9,10 @@ paths:
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # React Render Optimization
@@ -25,7 +28,13 @@ Reference these patterns when:
 - Building performance-sensitive features (dashboards, editors, lists)
 - Reviewing or refactoring existing React components
 
-## Overview
+## Instructions
+
+- Apply these patterns during code generation, review, and refactoring. When you see an anti-pattern, suggest the corrected version with an explanation.
+
+## Details
+
+### Overview
 
 React re-renders a component whenever its state changes, a parent re-renders, or context it consumes updates. Most re-renders are harmless, but when they trigger expensive computation, deep trees, or layout thrashing they become visible to users.
 
@@ -33,13 +42,7 @@ The patterns below are ordered by impact — address the biggest wins first befo
 
 ---
 
-## Instructions
-
-Apply these patterns during code generation, review, and refactoring. When you see an anti-pattern, suggest the corrected version with an explanation.
-
----
-
-## 1. Compute Derived Values During Render — Don't Store Them
+### 1. Compute Derived Values During Render — Don't Store Them
 
 **Impact: HIGH** — Eliminates an entire category of bugs and unnecessary state.
 
@@ -95,7 +98,7 @@ For cheap derivations (boolean flags, string formatting), skip `useMemo` entirel
 
 ---
 
-## 2. Subscribe to Coarse-Grained State, Not Raw Values
+### 2. Subscribe to Coarse-Grained State, Not Raw Values
 
 **Impact: HIGH** — Prevents re-renders on irrelevant changes.
 
@@ -124,7 +127,7 @@ This applies broadly: subscribe to `isLoggedIn` rather than the entire user obje
 
 ---
 
-## 3. Extract Expensive Subtrees into Memoized Components
+### 3. Extract Expensive Subtrees into Memoized Components
 
 **Impact: HIGH** — Enables early returns and skip-rendering.
 
@@ -159,7 +162,7 @@ function Profile({ user, loading }: Props) {
 
 ---
 
-## 4. Use Lazy State Initialization
+### 4. Use Lazy State Initialization
 
 **Impact: MEDIUM** — Avoids wasted computation on every render.
 
@@ -181,7 +184,7 @@ Use lazy init for: `JSON.parse`, `localStorage` reads, building data structures,
 
 ---
 
-## 5. Use Functional setState for Stable Callbacks
+### 5. Use Functional setState for Stable Callbacks
 
 **Impact: MEDIUM** — Removes state variables from dependency arrays.
 
@@ -203,7 +206,7 @@ const increment = useCallback(() => setCount(c => c + 1), [])
 
 ---
 
-## 6. Put Interaction Logic in Event Handlers, Not Effects
+### 6. Put Interaction Logic in Event Handlers, Not Effects
 
 **Impact: MEDIUM** — Avoids re-running side effects on dependency changes.
 
@@ -244,7 +247,7 @@ function Form() {
 
 ---
 
-## 7. Use `useRef` for Transient, High-Frequency Values
+### 7. Use `useRef` for Transient, High-Frequency Values
 
 **Impact: MEDIUM** — Prevents re-renders on rapid updates.
 
@@ -288,7 +291,7 @@ function Cursor() {
 
 ---
 
-## 8. Use `startTransition` for Non-Urgent Updates
+### 8. Use `startTransition` for Non-Urgent Updates
 
 **Impact: MEDIUM** — Keeps high-priority updates (typing, clicking) responsive.
 
@@ -344,7 +347,7 @@ function Search({ items }: { items: Item[] }) {
 
 ---
 
-## 9. Defer State Reads to the Point of Use
+### 9. Defer State Reads to the Point of Use
 
 **Impact: MEDIUM** — Avoids subscriptions to state you only read in callbacks.
 
@@ -380,7 +383,7 @@ function ShareButton({ id }: { id: string }) {
 
 ---
 
-## 10. Use Stable References for Default Props
+### 10. Use Stable References for Default Props
 
 **Impact: MEDIUM** — Prevents `memo()` from being defeated by new object/array literals.
 
@@ -406,7 +409,7 @@ function Dashboard({ tabs = EMPTY_TABS }: { tabs?: Tab[] }) {
 
 ---
 
-## 11. CSS `content-visibility` for Long Lists
+### 11. CSS `content-visibility` for Long Lists
 
 **Impact: HIGH** — 5-10x faster initial render for long scrollable content.
 
@@ -437,7 +440,7 @@ For 1,000 items, the browser skips layout and paint for ~990 off-screen items. C
 
 ---
 
-## 12. Hoist Static JSX Outside Components
+### 12. Hoist Static JSX Outside Components
 
 **Impact: LOW** — Avoids re-creating identical elements.
 
@@ -477,7 +480,7 @@ Most impactful for large SVG elements which are expensive to recreate.
 
 ---
 
-## 13. Initialize Expensive Operations Once Per App
+### 13. Initialize Expensive Operations Once Per App
 
 **Impact: LOW-MEDIUM** — Avoids duplicate init in Strict Mode and remounts.
 
@@ -515,7 +518,7 @@ Or initialize at the module level in your entry file (`main.tsx`), outside any c
 
 ---
 
-## 14. Store Event Handlers in Refs for Stable Subscriptions
+### 14. Store Event Handlers in Refs for Stable Subscriptions
 
 **Impact: LOW** — Prevents effect re-subscriptions.
 
@@ -563,7 +566,7 @@ function useWindowEvent(event: string, handler: (e: Event) => void) {
 
 ---
 
-## 15. Prevent Hydration Flicker for Client-Only Data
+### 15. Prevent Hydration Flicker for Client-Only Data
 
 **Impact: MEDIUM** — Eliminates flash of wrong content during SSR hydration.
 

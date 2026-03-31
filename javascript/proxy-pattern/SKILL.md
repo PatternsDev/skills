@@ -4,7 +4,13 @@ description: Intercept and control interactions with target objects using JavaSc
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Proxy Pattern
@@ -22,7 +28,6 @@ With a Proxy object, we get more control over the interactions with certain obje
 - Use the `Reflect` object within handlers for cleaner property access and modification
 - Add validation logic in the `set` trap to ensure data integrity
 - Avoid using proxies in performance-critical code paths as they add overhead
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -135,7 +140,7 @@ Overusing the `Proxy` object or performing heavy operations on each `handler` me
 
 - [patterns.dev/vanilla/proxy-pattern](https://patterns.dev/vanilla/proxy-pattern)
 
-## References
+### References
 
 - [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) - MDN
 - [JavaScript Proxy](https://davidwalsh.name/javascript-proxy) - David Walsh

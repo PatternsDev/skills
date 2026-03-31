@@ -6,7 +6,13 @@ allowed-tools: Read, Grep, Glob
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Optimize your loading sequence
@@ -26,7 +32,6 @@ In every successful web page load, some critical components and resources become
 - Start fetching first-party JS before ATF images on the network
 - Use `async` or `defer` attributes for non-critical scripts
 - Lazy-load below-the-fold images and non-essential third-party resources
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

@@ -7,7 +7,10 @@ paths:
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "render-props-pattern"
 ---
 
 # HOC Pattern
@@ -27,7 +30,6 @@ One way of being able to reuse the same logic in multiple components, is by usin
 - Avoid naming collisions by renaming or merging props in the HOC
 - Prefer React Hooks over HOCs for most new code to avoid wrapper hell and deep nesting
 - Compose multiple HOCs carefully and be aware that the order of composition matters
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -204,6 +206,6 @@ When using multiple composed HOCs that all pass props to the element that's wrap
 
 - [patterns.dev/react/hoc-pattern](https://patterns.dev/react/hoc-pattern)
 
-## References
+### References
 
 - [Higher-Order Components - React](https://reactjs.org/docs/higher-order-components.html)

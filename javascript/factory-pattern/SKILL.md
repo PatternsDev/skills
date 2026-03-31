@@ -4,7 +4,13 @@ description: Use factory functions to create new objects without the `new` keywo
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Factory Pattern
@@ -23,7 +29,6 @@ Say that we need many users for our application. We can create new users with a 
 - Use factory functions to return custom objects based on current environment or user-specific configuration
 - Prefer ES6 arrow functions for concise factory function definitions
 - Consider using class constructors instead when memory efficiency matters, as instances share prototype methods
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -90,6 +95,6 @@ const user2 = new User({
 
 - [patterns.dev/vanilla/factory-pattern](https://patterns.dev/vanilla/factory-pattern)
 
-## References
+### References
 
 - [JavaScript Factory Functions with ES6+](https://medium.com/javascript-scene/javascript-factory-functions-with-es6-4d224591a8b1) - Eric Elliott

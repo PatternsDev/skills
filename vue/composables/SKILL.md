@@ -3,11 +3,13 @@ name: composables
 description: Functions that encapsulate and reuse stateful logic among multiple components using the Composition API.
 paths:
   - "**/*.vue"
-  - "**/composables/**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "components"
+  - "script-setup"
 ---
 
 # Composables
@@ -23,7 +25,6 @@ metadata:
 - Use `ref()`, `reactive()`, and lifecycle hooks (`onMounted`, `onBeforeUnmount`) inside composables
 - Return reactive state and methods from composables for use in component templates
 - Prefer composables over the Options API for better code organization, reusability, and TypeScript support
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -335,7 +336,7 @@ Lastly, building Vue apps with the Composition API allows for **better type infe
 
 - [patterns.dev/vue/composables](https://patterns.dev/vue/composables)
 
-## Helpful Resources
+### References
 
 - [Composables | Vue Documentation](https://vuejs.org/guide/reusability/composables.html)
 - [Collection of Vue Composition Utilities | VueUse](https://vueuse.org/)

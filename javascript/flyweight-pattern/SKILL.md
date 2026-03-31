@@ -4,7 +4,13 @@ description: Conserve memory by reusing existing instances when working with lar
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Flyweight Pattern
@@ -23,7 +29,6 @@ In our application, we want users to be able to add books. All books have a `tit
 - Separate intrinsic (shared) state from extrinsic (unique) state
 - Use a Map or similar structure to cache and reuse shared object instances
 - Consider JavaScript's prototypal inheritance as a simpler alternative in many cases
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -110,7 +115,7 @@ In JavaScript, we can easily solve this problem through [prototypal inheritance]
 
 - [patterns.dev/vanilla/flyweight-pattern](https://patterns.dev/vanilla/flyweight-pattern)
 
-## References
+### References
 
 - [Flyweight](https://refactoring.guru/design-patterns/flyweight) - Refactoring Guru
 - [Flyweight Design Pattern](https://howtodoinjava.com/design-patterns/structural/flyweight-design-pattern) - How To Do In Java

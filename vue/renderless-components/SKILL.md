@@ -3,11 +3,13 @@ name: renderless-components
 description: Components that don't render their own markup, providing logic to children via scoped slots.
 paths:
   - "**/*.vue"
-  - "**/composables/**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "composables"
+  - "components"
 ---
 
 # Renderless Components
@@ -27,8 +29,6 @@ Renderless components are particularly useful when we need to create reusable lo
 - Use `v-slot` destructuring in parent components to access the provided data and methods
 - Prefer composables over renderless components in Vue 3 to avoid extra component nesting
 - Use renderless components when you want template-level composition or a component-based API
-- Use the ask questions tool if you need to clarify requirements with the user
-
 
 ## Details
 
@@ -150,7 +150,7 @@ In general, composables are the preferred approach in Vue 3 since they don't add
 
 - [patterns.dev/vue/renderless-components](https://patterns.dev/vue/renderless-components)
 
-## Helpful Resources
+### References
 
 - [Renderless Components | Vue Documentation](https://vuejs.org/guide/components/slots.html#renderless-components)
 - [Composables | Vue Documentation](https://vuejs.org/guide/reusability/composables.html)

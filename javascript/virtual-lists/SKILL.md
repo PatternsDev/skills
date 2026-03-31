@@ -4,7 +4,13 @@ description: Optimize rendering of large lists by only displaying items visible 
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # List Virtualization
@@ -24,7 +30,6 @@ If you use React and need to **display large lists of data efficiently**, you ma
 - Choose `FixedSizeList` for items of equal height or `VariableSizeList` for items of different heights
 - Use `react-window-infinite-loader` for incrementally loading data as the user scrolls
 - Consider CSS `content-visibility: auto` for simpler cases where full virtualization isn't needed
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -289,11 +294,7 @@ Some modern browsers now support [CSS content-visibility](https://web.dev/conten
 
 For rendering lists of dynamic content, I still recommend using a library like react-window. It would be hard to have a `content-visibility:hidden` version of such a library that beats a version aggressively using `display:none` or removing DOM nodes when offscreen like many list virtualization libraries may do today.
 
-## Source
-
-- [patterns.dev/vanilla/virtual-lists](https://patterns.dev/vanilla/virtual-lists)
-
-## Further reading
+### Further reading
 
 For further reading about react-window and react-virtualized, check out:
 
@@ -301,3 +302,7 @@ For further reading about react-window and react-virtualized, check out:
 - [Creating More Efficient React Views with Windowing](https://www.youtube.com/watch?v=t4tuhg7b50I)
 - [Rendering lists with react-virtualized](https://css-tricks.com/rendering-lists-using-react-virtualized/)
 - [Rendering large lists with react-virtualized](https://blog.logrocket.com/rendering-large-lists-with-react-virtualized-82741907a6b3)
+
+## Source
+
+- [patterns.dev/vanilla/virtual-lists](https://patterns.dev/vanilla/virtual-lists)

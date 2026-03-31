@@ -3,11 +3,13 @@ name: render-functions
 description: Create component templates programmatically with JavaScript using Vue's `h()` render function or JSX.
 paths:
   - "**/*.vue"
-  - "**/composables/**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "composables"
+  - "components"
 ---
 
 # Render Functions
@@ -27,7 +29,6 @@ Vue, at build time, takes the templates we create for our components and compile
 - Use JSX with `@vue/babel-plugin-jsx` as a more readable alternative to raw `h()` calls
 - Prefer Vue templates for most application code — render functions are for advanced cases
 - Remember that Vue JSX uses `class` (not `className`) and single curly braces `{}`
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -153,7 +154,7 @@ For most typical application development, Vue templates offer the right level of
 
 - [patterns.dev/vue/render-functions](https://patterns.dev/vue/render-functions)
 
-## Helpful Resources
+### References
 
 - [Render Functions & JSX | Vue Documentation](https://vuejs.org/guide/extras/render-function.html)
 - [`@vue/babel-plugin-jsx` | GitHub](https://github.com/vuejs/babel-plugin-jsx)

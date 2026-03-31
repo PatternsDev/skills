@@ -4,7 +4,13 @@ description: Reduce bundle size by eliminating dead code that is never used in y
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Tree Shaking
@@ -22,7 +28,6 @@ It can happen that we add code to our bundle that isn't used anywhere in our app
 - Use named imports instead of importing entire modules to enable effective tree-shaking
 - Mark packages as side-effect-free in `package.json` when appropriate
 - Be aware that modules with side effects cannot be safely tree-shaken
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

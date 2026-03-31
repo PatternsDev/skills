@@ -7,7 +7,10 @@ paths:
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # Render Props Pattern
@@ -27,7 +30,6 @@ Imagine that we have a `Title` component. In this case, the `Title` component sh
 - Prefer custom Hooks over render props in most modern React code
 - Use the children-as-a-function pattern as a cleaner alternative to explicit `render` props
 - Avoid deeply nesting multiple render prop components — refactor to Hooks instead
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -240,7 +242,7 @@ Since we can't add lifecycle methods to a `render` prop, we can only use it on c
 
 - [patterns.dev/react/render-props-pattern](https://patterns.dev/react/render-props-pattern)
 
-## References
+### References
 
 - [Render Props - React](https://reactjs.org/docs/render-props.html)
 - [React, Inline Functions, and Performance - Ryan Florence](https://cdb.reacttraining.com/react-inline-functions-and-performance-bdff784f5578)

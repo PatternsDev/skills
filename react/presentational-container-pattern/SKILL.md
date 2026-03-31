@@ -7,7 +7,10 @@ paths:
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # Container/Presentational Pattern
@@ -25,7 +28,6 @@ In React, one way to enforce separation of concerns is by using the **Container/
 - Prefer custom Hooks over container components in modern React for the same separation of concerns
 - Keep presentational components as pure functions that receive data through props
 - Use this pattern when it genuinely simplifies your architecture — avoid it for small components
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -106,6 +108,6 @@ Although we can still use the Container/Presentational pattern, even with React 
 
 - [patterns.dev/react/presentational-container-pattern](https://patterns.dev/react/presentational-container-pattern)
 
-## References
+### References
 
 - [Presentational and Container Components - Dan Abramov](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)

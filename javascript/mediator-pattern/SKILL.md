@@ -4,7 +4,13 @@ description: Use a central mediator object to handle communication between compo
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Mediator/Middleware Pattern
@@ -23,7 +29,6 @@ You can compare this pattern to the relationship between an air traffic controll
 - Create a central mediator that processes requests and forwards them to the appropriate handlers
 - Use the middleware pattern to chain processing functions that can modify requests/responses
 - Keep individual components unaware of each other; they only know about the mediator
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -107,7 +112,7 @@ The middleware pattern makes it easy for us to simplify many-to-many relationshi
 
 - [patterns.dev/vanilla/mediator-pattern](https://patterns.dev/vanilla/mediator-pattern)
 
-## References
+### References
 
 - [Docs - Express](https://expressjs.com)
 - [Mediator Pattern - OO Design](https://www.oodesign.com/mediator-pattern.html)

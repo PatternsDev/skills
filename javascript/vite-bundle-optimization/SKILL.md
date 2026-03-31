@@ -2,11 +2,15 @@
 name: vite-bundle-optimization
 description: Vite-specific bundle optimization patterns. Use when configuring builds, code splitting, managing dependencies, or troubleshooting slow Vite builds.
 paths:
-  - "**/vite.config.*"
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Vite Bundle Optimization
@@ -22,19 +26,19 @@ Reference these patterns when:
 - Migrating from webpack/CRA to Vite
 - Optimizing Core Web Vitals (LCP, FID/INP, CLS)
 
-## Overview
+## Instructions
+
+- Apply these patterns during project setup, build configuration, and bundle size reviews. When you see large bundles or slow builds, diagnose with `npx vite-bundle-visualizer` and apply the relevant pattern.
+
+## Details
+
+### Overview
 
 Vite uses esbuild for dependency pre-bundling and development transforms, and Rollup for production builds. Understanding this dual architecture is key to optimizing effectively. The patterns below are ordered by impact.
 
 ---
 
-## Instructions
-
-Apply these patterns during project setup, build configuration, and bundle size reviews. When you see large bundles or slow builds, diagnose with `npx vite-bundle-visualizer` and apply the relevant pattern.
-
----
-
-## 1. Avoid Barrel File Imports
+### 1. Avoid Barrel File Imports
 
 **Impact: CRITICAL** — Can add 200-800ms to startup and 2-4s to dev server boot.
 
@@ -83,7 +87,7 @@ This transforms barrel imports into direct imports at build time, giving you erg
 
 ---
 
-## 2. Configure Manual Chunk Splitting
+### 2. Configure Manual Chunk Splitting
 
 **Impact: HIGH** — Better caching, parallel loading, smaller initial bundle.
 
@@ -130,7 +134,7 @@ manualChunks(id) {
 
 ---
 
-## 3. Dynamic Imports for Route-Level Code Splitting
+### 3. Dynamic Imports for Route-Level Code Splitting
 
 **Impact: HIGH** — Load only the code needed for the current page.
 
@@ -169,7 +173,7 @@ const Dashboard = lazy(() =>
 
 ---
 
-## 4. Lazy-Load Heavy Components Below the Fold
+### 4. Lazy-Load Heavy Components Below the Fold
 
 **Impact: HIGH** — Reduces initial bundle for faster LCP.
 
@@ -205,7 +209,7 @@ function ArticlePage() {
 
 ---
 
-## 5. Defer Third-Party Scripts
+### 5. Defer Third-Party Scripts
 
 **Impact: HIGH** — Analytics, tracking, and widgets shouldn't block rendering.
 
@@ -255,7 +259,7 @@ function loadScript(src: string) {
 
 ---
 
-## 6. Preload Critical Assets on User Intent
+### 6. Preload Critical Assets on User Intent
 
 **Impact: MEDIUM** — Eliminates perceived latency on navigation.
 
@@ -294,7 +298,7 @@ Vite automatically adds `<link rel="modulepreload">` for entry chunks. Add manua
 
 ---
 
-## 7. Configure Dependency Pre-Bundling
+### 7. Configure Dependency Pre-Bundling
 
 **Impact: MEDIUM** — Faster dev server startup and page loads.
 
@@ -323,7 +327,7 @@ If you see slow page loads in dev with many small requests, it's usually because
 
 ---
 
-## 8. Enable Compression
+### 8. Enable Compression
 
 **Impact: MEDIUM** — 60-80% smaller transfer sizes.
 
@@ -346,7 +350,7 @@ This generates `.gz` and `.br` files alongside your assets. Configure your serve
 
 ---
 
-## 9. Analyze Your Bundle Regularly
+### 9. Analyze Your Bundle Regularly
 
 **Impact: INFORMATIONAL** — Catch size regressions before they ship.
 
@@ -375,7 +379,7 @@ Or add it to your build script:
 
 ---
 
-## 10. Use `import.meta.env` for Dead Code Elimination
+### 10. Use `import.meta.env` for Dead Code Elimination
 
 **Impact: LOW-MEDIUM** — Removes unused code paths in production.
 
@@ -405,7 +409,7 @@ VITE_API_URL=https://api.example.com
 
 ---
 
-## 11. Optimize Images and Static Assets
+### 11. Optimize Images and Static Assets
 
 **Impact: MEDIUM** — Images are typically the largest assets.
 

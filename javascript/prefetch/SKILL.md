@@ -4,7 +4,13 @@ description: Fetch and cache resources that may be requested soon to reduce futu
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Prefetch
@@ -21,7 +27,6 @@ Prefetch (`<link rel="prefetch">`) is a browser optimization which allows us to 
 - Use `<link rel="prefetch">` or Webpack magic comments (`/* webpackPrefetch: true */`) to prefetch resources
 - Only prefetch resources that are likely to be needed — don't overdo it as it consumes bandwidth
 - Prefetched resources are loaded at low priority when the browser is idle
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -69,7 +74,7 @@ Although prefetching is a great way to optimize the loading time, don't overdo i
 
 - [patterns.dev/vanilla/prefetch](https://patterns.dev/vanilla/prefetch)
 
-## References
+### References
 
 - [Preload, prefetch and priorities in Chrome](https://medium.com/reloading/preload-prefetch-and-priorities-in-chrome-776165961bbf)
 - [Faster navigations with predictive prefetching](https://web.dev/predictive-prefetching/)

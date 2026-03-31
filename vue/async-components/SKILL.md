@@ -3,11 +3,13 @@ name: async-components
 description: Optimize web app performance by loading components asynchronously only when they are needed.
 paths:
   - "**/*.vue"
-  - "**/composables/**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "composables"
+  - "components"
 ---
 
 # Async Components
@@ -27,7 +29,6 @@ Components are the fundamental building blocks for constructing the UI. Typicall
 - Provide `loadingComponent` and `errorComponent` options for better user experience
 - Combine with `v-if` to trigger async loading only when the component is actually needed
 - Use the `delay` and `timeout` options for fine-grained control over loading behavior
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -168,6 +169,6 @@ The `defineAsyncComponent()` function can help in breaking down the initial load
 
 - [patterns.dev/vue/async-components](https://patterns.dev/vue/async-components)
 
-## Helpful Resources
+### References
 
 - [Async Components | Vue Documentation](https://vuejs.org/guide/components/async.html#async-components)

@@ -7,7 +7,10 @@ paths:
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # Static Rendering
@@ -27,7 +30,6 @@ Static rendering or static generation (SSG) attempts to resolve these issues by 
 - Use `getStaticPaths` / `generateStaticParams` to pre-render dynamic routes
 - Consider Incremental Static Regeneration (ISR) for pages that need periodic updates
 - Deploy to a CDN for edge-cached performance
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
