@@ -113,11 +113,6 @@ function TrackOrderCommand(id) {
 
 Perfect! Instead of having the methods directly coupled to the `OrderManager` instance, they're now separate, decoupled functions that we can invoke through the `execute` method that's available on the `OrderManager`.
 
-metadata:
-  author: patterns.dev
-  version: "1.0"
----
-
 ## Pros
 
 The command pattern allows us to decouple methods from the object that executes the operation. It gives you more control if you're dealing with commands that have a certain lifespan, or commands that should be queued and executed at specific times.
@@ -125,11 +120,6 @@ The command pattern allows us to decouple methods from the object that executes 
 ## Cons
 
 The use cases for the command pattern are quite limited, and often adds unnecessary boilerplate to an application.
-
-metadata:
-  author: patterns.dev
-  version: "1.0"
----
 
 ## Source
 
