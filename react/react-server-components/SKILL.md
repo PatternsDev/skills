@@ -7,12 +7,15 @@ paths:
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # React Server Components
 
-React's [Server Components](https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html) enable **modern UX with a server-driven mental model**. This is quite different from Server-side Rendering (SSR) of components and results in significantly smaller client-side JavaScript bundles.
+React's [Server Components](https://react.dev/reference/rsc/server-components) enable **modern UX with a server-driven mental model**. This is quite different from Server-side Rendering (SSR) of components and results in significantly smaller client-side JavaScript bundles.
 
 ## When to Use
 
@@ -21,24 +24,24 @@ React's [Server Components](https://reactjs.org/blog/2020/12/21/data-fetching-wi
 
 ## Instructions
 
-- Use Server Components (default in Next.js App Router) for data fetching and non-interactive UI
+- Use Server Components (default in frameworks like Next.js App Router) for data fetching and non-interactive UI
 - Add `'use client'` directive only to components that need interactivity (event handlers, state, effects)
 - Server Components can use heavy libraries (markdown parsers, date formatters) at zero client bundle cost
 - Server Components complement SSR — they are not a replacement for it
-- Use Server Actions (`'use server'`) for form submissions and mutations
-- Use the ask questions tool if you need to clarify requirements with the user
+- Use Server Functions or Server Actions (`'use server'`) for form submissions and mutations when your framework supports them
 
 ## Details
 
-> **Update (React 18+ / Next.js 13+):** React Server Components are now a **production reality** in Next.js 13+ with the App Router. Unlike classic SSR, RSCs allow you to render part of your UI on the server *ahead of time* without sending the associated JS to the client—dramatically shrinking client bundles (early reports show 20%+ reductions). The Container/Presentational pattern is a great candidate for RSC: the "container" (data-fetching logic) can be a Server Component that fetches data and passes it as props to a presentational Client Component, meaning the fetching logic never ships to the browser.
+> **Update (React 19 / modern frameworks):** React Server Components are now a production feature for framework users. Unlike classic SSR, RSCs let you render part of your UI on the server without shipping that component's JavaScript to the client. The Container/Presentational pattern is a strong fit here: the "container" can be a Server Component that fetches data and passes it to an interactive Client Component.
 >
 > In Next.js App Router, you no longer use `getServerSideProps`—instead, any React component in the `app/` directory can be async to fetch data on the server. React Server Components are *not* a replacement for SSR—they complement it. You typically use RSC for the majority of the page (rendered and streamed as part of SSR), and add `'use client'` directives for components that need interactivity.
 >
-> **Server Actions** (stabilizing in React 19/20) allow you to define form or event handlers on the server using `'use server'` directive and call them from client components, further blurring the line between client and server.
+> The `'use server'` directive is for Server Functions or Server Actions, not for marking a component as a Server Component. Server Components have no directive; they are the default in frameworks that support them unless you opt into `'use client'`.
 
-The direction of this work is exciting. React Server Components are now production-ready in frameworks like Next.js 13+ with the App Router. The following resources may be of interest:
+React Server Components are now production-ready in frameworks like Next.js App Router. The following resources are the most useful starting points:
 
-- The [RFC](https://github.com/reactjs/rfcs/blob/bf51f8755ddb38d92e23ad415fc4e3c02b95b331/text/0000-server-components.md) is worth reading as is [Dan and Lauren's talk](https://www.youtube.com/watch?v=TQQPAU21ZUw&feature=emb_title) worth watching.
+- The [React Server Components reference](https://react.dev/reference/rsc/server-components) is the best current overview.
+- The [RFC](https://github.com/reactjs/rfcs/blob/bf51f8755ddb38d92e23ad415fc4e3c02b95b331/text/0188-server-components.md) is still useful for deeper implementation context.
 - [Next.js App Router documentation](https://nextjs.org/docs/app) for the modern approach to Server Components
 - [Shopify Hydrogen and Server Components](https://shopify.dev/custom-storefronts/hydrogen/framework/react-server-components)
 
@@ -69,7 +72,7 @@ function NoteWithMarkdown({text}) {
 
 ### Server Components
 
-React's new Server Components compliment Server-side rendering, enabling rendering into an intermediate abstraction format without needing to add to the JavaScript bundle. This both allows merging the server-tree with the client-side tree without a loss of state and enables scaling up to more components.
+React's new Server Components complement Server-side rendering, enabling rendering into an intermediate abstraction format without needing to add to the JavaScript bundle. This both allows merging the server tree with the client tree without losing state and enables scaling up to more components.
 
 Server Components are not a replacement for SSR. When paired together, they support quickly rendering in an intermediate format, then having Server-side rendering infrastructure rendering this into HTML enabling early paints to still be fast. We SSR the Client components which the Server components emit, similar to how SSR is used with other data-fetching mechanisms.
 
@@ -144,7 +147,7 @@ No. They are quite different. Initial adoption of Server Components will actuall
 To summarize the differences between Next.js SSR and Server Components from Dan Abramov:
 
 - **Code for Server Components is never delivered to the client.** In many implementations of SSR using React, component code gets sent to the client via JavaScript bundles anyway. This can delay interactivity.
-- **Server components enable access to the back-end from anywhere in the tree.** When using Next.js, you're used to accessing the back-end via `getServerProps()` which has the limitation of only working at the top-level page. Random npm components are unable to do this.
+- **Server Components enable access to the back-end from anywhere in the tree.** In older Next.js data APIs, logic often had to live in page-level functions like `getServerSideProps()`. With Server Components, data fetching can live closer to the component that needs it.
 - **Server Components may be refetched while maintaining Client-side state inside of the tree.** This is because the main transport mechanism is much richer than just HTML, allowing the refetching of a server-rendered part (e.g such as a search result list) without blowing away state inside (e.g search input text, focus, text selection)
 
 Some of the early integration work for Server Components will be done via a webpack plugin which:
@@ -156,16 +159,9 @@ Some of the early integration work for Server Components will be done via a webp
 
 As Dan notes, one of the goals of this work is to enable meta-frameworks to get much better.
 
-## Learn more
+### Learn more
 
-To learn more about this work, [watch the talk from Dan and Lauren](https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html), read the [RFC](https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html) and do check out the [Server Components demo](http://github.com/reactjs/server-components-demo) to play around with this work.
-
-**Interesting relevant threads:**
-
-- [Lauren Tan on Server Components](https://twitter.com/sugarpirate_/status/1341141198258524163)
-- [Sophie Alpert explaining them](https://twitter.com/sophiebits/status/1341098388062756867)
-- [Sebastian Markbåge with a discussion on hydration](https://twitter.com/sebmarkbage/status/1341102430147276803)
-- [HN discussion thread](https://news.ycombinator.com/item?id=25497065)
+To go deeper, read the [React Server Components reference](https://react.dev/reference/rsc/server-components), the [Server Functions reference](https://react.dev/reference/rsc/server-functions), the [RFC](https://github.com/reactjs/rfcs/blob/bf51f8755ddb38d92e23ad415fc4e3c02b95b331/text/0188-server-components.md), and the [server components demo](https://github.com/reactjs/server-components-demo).
 
 ## Source
 

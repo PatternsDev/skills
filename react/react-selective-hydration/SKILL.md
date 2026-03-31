@@ -7,7 +7,10 @@ paths:
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # Selective Hydration
@@ -28,7 +31,6 @@ However, this approach can lead to some performance issues due to some limitatio
 - Place heavy data-fetching components inside `Suspense` so they don't delay sibling hydration
 - Ensure critical interactive components are not inside long-lived loading fallbacks
 - Use `hydrateRoot` (React 18+) to benefit from selective hydration
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -38,9 +40,9 @@ Besides a slower tree generation, another issue is the fact that React only hydr
 
 React 18 solves these problems by allowing us to combine streaming server-side rendering with a new approach to hydration: Selective Hydration!
 
-Instead of using the `renderToString` method that we covered earlier, we can now stream render HTML using the new `pipeToNodeStream` method on the server.
+Instead of using `renderToString`, modern React SSR uses `renderToPipeableStream()` on Node runtimes or `renderToReadableStream()` on Web Stream runtimes.
 
-This method, in combination with the `createRoot` method and `Suspense`, makes it possible to start streaming HTML without having to wait for the larger components to be ready. This means that we can lazy-load components when using SSR, which wasn't (really) possible before!
+These APIs, in combination with `hydrateRoot()` and `Suspense`, make it possible to start streaming HTML without having to wait for the larger components to be ready. This means that we can lazy-load components when using SSR without blocking the hydration of the rest of the page.
 
 The `Comments` component, which earlier slowed down the tree generation and TTI, is now wrapped in `Suspense`. This tells React to not let this component slow down the rest of the tree generation. Instead, React inserts the fallback components as the initially rendered HTML, and continues to generate the rest of the tree before it's sent to the client.
 
@@ -70,6 +72,6 @@ Components can be hydrated as soon as they're streamed to the client, since we n
 
 - [patterns.dev/react/react-selective-hydration](https://patterns.dev/react/react-selective-hydration)
 
-## References
+### References
 
 - [New Suspense SSR Architecture in React 18](https://github.com/reactwg/react-18/discussions/37)

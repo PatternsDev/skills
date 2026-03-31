@@ -81,7 +81,7 @@ Works with `.cursor/skills/`, `.claude/skills/`, or `.codex/skills/`.
 | [`render-props-pattern`](react/render-props-pattern/SKILL.md) | Design | Pass JSX elements to components through props |
 | [`presentational-container-pattern`](react/presentational-container-pattern/SKILL.md) | Design | Enforce separation of concerns by separating the view from the application logic |
 | [`ai-ui-patterns`](react/ai-ui-patterns/SKILL.md) | Design | Design patterns for building AI-powered interfaces like chatbots and assistants |
-| [`react-2026`](react/react-2026/SKILL.md) | Design | Comprehensive guide to building React apps in 2025/2026 |
+| [`react-2026`](react/react-2026/SKILL.md) | Design | Comprehensive guide to building React apps with a modern 2026 stack |
 | [`client-side-rendering`](react/client-side-rendering/SKILL.md) | Rendering | Render your application's UI on the client |
 | [`server-side-rendering`](react/server-side-rendering/SKILL.md) | Rendering | Generate HTML to be rendered on the server in response to a user request |
 | [`static-rendering`](react/static-rendering/SKILL.md) | Rendering | Deliver pre-rendered HTML content that was generated when the site was built |
@@ -93,19 +93,19 @@ Works with `.cursor/skills/`, `.claude/skills/`, or `.codex/skills/`.
 
 ## [Vue Skills](vue/)
 
-| Skill | Description |
-|-------|-------------|
-| [`components`](vue/components/SKILL.md) | Self-contained modules that couple markup, logic, and styles |
-| [`composables`](vue/composables/SKILL.md) | Functions to encapsulate and reuse stateful logic among multiple components |
-| [`script-setup`](vue/script-setup/SKILL.md) | Compile-time syntactic sugar for using the Composition API |
-| [`state-management`](vue/state-management/SKILL.md) | Manage application level state between components |
-| [`provide-inject`](vue/provide-inject/SKILL.md) | Have nested components access data without using props |
-| [`dynamic-components`](vue/dynamic-components/SKILL.md) | Dynamically switch between components with the special component element |
-| [`async-components`](vue/async-components/SKILL.md) | Optimize web app performance by asynchronously loading components |
-| [`render-functions`](vue/render-functions/SKILL.md) | Create component templates with programmatic JavaScript |
-| [`renderless-components`](vue/renderless-components/SKILL.md) | Components that don't render their own markup |
-| [`container-presentational`](vue/container-presentational/SKILL.md) | Enforce separation of concerns by separating the view from the application logic |
-| [`data-provider`](vue/data-provider/SKILL.md) | Utilize renderless components for managing and providing data |
+| Skill | Type | Description |
+|-------|------|-------------|
+| [`components`](vue/components/SKILL.md) | Design | Self-contained modules that couple markup, logic, and styles |
+| [`composables`](vue/composables/SKILL.md) | Design | Functions to encapsulate and reuse stateful logic among multiple components |
+| [`script-setup`](vue/script-setup/SKILL.md) | Design | Compile-time syntactic sugar for using the Composition API |
+| [`state-management`](vue/state-management/SKILL.md) | Design | Manage application level state between components |
+| [`provide-inject`](vue/provide-inject/SKILL.md) | Design | Have nested components access data without using props |
+| [`dynamic-components`](vue/dynamic-components/SKILL.md) | Design | Dynamically switch between components with the special component element |
+| [`async-components`](vue/async-components/SKILL.md) | Performance | Optimize web app performance by asynchronously loading components |
+| [`render-functions`](vue/render-functions/SKILL.md) | Design | Create component templates with programmatic JavaScript |
+| [`renderless-components`](vue/renderless-components/SKILL.md) | Design | Components that don't render their own markup |
+| [`container-presentational`](vue/container-presentational/SKILL.md) | Design | Enforce separation of concerns by separating the view from the application logic |
+| [`data-provider`](vue/data-provider/SKILL.md) | Design | Utilize renderless components for managing and providing data |
 
 ## How skills differ from patterns.dev documentation
 

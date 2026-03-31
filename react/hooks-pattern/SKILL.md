@@ -9,12 +9,15 @@ paths:
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hoc-pattern"
+  - "render-props-pattern"
 ---
 
 # Hooks Pattern
 
-React 16.8 introduced a new feature called [**Hooks**](https://reactjs.org/docs/hooks-intro.html). Hooks make it possible to use React state and lifecycle methods, without having to use a ES2015 class component.
+React 16.8 introduced a new feature called [**Hooks**](https://react.dev/reference/react/hooks). Hooks make it possible to use React state and lifecycle methods, without having to use an ES2015 class component.
 
 Although Hooks are not necessarily a design pattern, Hooks play a very important role in your application design. Many traditional design patterns can be replaced by Hooks.
 
@@ -31,7 +34,6 @@ Although Hooks are not necessarily a design pattern, Hooks play a very important
 - Follow the Rules of Hooks: only call hooks at the top level and only in React functions
 - Avoid unnecessary `useEffect` — compute derived state directly in the component body
 - Let the React Compiler handle memoization instead of manual `useMemo`/`useCallback` where possible
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -246,7 +248,7 @@ The value of the input now gets logged to the console whenever the user types a 
 
 Besides the built-in hooks that React provides (`useState`, `useEffect`, `useReducer`, `useRef`, `useContext`, `useMemo`, `useImperativeHandle`, `useLayoutEffect`, `useDebugValue`, `useCallback`), we can easily create our own custom hooks.
 
-You may have noticed that all hooks start with `use`. It's important to start your hooks with `use` in order for React to check if it violates the [rules of Hooks](https://reactjs.org/docs/hooks-rules.html).
+You may have noticed that all hooks start with `use`. It's important to start your hooks with `use` in order for React to check if it violates the [Rules of Hooks](https://react.dev/reference/rules/rules-of-hooks).
 
 Let's say we want to keep track of certain keys the user may press when writing the input. Our custom hook should be able to receive the key we want to target as its argument.
 

@@ -7,14 +7,17 @@ paths:
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # Streaming Server-Side Rendering
 
-We can reduce the Time To Interactive while still server rendering our application by _streaming server rendering_ the contents of our application. Instead of generating one large HTML file containing the necessary markup for the current navigation, we can split it up into smaller chunks! Node streams allow us to stream data into the response object, which means that we can continuously send data down to the client. The moment the client receives the chunks of data, it can start rendering the contents.
+We can reduce the Time To Interactive while still server rendering our application by _streaming_ the contents of our application. Instead of generating one large HTML string containing the necessary markup for the current navigation, we can send the shell first and stream slower parts later. The moment the client receives the first chunks of HTML, it can start parsing and painting the page.
 
-React's built-in `renderToNodeStream` makes it possible for us to send our application in smaller chunks. As the client can start painting the UI when it's still receiving data, we can create a very performant first-load experience. Calling the `hydrate` method on the received DOM nodes will attach the corresponding event handlers, which makes the UI interactive!
+Modern React streaming uses `renderToPipeableStream()` on Node runtimes or `renderToReadableStream()` on Web Stream runtimes, then hydrates the response with `hydrateRoot()` on the client.
 
 ## When to Use
 
@@ -27,7 +30,6 @@ React's built-in `renderToNodeStream` makes it possible for us to send our appli
 - Combine streaming with `Suspense` boundaries to stream partial content while slow parts load
 - Use the `onShellReady` callback to begin streaming once the critical shell is ready
 - Handle streaming errors with the `onError` callback
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -48,28 +50,30 @@ The initial HTML gets sent to the response object alongside the chunks of data f
 </html>
 ```
 
-The `renderToNodeStream` method streams data to the client:
+Modern React streaming on Node uses `renderToPipeableStream`:
 
 ```js
-import { renderToNodeStream } from 'react-dom/server';
-import Frontend from '../client';
+import { renderToPipeableStream } from "react-dom/server";
 
-app.use('*', (request, response) => {
-  // Send the start of your HTML to the browser
-  response.write('<html><head><title>Page</title></head><body><div id="root">');
+app.use("*", (request, response) => {
+  let didError = false;
 
-  // Render your frontend to a stream and pipe it to the response
-  const stream = renderToNodeStream(<Frontend />);
-  stream.pipe(response, { end: 'false' });
-
-  // When React finishes rendering send the rest of your HTML to the browser
-  stream.on('end', () => {
-    response.end('</div></body></html>');
+  const { pipe } = renderToPipeableStream(<App />, {
+    bootstrapScripts: ["/build/client.js"],
+    onShellReady() {
+      response.statusCode = didError ? 500 : 200;
+      response.setHeader("Content-Type", "text/html");
+      pipe(response);
+    },
+    onError(error) {
+      didError = true;
+      console.error(error);
+    },
   });
 });
 ```
 
-If we were to server render the `App` component using the `renderToString` method, we would have had to wait until the application has received all data before it can start loading and processing this metadata. To speed this up, `renderToNodeStream` makes it possible for the app to start loading and processing this information as it's still receiving the chunks of data from the App component!
+If we were to server render the `App` component using `renderToString`, we would have to wait until the entire tree had rendered before sending the response. With streaming, the server can flush the shell early and continue sending slower content as it becomes ready.
 
 ### Concepts
 
@@ -79,23 +83,14 @@ Streaming responds well to network backpressure. If the network is clogged and n
 
 ### React for Streaming
 
-React introduced support for streaming in React 16. The following APIs were included in the ReactDOMServer to support streaming.
+React 18 introduced the modern streaming APIs:
 
-1. **`ReactDOMServer.renderToNodeStream(element)`**: The output HTML from this function is the same as `ReactDOMServer.renderToString(element)` but is in a Node.js readablestream format instead of a string. The function will only work on the server to render HTML as a stream. The client receiving this stream can subsequently call `ReactDOM.hydrate()` to hydrate the page and make it interactive.
+1. **`renderToPipeableStream(element, options)`** for Node.js HTTP responses.
+2. **`renderToReadableStream(element, options)`** for Web Streams runtimes such as edge environments.
 
-2. **`ReactDOMServer.renderToStaticNodeStream(element)`**: This corresponds to `ReactDOMServer.renderToStaticMarkup(element)`. The HTML output is the same but in a stream format. It can be used for rendering static, non-interactive pages on the server and then streaming them to the client.
+These APIs support Suspense boundaries, `onShellReady`, `onAllReady`, and progressive hydration through `hydrateRoot()` on the client.
 
-> **Note (React 18+): Use `renderToPipeableStream` Instead of `renderToNodeStream`**
->
-> In React 18, `renderToNodeStream` has been replaced by **`renderToPipeableStream`** (for Node HTTP streams) and **`renderToReadableStream`** (for Web Streams API in edge runtimes). The new APIs support Suspense boundaries, allowing you to send partial content and even display a `<Suspense fallback>` for slow parts.
->
-> The new API supports `onShellReady` and `onAllReady` callbacks. Use `onShellReady` (which fires when the shell is ready to stream) to flush any critical scripts and begin streaming to the client. React will handle flushing Suspense boundaries automatically.
->
-> **Error Handling:** Ensure you handle streaming errors using the `onError` callback of `renderToPipeableStream`.
->
-> Using the modern API ensures compatibility with React's concurrency features—the older `renderToNodeStream` does not support Suspense properly.
-
-The readable stream output by both functions can emit bytes once you start reading from it. This can be achieved by piping the readable stream to a writable stream such as the response object. The response object progressively sends chunks of data to the client while waiting for new chunks to be rendered.
+The stream output can emit bytes as soon as the shell is ready. The response progressively sends chunks of data to the client while slower chunks continue rendering on the server.
 
 ### Streaming SSR - Pros and Cons
 
@@ -107,7 +102,7 @@ Streaming aims to improve the speed of SSR with React and provides the following
 
 3. **Supports SEO**: The streamed response can be read by search engine crawlers, thus allowing for SEO on the website.
 
-It is important to note that streaming implementation is not a simple find-replace from `renderToString` to `renderToNodeStream()`. There are cases where the code that works with SSR may not work as-is with streaming:
+It is important to note that streaming implementation is not a simple find-replace from `renderToString` to `renderToPipeableStream()`. There are cases where the code that works with SSR may not work as-is with streaming:
 
 1. Frameworks that use the server-render-pass to generate markup that needs to be added to the document before the SSR-ed chunk. Examples are frameworks that dynamically determine which CSS to add to the page in a preceding `<style>` tag.
 

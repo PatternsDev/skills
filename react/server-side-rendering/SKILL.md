@@ -7,7 +7,10 @@ paths:
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # Server-side Rendering
@@ -28,7 +31,6 @@ The connect and fetch operations are handled on the server. HTML required to for
 - Combine SSR with client-side hydration for interactive pages
 - Be aware of TTFB implications — optimize server response times and consider caching
 - Explore React Server Components as a complement to SSR for reducing client-side JavaScript
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -176,7 +178,7 @@ ReactDOMServer.renderToString(element);
 
 This function returns an HTML string corresponding to the React element. The HTML can then be rendered to the client for a faster page load.
 
-The `renderToString()` function may be used with `ReactDOM.hydrate()`. This will ensure that the rendered HTML is preserved as-is on the client and only the event handlers attached after load.
+The `renderToString()` function may be used with `hydrateRoot()`. This preserves the HTML rendered on the server and attaches event handlers on the client.
 
 To implement this, we use a `.js` file on both client and server corresponding to every page. The `.js` file on the server will render the HTML content, and the `.js` file on the client will hydrate it.
 
@@ -191,7 +193,9 @@ app.get("/", (req, res) => {
 The client-side code to ensure the element `App` is hydrated:
 
 ```js
-ReactDOM.hydrate(<App />, document.getElementById("root"));
+import { hydrateRoot } from "react-dom/client";
+
+hydrateRoot(document.getElementById("root"), <App />);
 ```
 
 A complete example of SSR with React can be found [here](https://www.digitalocean.com/community/tutorials/react-server-side-rendering).
