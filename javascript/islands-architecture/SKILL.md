@@ -1,6 +1,8 @@
 ---
 name: islands-architecture
 description: Render small, focused chunks of interactivity within server-rendered web pages to reduce JavaScript overhead.
+context: fork
+allowed-tools: Read, Grep, Glob
 metadata:
   author: patterns.dev
   version: "1.0"

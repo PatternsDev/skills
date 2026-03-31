@@ -1,6 +1,8 @@
 ---
 name: hooks-pattern
 description: Use functions to reuse stateful logic among multiple components throughout the app.
+context: fork
+allowed-tools: Read, Grep, Glob
 metadata:
   author: patterns.dev
   version: "1.0"

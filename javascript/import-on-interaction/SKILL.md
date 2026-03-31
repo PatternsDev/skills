@@ -1,6 +1,8 @@
 ---
 name: import-on-interaction
 description: Load non-critical resources when a user interacts with UI requiring it.
+context: fork
+allowed-tools: Read, Grep, Glob
 metadata:
   author: patterns.dev
   version: "1.0"

@@ -1,6 +1,8 @@
 ---
 name: ai-ui-patterns
 description: Design patterns for building AI-powered interfaces like chatbots and intelligent assistants in React.
+context: fork
+allowed-tools: Read, Grep, Glob
 metadata:
   author: patterns.dev
   version: "1.0"

@@ -1,6 +1,8 @@
 ---
 name: third-party
 description: Reduce the performance impact of third-party scripts on your site using optimized loading strategies.
+context: fork
+allowed-tools: Read, Grep, Glob
 metadata:
   author: patterns.dev
   version: "1.0"

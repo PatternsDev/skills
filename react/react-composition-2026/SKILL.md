@@ -1,6 +1,8 @@
 ---
 name: react-composition-2026
 description: Modern React composition patterns for 2025/2026. Use when designing component APIs, refactoring prop-heavy components, building shared UI libraries, or reviewing component architecture. Covers compound components, slots, polymorphism, and React 19 APIs. Framework-agnostic — works with Vite, Next.js, Remix, and any React setup.
+context: fork
+allowed-tools: Read, Grep, Glob
 license: MIT
 metadata:
   author: patterns.dev

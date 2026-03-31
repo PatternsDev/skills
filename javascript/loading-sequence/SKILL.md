@@ -1,6 +1,8 @@
 ---
 name: loading-sequence
 description: Optimize the loading sequence of critical resources to improve Core Web Vitals like FCP, LCP, and FID.
+context: fork
+allowed-tools: Read, Grep, Glob
 metadata:
   author: patterns.dev
   version: "1.0"

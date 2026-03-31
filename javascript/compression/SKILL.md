@@ -1,6 +1,8 @@
 ---
 name: compression
 description: Reduce the time needed to transfer JavaScript over the network using compression techniques like Gzip and Brotli.
+context: fork
+allowed-tools: Read, Grep, Glob
 metadata:
   author: patterns.dev
   version: "1.0"

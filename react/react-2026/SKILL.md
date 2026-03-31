@@ -1,6 +1,8 @@
 ---
 name: react-2026
 description: A comprehensive guide to building React apps in 2025/2026, covering frameworks, build tools, routing, state management, and AI integration.
+context: fork
+allowed-tools: Read, Grep, Glob
 metadata:
   author: patterns.dev
   version: "1.0"

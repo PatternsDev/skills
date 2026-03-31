@@ -1,6 +1,8 @@
 ---
 name: view-transitions
 description: Animate page transitions using the View Transitions API for smooth visual DOM changes.
+context: fork
+allowed-tools: Read, Grep, Glob
 metadata:
   author: patterns.dev
   version: "1.0"

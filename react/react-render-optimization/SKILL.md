@@ -1,6 +1,8 @@
 ---
 name: react-render-optimization
 description: React re-render and rendering performance patterns. Use when optimizing component rendering, reducing unnecessary re-renders, improving UI responsiveness, or reviewing React code for performance issues. Covers memoization, state design, transitions, refs, CSS rendering tricks, and hydration. Framework-agnostic — works with Vite, Next.js, Remix, and any React setup.
+context: fork
+allowed-tools: Read, Grep, Glob
 license: MIT
 metadata:
   author: patterns.dev

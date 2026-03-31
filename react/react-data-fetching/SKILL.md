@@ -1,6 +1,8 @@
 ---
 name: react-data-fetching
 description: Modern React data fetching patterns for any stack. Use when implementing data fetching, caching, deduplication, optimistic updates, or parallel loading in React applications. Covers TanStack Query, SWR, Suspense, React.cache, and vanilla patterns. Works with Vite, Next.js, Remix, and custom setups.
+context: fork
+allowed-tools: Read, Grep, Glob
 license: MIT
 metadata:
   author: patterns.dev
