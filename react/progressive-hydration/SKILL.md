@@ -1,6 +1,9 @@
 ---
 name: progressive-hydration
 description: Delay loading JavaScript for less important parts of the page to improve Time to Interactive.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

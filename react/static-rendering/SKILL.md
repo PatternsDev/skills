@@ -1,6 +1,9 @@
 ---
 name: static-rendering
 description: Deliver pre-rendered HTML content that was generated at build time for fast, cacheable pages.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

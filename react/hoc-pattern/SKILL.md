@@ -1,6 +1,9 @@
 ---
 name: hoc-pattern
 description: Pass reusable logic down as props to components using Higher Order Components.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

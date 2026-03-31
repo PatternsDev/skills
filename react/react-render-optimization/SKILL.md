@@ -3,6 +3,9 @@ name: react-render-optimization
 description: React rendering performance patterns. Use when reducing re-renders, optimizing memoization, state design, or reviewing React performance.
 context: fork
 allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 license: MIT
 metadata:
   author: patterns.dev

@@ -3,6 +3,9 @@ name: react-data-fetching
 description: Modern React data fetching patterns. Use when implementing caching, deduplication, optimistic updates, or parallel loading with TanStack Query, SWR, or Suspense.
 context: fork
 allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 license: MIT
 metadata:
   author: patterns.dev

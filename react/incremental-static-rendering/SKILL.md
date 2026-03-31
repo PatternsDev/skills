@@ -1,6 +1,9 @@
 ---
 name: incremental-static-rendering
 description: Update static content after you have built your site using Incremental Static Regeneration (ISR).
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

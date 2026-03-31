@@ -1,6 +1,9 @@
 ---
 name: render-props-pattern
 description: Pass JSX elements to components through props for flexible, reusable component composition.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

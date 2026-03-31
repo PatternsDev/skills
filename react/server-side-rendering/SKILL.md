@@ -1,6 +1,9 @@
 ---
 name: server-side-rendering
 description: Generate HTML on the server in response to user requests for faster initial page loads and SEO.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

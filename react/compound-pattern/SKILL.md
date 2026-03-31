@@ -1,6 +1,9 @@
 ---
 name: compound-pattern
 description: Create multiple components that work together to perform a single task by sharing implicit state.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

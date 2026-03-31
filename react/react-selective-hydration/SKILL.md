@@ -1,6 +1,9 @@
 ---
 name: react-selective-hydration
 description: Combine streaming server-side rendering with selective hydration for faster interactivity in React 18+.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

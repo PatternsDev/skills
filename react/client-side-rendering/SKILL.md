@@ -1,6 +1,9 @@
 ---
 name: client-side-rendering
 description: Render your application's UI entirely on the client using JavaScript.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

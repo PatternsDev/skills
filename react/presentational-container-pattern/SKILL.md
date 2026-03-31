@@ -1,6 +1,9 @@
 ---
 name: presentational-container-pattern
 description: Enforce separation of concerns by separating the view from the application logic.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

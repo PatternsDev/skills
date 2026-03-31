@@ -1,6 +1,9 @@
 ---
 name: react-server-components
 description: Render components on the server without sending their JavaScript to the client, dramatically reducing bundle sizes.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

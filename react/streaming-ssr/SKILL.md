@@ -1,6 +1,9 @@
 ---
 name: streaming-ssr
 description: Stream server-rendered HTML to the client in chunks for faster Time to First Byte and First Contentful Paint.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 metadata:
   author: patterns.dev
   version: "1.0"

@@ -3,6 +3,9 @@ name: react-composition-2026
 description: Modern React composition patterns for 2025/2026. Use when designing component APIs, building shared UI libraries, or refactoring prop-heavy components.
 context: fork
 allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 license: MIT
 metadata:
   author: patterns.dev
