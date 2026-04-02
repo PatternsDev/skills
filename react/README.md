@@ -10,7 +10,7 @@ Component design patterns and rendering strategies for React and Next.js. From [
 | [`render-props-pattern`](render-props-pattern/SKILL.md) | Design | Pass JSX elements to components through props |
 | [`presentational-container-pattern`](presentational-container-pattern/SKILL.md) | Design | Enforce separation of concerns by separating the view from the application logic |
 | [`ai-ui-patterns`](ai-ui-patterns/SKILL.md) | Design | Design patterns for building AI-powered interfaces like chatbots and assistants |
-| [`react-2026`](react-2026/SKILL.md) | Design | Comprehensive guide to building React apps in 2025/2026 |
+| [`react-2026`](react-2026/SKILL.md) | Design | Comprehensive guide to building React apps with a modern 2026 stack |
 | [`client-side-rendering`](client-side-rendering/SKILL.md) | Rendering | Render your application's UI on the client |
 | [`server-side-rendering`](server-side-rendering/SKILL.md) | Rendering | Generate HTML to be rendered on the server in response to a user request |
 | [`static-rendering`](static-rendering/SKILL.md) | Rendering | Deliver pre-rendered HTML content that was generated when the site was built |

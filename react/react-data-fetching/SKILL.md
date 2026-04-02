@@ -1,10 +1,18 @@
 ---
 name: react-data-fetching
-description: Modern React data fetching patterns for any stack. Use when implementing data fetching, caching, deduplication, optimistic updates, or parallel loading in React applications. Covers TanStack Query, SWR, Suspense, React.cache, and vanilla patterns. Works with Vite, Next.js, Remix, and custom setups.
+description: Modern React data fetching patterns. Use when implementing caching, deduplication, optimistic updates, or parallel loading with TanStack Query, SWR, or Suspense.
+context: fork
+allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # React Data Fetching Patterns
@@ -20,19 +28,19 @@ Reference these patterns when:
 - Debugging waterfall loading patterns
 - Choosing between data fetching libraries
 
-## Overview
+## Instructions
+
+- Apply these patterns during code generation, review, and refactoring. When you see fetch-in-effect without caching or deduplication, suggest the appropriate pattern.
+
+## Details
+
+### Overview
 
 The most common performance problem in React apps is **request waterfalls** — sequential fetches that could run in parallel. The second most common problem is **redundant fetches** — multiple components fetching the same data independently. The patterns below address both, starting with the highest-impact fixes.
 
 ---
 
-## Instructions
-
-Apply these patterns during code generation, review, and refactoring. When you see fetch-in-effect without caching or deduplication, suggest the appropriate pattern.
-
----
-
-## 1. Parallelize Independent Fetches with `Promise.all`
+### 1. Parallelize Independent Fetches with `Promise.all`
 
 **Impact: CRITICAL** — Eliminates sequential waterfalls for 2-10x improvement.
 
@@ -80,7 +88,7 @@ async function loadPage() {
 
 ---
 
-## 2. Use TanStack Query or SWR for Client-Side Data
+### 2. Use TanStack Query or SWR for Client-Side Data
 
 **Impact: CRITICAL** — Automatic caching, deduplication, revalidation, and error handling.
 
@@ -163,7 +171,7 @@ createRoot(document.getElementById('root')!).render(
 
 ---
 
-## 3. Use Suspense for Declarative Loading States
+### 3. Use Suspense for Declarative Loading States
 
 **Impact: HIGH** — Cleaner code, automatic loading coordination, streaming support.
 
@@ -230,7 +238,7 @@ TanStack Query provides `useSuspenseQuery` and SWR provides `{ suspense: true }`
 
 ---
 
-## 4. Prefetch Data Before Navigation
+### 4. Prefetch Data Before Navigation
 
 **Impact: HIGH** — Eliminates loading states on page transitions.
 
@@ -282,7 +290,7 @@ const routes = [
 
 ---
 
-## 5. Use `React.cache()` for Server-Side Deduplication
+### 5. Use `React.cache()` for Server-Side Deduplication
 
 **Impact: MEDIUM** — Deduplicates expensive operations within a single server render.
 
@@ -318,7 +326,7 @@ getUser('123') // hit
 
 ---
 
-## 6. Implement Optimistic Updates for Instant Feedback
+### 6. Implement Optimistic Updates for Instant Feedback
 
 **Impact: HIGH** — UI responds immediately without waiting for the server.
 
@@ -358,7 +366,7 @@ function LikeButton({ postId }: { postId: string }) {
 
 ---
 
-## 7. Avoid Fetch Waterfalls in Component Trees
+### 7. Avoid Fetch Waterfalls in Component Trees
 
 **Impact: CRITICAL** — Parent-then-child fetching is the #1 performance problem.
 
@@ -413,7 +421,7 @@ Or use a route-level loader to fetch all data before the component renders.
 
 ---
 
-## 8. Deduplicate Global Event Listeners
+### 8. Deduplicate Global Event Listeners
 
 **Impact: MEDIUM** — Prevents N listeners for N component instances.
 
@@ -445,7 +453,7 @@ export function useOnlineStatus() {
 
 ---
 
-## 9. Use Passive Event Listeners for Scroll and Touch
+### 9. Use Passive Event Listeners for Scroll and Touch
 
 **Impact: LOW-MEDIUM** — Prevents scroll jank from blocking listeners.
 
@@ -473,7 +481,7 @@ useEffect(() => {
 
 ---
 
-## 10. Schema-Version Your Client Storage
+### 10. Schema-Version Your Client Storage
 
 **Impact: LOW-MEDIUM** — Prevents crashes from stale localStorage data.
 

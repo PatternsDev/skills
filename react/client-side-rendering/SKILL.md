@@ -1,9 +1,16 @@
 ---
 name: client-side-rendering
 description: Render your application's UI entirely on the client using JavaScript.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # Client-side Rendering
@@ -21,7 +28,6 @@ In Client-Side Rendering (CSR) only the barebones HTML container for a page is r
 - Use code-splitting and lazy loading to defer non-critical JavaScript
 - Consider SSR/SSG for public-facing pages where SEO and initial load performance matter
 - Use service workers and application shell caching for offline and repeat visit performance
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

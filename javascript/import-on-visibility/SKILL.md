@@ -1,9 +1,16 @@
 ---
 name: import-on-visibility
 description: Load non-critical components when they become visible in the viewport.
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Import On Visibility
@@ -22,7 +29,6 @@ As we're not requesting all images instantly, we can reduce the initial loading 
 - Use the `IntersectionObserver` API to detect when components enter the viewport
 - Use libraries like `react-lazyload` or `react-loadable-visibility` for quick implementation
 - Provide a loading fallback component while the module is being loaded
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

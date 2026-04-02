@@ -1,9 +1,18 @@
 ---
 name: third-party
 description: Reduce the performance impact of third-party scripts on your site using optimized loading strategies.
+context: fork
+allowed-tools: Read, Grep, Glob
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Optimize loading third-parties
@@ -22,7 +31,6 @@ metadata:
 - Lazy-load below-the-fold embeds (YouTube, maps, social media) using IntersectionObserver or facades
 - Consider self-hosting critical third-party scripts for better caching control
 - Use the Next.js Script component with appropriate `strategy` values for framework-level optimization
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

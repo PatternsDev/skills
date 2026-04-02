@@ -1,9 +1,15 @@
 ---
 name: components
 description: Self-contained modules that couple markup (HTML), logic (JS), and styles (CSS) as the building blocks of Vue apps.
+paths:
+  - "**/*.vue"
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "composables"
+  - "script-setup"
 ---
 
 # Components
@@ -23,7 +29,6 @@ When working within a Vue application, it's important to understand that almost 
 - Extract reusable parts of large components into smaller child components
 - Use `ref()` for reactive primitive values and `reactive()` for reactive objects
 - Pass data from parent to child using props; emit events from child to parent
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -200,7 +205,7 @@ This article aims to be a simple introduction to the concept of components. In t
 
 - [patterns.dev/vue/components](https://patterns.dev/vue/components)
 
-## Helpful Resources
+### References
 
 - [Components Basics | Vue Documentation](https://vuejs.org/guide/essentials/component-basics.html#components-basics)
 - [Reactivity Fundamentals | Vue Documentation](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)

@@ -1,9 +1,16 @@
 ---
 name: preload
 description: Inform the browser of critical resources before they are naturally discovered to speed up loading.
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Preload
@@ -20,8 +27,8 @@ metadata:
 - Use `<link rel="preload">` for resources needed immediately on the current page
 - Be careful not to delay First Contentful Paint by preloading too many resources
 - Use `as` attribute to specify the resource type (script, style, font, image)
+- For fonts and other CORS-fetched resources, set `crossorigin` on the preload to match the eventual request mode
 - Only preload resources that must be visible within ~1 second of initial render
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -67,8 +74,8 @@ Entrypoint main = main.bundle.js
 The actual output is visible as a `link` tag with `rel="preload"` in the `head` of our document.
 
 ```html
-<link rel="prefetch" href="emoji-picker.bundle.js" as="script" />
-<link rel="prefetch" href="vendors~emoji-picker.bundle.js" as="script" />
+<link rel="preload" href="emoji-picker.bundle.js" as="script" />
+<link rel="preload" href="vendors~emoji-picker.bundle.js" as="script" />
 ```
 
 The preloaded `EmojiPicker` could be loaded in parallel with the initial bundle. Unlike `prefetch`, where the browser still had a say in whether it thinks it's got a good enough internet connection and bandwidth to actually prefetch the resource, a **preloaded** resource will get preloaded no matter what.
@@ -83,6 +90,42 @@ Should you wish for browsers to download a script as high-priority, but not bloc
 <link rel="preload" href="emoji-picker.js" as="script">
 <script src="emoji-picker.js" async>
 ```
+
+### Font preloads must use `crossorigin`
+
+Fonts are fetched as CORS resources, even when they are self-hosted on the same origin. This means the preload request and the eventual `@font-face` request need to use the same fetch mode, or the preload cannot be reused.
+
+If you preload a font **without** `crossorigin`, the browser will typically make a `no-cors` preload request and later a separate `cors` request when CSS discovers the font. That leads to a double fetch of the same file and wastes bandwidth.
+
+**Avoid:**
+
+```html
+<link rel="preload" href="/fonts/inter-roman.woff2" as="font" type="font/woff2">
+```
+
+**Prefer:**
+
+```html
+<link
+  rel="preload"
+  href="/fonts/inter-roman.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+>
+```
+
+And make sure the `@font-face` matches the same resource:
+
+```css
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-roman.woff2") format("woff2");
+  font-display: swap;
+}
+```
+
+This same rule applies more broadly: if the eventual consumer fetches a resource with CORS semantics, the preload should match that mode too.
 
 ### Preload in Chrome 95+
 

@@ -1,9 +1,15 @@
 ---
 name: script-setup
 description: Compile-time syntactic sugar for a more concise Composition API syntax in Vue single-file components.
+paths:
+  - "**/*.vue"
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "composables"
+  - "components"
 ---
 
 # `<script setup>`
@@ -20,8 +26,6 @@ metadata:
 - Use `defineProps()` and `defineEmits()` (no import needed) for props and events
 - Use `withDefaults()` to provide default prop values in TypeScript
 - Imported components are automatically available in the template without explicit registration
-- Use the ask questions tool if you need to clarify requirements with the user
-
 
 ## Details
 
@@ -306,6 +310,6 @@ For a full list of changes that need to be kept in mind when working with the `<
 
 - [patterns.dev/vue/script-setup](https://patterns.dev/vue/script-setup)
 
-## Helpful Resources
+### References
 
 - [`<script setup>` | Vue Documentation](https://vuejs.org/api/sfc-script-setup.html)

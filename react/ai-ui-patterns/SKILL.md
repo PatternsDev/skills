@@ -1,9 +1,18 @@
 ---
 name: ai-ui-patterns
 description: Design patterns for building AI-powered interfaces like chatbots and intelligent assistants in React.
+context: fork
+allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # AI UI Patterns
@@ -23,7 +32,6 @@ Building AI-powered interfaces – from chatbots to intelligent assistants – r
 - Enable streaming (`stream: true`) for responsive real-time output in chat interfaces
 - Debounce input for autocomplete features; disable input during response streaming for chat
 - Build reusable components (ChatMessage, InputBox) decoupled from data-fetching logic
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -345,7 +353,7 @@ For most AI chat applications, **Next.js** provides a simpler developer experien
 
 - [patterns.dev/react/ai-ui-patterns](https://patterns.dev/react/ai-ui-patterns)
 
-## References
+### References
 
 - [Vercel AI SDK Documentation](https://ai-sdk.dev/)
 - [Vercel Academy: Basic Chatbot](https://vercel.com/academy/ai-sdk/basic-chatbot)

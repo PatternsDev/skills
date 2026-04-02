@@ -1,9 +1,16 @@
 ---
 name: mixin-pattern
 description: Add functionality to objects or classes without inheritance using mixins.
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Mixin Pattern
@@ -23,7 +30,6 @@ Let's say that for our application, we need to create multiple dogs. However, th
 - Be cautious with prototype pollution — modifying prototypes can lead to unexpected behavior
 - In React, prefer Hooks over mixins (mixins are discouraged by the React team)
 - Consider composition over inheritance when designing reusable behavior
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -128,7 +134,7 @@ Mixins allow us to easily add functionality to objects without inheritance by in
 
 - [patterns.dev/vanilla/mixin-pattern](https://patterns.dev/vanilla/mixin-pattern)
 
-## References
+### References
 
 - [Functional Mixins](https://medium.com/javascript-scene/functional-mixins-composing-software-ffb66d5e731c) - Eric Elliott
 - [Mixins](https://javascript.info/mixins) - JavaScript Info

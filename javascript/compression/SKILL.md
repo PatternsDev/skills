@@ -1,9 +1,18 @@
 ---
 name: compression
 description: Reduce the time needed to transfer JavaScript over the network using compression techniques like Gzip and Brotli.
+context: fork
+allowed-tools: Read, Grep, Glob
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Compressing JavaScript
@@ -25,7 +34,6 @@ JavaScript is the second biggest [contributor to page size](https://almanac.http
 - Enable compression at the server or CDN level (e.g., Nginx, Vercel, Netlify)
 - Always minify JavaScript before applying compression
 - Be mindful of the granularity trade-off: larger bundles compress better, but smaller chunks cache better
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

@@ -1,9 +1,18 @@
 ---
 name: import-on-interaction
 description: Load non-critical resources when a user interacts with UI requiring it.
+context: fork
+allowed-tools: Read, Grep, Glob
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Import On Interaction
@@ -25,7 +34,6 @@ Your page may contain code or data for a component or resource that isn't immedi
 - For first-party code, prefer prefetching over import-on-interaction when possible
 - Consider preconnecting to required origins on hover to reduce latency
 - Use `React.lazy` with `Suspense` for component-level import-on-interaction in React
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

@@ -1,9 +1,16 @@
 ---
 name: static-import
 description: Import code that has been exported by another module using static ES2015 import syntax.
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Static Import
@@ -22,7 +29,6 @@ Let's look at an example! A simple chat app contains a `Chat` component, in whic
 - Use static imports for modules critical to the initial render
 - Be aware that all statically imported modules are bundled into the initial bundle
 - Consider switching to dynamic imports for modules not needed on initial render
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

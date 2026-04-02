@@ -1,9 +1,16 @@
 ---
 name: singleton-pattern
 description: Share a single global instance throughout your application to manage global state.
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "observer-pattern"
 ---
 
 # Singleton Pattern
@@ -22,7 +29,6 @@ Singletons are classes which can be instantiated once, and can be accessed globa
 - In JavaScript, prefer simple object literals or modules over class-based singletons when possible
 - In React, prefer state management tools (Redux, Context) over Singletons for global state
 - Be aware that Singletons can make testing more difficult due to shared mutable state
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -222,7 +228,7 @@ Although the downsides to having a global state don't magically disappear by usi
 
 - [patterns.dev/vanilla/singleton-pattern](https://patterns.dev/vanilla/singleton-pattern)
 
-## References
+### References
 
 - [Do React Hooks replace Redux](https://medium.com/javascript-scene/do-react-hooks-replace-redux-210bab340672) - Eric Elliott
 - [JavaScript Design Patterns: The Singleton](https://www.sitepoint.com/javascript-design-patterns-singleton/) - Samier Saeed

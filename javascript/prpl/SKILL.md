@@ -1,9 +1,16 @@
 ---
 name: prpl
 description: Optimize initial load through precaching, lazy loading, and minimizing roundtrips using the PRPL pattern.
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # PRPL Pattern
@@ -22,7 +29,6 @@ Making our applications globally accessible can be a challenge! We have to make 
 - **Pre-cache** frequently visited routes using service workers for offline support
 - **Lazily load** routes and assets that aren't immediately needed
 - Use an app shell architecture as the main entry point
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

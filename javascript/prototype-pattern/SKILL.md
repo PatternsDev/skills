@@ -1,9 +1,16 @@
 ---
 name: prototype-pattern
 description: Share properties among many objects of the same type through JavaScript's prototype chain.
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Prototype Pattern
@@ -23,7 +30,6 @@ In our applications, we often have to create many objects of the same type. A us
 - Use `Object.create()` to create objects with a specific prototype
 - Leverage the prototype chain for inheritance (`extends` keyword in ES6 classes)
 - Understand that properties on the prototype are shared and not duplicated per instance
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -110,7 +116,7 @@ The prototype pattern allows us to easily let objects access and inherit propert
 
 - [patterns.dev/vanilla/prototype-pattern](https://patterns.dev/vanilla/prototype-pattern)
 
-## References
+### References
 
 - [Object.create - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
 - [Prototype - ECMA](https://www.ecma-international.org/ecma-262/5.1/#sec-4.3.5)

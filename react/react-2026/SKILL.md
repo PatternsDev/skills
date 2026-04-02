@@ -1,9 +1,18 @@
 ---
 name: react-2026
-description: A comprehensive guide to building React apps in 2025/2026, covering frameworks, build tools, routing, state management, and AI integration.
+description: A comprehensive guide to building React apps with a modern 2026 stack, covering frameworks, build tools, routing, state management, and AI integration.
+context: fork
+allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # React Stack Patterns
@@ -26,7 +35,6 @@ Instead of stitching together your own tooling from scratch, the recommendation 
 - Use TanStack Query (React Query) for server state and Zustand or Redux for complex global state
 - Use React 19 APIs (ref as prop, use(), Actions) where supported
 - Embrace AI-assisted development tools but always validate generated code
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -111,13 +119,16 @@ export default function App() {
 
 **Zustand, Jotai, and lightweight state libraries:** For simpler global store needs. Zustand provides a minimalistic, hook-based global state store with **no boilerplate**.
 
-**TanStack Query (React Query):** The leader for managing **server state**. Provides hooks like `useQuery` and `useMutation` to declaratively fetch and cache data.
+**TanStack Query:** The leader for managing **server state**. Provides hooks like `useQuery` and `useMutation` to declaratively fetch and cache data.
 
-```jsx
+```tsx
 import { useQuery } from '@tanstack/react-query';
 
 function TodoList() {
-  const { data: todos, error, isLoading } = useQuery(['todos'], fetchTodos);
+  const { data: todos, error, isLoading } = useQuery({
+    queryKey: ['todos'],
+    queryFn: fetchTodos,
+  });
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
   return <ul>{todos.map(t => <li key={t.id}>{t.title}</li>)}</ul>;
@@ -143,14 +154,14 @@ function Input({ ref, ...props }: InputProps & { ref?: React.Ref<HTMLInputElemen
 }
 ```
 
-**`use()` API:** Replaces `useContext()` and can unwrap promises. Unlike hooks, `use()` can be called conditionally:
+**`use()` API:** Can read promises or context, and unlike Hooks it can be called conditionally:
 
 ```tsx
 import { use } from 'react'
 
 function UserPanel({ show }: { show: boolean }) {
   if (!show) return null
-  const user = use(UserContext)  // conditional — not possible with useContext
+  const user = use(UserContext)
   return <div>{user.name}</div>
 }
 ```

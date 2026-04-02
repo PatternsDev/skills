@@ -1,9 +1,16 @@
 ---
 name: incremental-static-rendering
 description: Update static content after you have built your site using Incremental Static Regeneration (ISR).
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # Incremental Static Generation
@@ -23,8 +30,6 @@ Think of a growing blog with multiple posts. You wouldn't possibly want to rebui
 - Use `fallback: true` in `getStaticPaths` to lazily generate pages on first request
 - Consider on-demand revalidation (`revalidatePath`, `revalidateTag`) for immediate updates after content changes
 - In Next.js 13+ App Router, use `generateStaticParams` and async components for ISR
-- Use the ask questions tool if you need to clarify requirements with the user
-
 
 ## Details
 

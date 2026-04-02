@@ -1,9 +1,15 @@
 ---
 name: state-management
 description: Manage application-level state between components using stores, Pinia, or the Composition API.
+paths:
+  - "**/*.vue"
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "composables"
+  - "components"
 ---
 
 # State Management
@@ -21,8 +27,6 @@ metadata:
 - Create a simple store using `reactive()` for small applications
 - Use Pinia (the official Vue state management library) for larger apps needing devtools, plugins, and TypeScript support
 - Choose the state management approach based on your app's complexity — don't over-engineer small apps
-- Use the ask questions tool if you need to clarify requirements with the user
-
 
 ## Details
 
@@ -275,13 +279,13 @@ Each method for managing application-level state comes with its advantages and d
 
 At the end of the day, it's up to us to understand what's needed in our application and what the best approach may be.
 
-## Source
-
-- [patterns.dev/vue/state-management](https://patterns.dev/vue/state-management)
-
-## Helpful resources
+### Helpful resources
 
 - [Props | Vue Documentation](https://vuejs.org/guide/components/props.html#props)
 - [Component Events | Vue Documentation](https://vuejs.org/guide/components/events.html#component-events)
 - [Simple State Management with Reactivity API | Vue Documentation](https://vuejs.org/guide/scaling-up/state-management.html#simple-state-management-with-reactivity-api)
 - [Core concepts | Pinia](https://pinia.vuejs.org/core-concepts/)
+
+## Source
+
+- [patterns.dev/vue/state-management](https://patterns.dev/vue/state-management)

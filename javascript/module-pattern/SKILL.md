@@ -1,9 +1,16 @@
 ---
 name: module-pattern
 description: Split your code into smaller, reusable pieces with proper encapsulation using ES2015 modules.
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "singleton-pattern"
+  - "observer-pattern"
 ---
 
 # Module Pattern
@@ -24,7 +31,6 @@ Besides being able to split your code into smaller reusable pieces, modules allo
 - Use named exports for multiple values and default exports for the primary value of a module
 - Keep non-exported values private to reduce naming collision risks
 - Use dynamic `import()` for on-demand module loading to reduce initial bundle size
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

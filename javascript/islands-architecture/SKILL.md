@@ -1,9 +1,18 @@
 ---
 name: islands-architecture
 description: Render small, focused chunks of interactivity within server-rendered web pages to reduce JavaScript overhead.
+context: fork
+allowed-tools: Read, Grep, Glob
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Islands Architecture
@@ -22,7 +31,6 @@ metadata:
 - Use frameworks like Astro, Marko, or Eleventy that support islands architecture
 - Hydrate interactive components independently using `client:visible` or similar directives
 - Keep the majority of the page as static HTML with zero JavaScript cost
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

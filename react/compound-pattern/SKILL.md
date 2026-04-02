@@ -1,9 +1,16 @@
 ---
 name: compound-pattern
 description: Create multiple components that work together to perform a single task by sharing implicit state.
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # Compound Pattern
@@ -21,7 +28,6 @@ In our application, we often have components that belong to each other. They're 
 - Attach child components as static properties on the parent (e.g., `FlyOut.Toggle`, `FlyOut.List`)
 - Memoize context values to avoid unnecessary re-renders in complex scenarios
 - Prefer the Context approach over `React.Children.map` for more flexible component nesting
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -259,7 +265,7 @@ Cloning an element with `React.cloneElement` performs a shallow merge. Already e
 
 - [patterns.dev/react/compound-pattern](https://patterns.dev/react/compound-pattern)
 
-## References
+### References
 
 - [Render Props - React](https://reactjs.org/docs/render-props.htm)
 - [React Hooks: Compound Components - Kent C. Dodds](https://kentcdodds.com/blog/compound-components-with-react-hooks)

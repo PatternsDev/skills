@@ -1,9 +1,15 @@
 ---
 name: data-provider
 description: Utilize renderless components for managing and providing data to child components via scoped slots.
+paths:
+  - "**/*.vue"
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "composables"
+  - "components"
 ---
 
 # Data Provider Pattern
@@ -23,7 +29,6 @@ Renderless components also allow us to leverage another helpful pattern known as
 - Pass data, loading state, and action methods as scoped slot props to child components
 - Use `v-slot` destructuring in the parent to access provided data
 - Keep child components focused purely on presentation; the data provider handles all data logic
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -35,26 +40,25 @@ In the data provider pattern, a data provider component encapsulates the logic f
 
 This pattern promotes separation of concerns, as the data provider component takes care of data-related tasks, while the child components can focus on presentation and interaction.
 
-Let's illustrate the data provider pattern with an example. Consider a simple application that displays the setup of a funny joke followed by its punchline. To help us show different jokes randomly, we'll use the free public API endpoint [https://official-joke-api.appspot.com/random_joke](https://official-joke-api.appspot.com/random_joke) that returns a random joke in JSON format.
+Let's illustrate the data provider pattern with an example. Consider a simple application that displays the setup of a funny joke followed by its punchline. To keep the example self-contained, we'll use a local in-memory data source instead of depending on an external API.
 
-```shell
-# https://official-joke-api.appspot.com/random_joke
-
-{
-  "type": "general",
-  "setup": "How good are you at Power Point?",
-  "punchline": "I Excel at it.",
-  "id": 129
-}
+```js
+const jokes = [
+  { id: 1, setup: "Why did the dev go broke?", punchline: "Because they used up all their cache." },
+  { id: 2, setup: "Why do functions love TypeScript?", punchline: "Because it keeps their arguments in order." },
+];
 ```
 
-We'll first create a data provider component called `DataProvider` that will hold the responsibility of fetching the joke from the API. In the `<script>` section of the component, we'll import the `ref()` and `reactive()` functions from the Vue library, assign the endpoint URL value to a constant, and set up `data` and `loading` reactive properties to capture the data and loading status of our API request.
+We'll first create a data provider component called `DataProvider` that will hold the responsibility of loading a joke. In the `<script>` section of the component, we'll import the `ref()` and `reactive()` functions from Vue, define a local data source, and set up `data` and `loading` reactive properties to capture the selected joke and loading state.
 
 ```html
 <script setup>
   import { ref, reactive } from "vue";
 
-  const API_ENDPOINT_URL = "https://official-joke-api.appspot.com/random_joke";
+  const jokes = [
+    { id: 1, setup: "Why did the dev go broke?", punchline: "Because they used up all their cache." },
+    { id: 2, setup: "Why do functions love TypeScript?", punchline: "Because it keeps their arguments in order." },
+  ];
 
   const data = reactive({
     setup: null,
@@ -65,18 +69,18 @@ We'll first create a data provider component called `DataProvider` that will hol
 </script>
 ```
 
-We can then create a `fetchJoke()` function in our `DataProvider` component to handle the API call.
+We can then create a `fetchJoke()` function in our `DataProvider` component to simulate loading data asynchronously.
 
 ```js
 const fetchJoke = async () => {
   loading.value = true;
   try {
-    const response = await fetch(API_ENDPOINT_URL);
-    const jokeData = await response.json();
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    const jokeData = jokes[Math.floor(Math.random() * jokes.length)];
     data.setup = jokeData.setup;
     data.punchline = jokeData.punchline;
   } catch (error) {
-    console.error("Error fetching joke:", error);
+    console.error("Error loading joke:", error);
   } finally {
     loading.value = false;
   }
@@ -153,7 +157,7 @@ The data provider pattern is especially useful when:
 
 - [patterns.dev/vue/data-provider](https://patterns.dev/vue/data-provider)
 
-## Helpful Resources
+### References
 
 - [Scoped Slots | Vue Documentation](https://vuejs.org/guide/components/slots.html#scoped-slots)
 - [Renderless Components | Vue Documentation](https://vuejs.org/guide/components/slots.html#renderless-components)

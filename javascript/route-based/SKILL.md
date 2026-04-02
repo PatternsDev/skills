@@ -1,9 +1,16 @@
 ---
 name: route-based
 description: Dynamically load components based on the current route to reduce initial bundle size.
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Route Based Splitting
@@ -22,7 +29,6 @@ By lazily loading the components per route, we're only requesting the bundle tha
 - Combine React Suspense or `loadable-components` with routing libraries like `react-router`
 - Lazily load page-level components per route for optimal code splitting
 - Take advantage of natural loading pauses during route transitions for a seamless experience
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Source
 

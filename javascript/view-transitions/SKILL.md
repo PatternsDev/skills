@@ -1,9 +1,18 @@
 ---
 name: view-transitions
 description: Animate page transitions using the View Transitions API for smooth visual DOM changes.
+context: fork
+allowed-tools: Read, Grep, Glob
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Animating View Transitions
@@ -22,7 +31,6 @@ metadata:
 - Check for browser support before using the API (`if (document.startViewTransition)`)
 - Minimize the time the DOM is frozen by starting transitions after data fetching completes
 - Consider CSS animation fallbacks for browsers that don't yet support the View Transitions API
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 

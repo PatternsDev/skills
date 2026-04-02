@@ -1,9 +1,15 @@
 ---
 name: dynamic-components
 description: Dynamically switch between components using Vue's special `<component>` element with the `is` attribute.
+paths:
+  - "**/*.vue"
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "composables"
+  - "components"
 ---
 
 # Dynamic Components
@@ -22,7 +28,6 @@ We'll go through an example to best understand how dynamic components work. Assu
 - Bind the `is` attribute on `<component>` to a reactive value referencing the component definition
 - Use a `tabs` object mapping names to imported component definitions
 - Wrap `<component>` with `<KeepAlive>` to preserve state when switching between dynamic components
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -167,7 +172,7 @@ By using the `<KeepAlive>` component, we can enhance the behavior of dynamic com
 
 - [patterns.dev/vue/dynamic-components](https://patterns.dev/vue/dynamic-components)
 
-## Helpful Resources
+### References
 
 - [Dynamic Components | Vue Documentation](https://vuejs.org/guide/essentials/component-basics.html#dynamic-components)
 - [KeepAlive | Vue Documentation](https://vuejs.org/guide/built-ins/keep-alive.html)

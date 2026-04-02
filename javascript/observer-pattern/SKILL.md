@@ -1,9 +1,16 @@
 ---
 name: observer-pattern
 description: Use observables to notify subscribers when an event occurs for decoupled event-driven communication.
+license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+paths:
+  - "**/*.js"
+  - "**/*.ts"
+related_skills:
+  - "module-pattern"
+  - "singleton-pattern"
 ---
 
 # Observer Pattern
@@ -21,7 +28,6 @@ With the **observer pattern**, we can _subscribe_ certain objects, the **observe
 - Keep observers loosely coupled to the observable for better separation of concerns
 - Be mindful of performance when notifying many subscribers with complex logic
 - Consider using libraries like RxJS for more advanced reactive programming needs
-- Use the ask questions tool if you need to clarify requirements with the user
 
 ## Details
 
@@ -185,7 +191,7 @@ If an observer becomes too complex, it may cause performance issues when notifyi
 
 - [patterns.dev/vanilla/observer-pattern](https://patterns.dev/vanilla/observer-pattern)
 
-## References
+### References
 
 - [RxJS](https://rxjs-dev.firebaseapp.com)
 - [JavaScript Design Patterns: The Observer Pattern](https://www.sitepoint.com/javascript-design-patterns-observer-pattern)

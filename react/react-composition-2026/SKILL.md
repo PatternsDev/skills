@@ -1,10 +1,18 @@
 ---
 name: react-composition-2026
-description: Modern React composition patterns for 2025/2026. Use when designing component APIs, refactoring prop-heavy components, building shared UI libraries, or reviewing component architecture. Covers compound components, slots, polymorphism, and React 19 APIs. Framework-agnostic — works with Vite, Next.js, Remix, and any React setup.
+description: Modern React composition patterns for 2025/2026. Use when designing component APIs, building shared UI libraries, or refactoring prop-heavy components.
+context: fork
+allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.tsx"
+  - "**/*.jsx"
 license: MIT
 metadata:
   author: patterns.dev
-  version: "1.0"
+  version: "1.1"
+related_skills:
+  - "hooks-pattern"
+  - "hoc-pattern"
 ---
 
 # Modern React Composition Patterns
@@ -20,19 +28,19 @@ Reference these patterns when:
 - Designing component APIs that other teams will consume
 - Reviewing component architecture for flexibility and maintainability
 
-## Overview
+## Instructions
+
+- Apply these patterns during component design, code generation, and review. When you see boolean prop accumulation or rigid component APIs, suggest the appropriate composition pattern.
+
+## Details
+
+### Overview
 
 The core principle: **composition over configuration**. Instead of adding boolean props and conditional branches to handle every variant, compose smaller, focused components together. This makes components easier to understand, test, and extend — for both humans and AI agents.
 
 ---
 
-## Instructions
-
-Apply these patterns during component design, code generation, and review. When you see boolean prop accumulation or rigid component APIs, suggest the appropriate composition pattern.
-
----
-
-## 1. Replace Boolean Props with Composition
+### 1. Replace Boolean Props with Composition
 
 **Impact: HIGH** — Prevents combinatorial explosion and makes intent explicit.
 
@@ -73,7 +81,7 @@ Each piece is explicit, testable, and independently optional.
 
 ---
 
-## 2. Build Compound Components with Context
+### 2. Build Compound Components with Context
 
 **Impact: HIGH** — Shared implicit state without prop drilling.
 
@@ -154,7 +162,7 @@ Select.Option = Option
 
 ---
 
-## 3. Create Explicit Variant Components
+### 3. Create Explicit Variant Components
 
 **Impact: MEDIUM** — Makes each mode a clear, focused component.
 
@@ -194,7 +202,7 @@ Each variant has exactly the props it needs — no impossible states, no unused 
 
 ---
 
-## 4. Use Children Over Render Props for Composition
+### 4. Use Children Over Render Props for Composition
 
 **Impact: MEDIUM** — Simpler API, better readability.
 
@@ -235,7 +243,7 @@ Reserve render props for cases where the parent needs to provide data to the ren
 
 ---
 
-## 5. Decouple State Implementation from UI
+### 5. Decouple State Implementation from UI
 
 **Impact: MEDIUM** — Swap state management without changing components.
 
@@ -294,7 +302,7 @@ The `useCounter()` consumers never change.
 
 ---
 
-## 6. Lift State to Provider Components
+### 6. Lift State to Provider Components
 
 **Impact: MEDIUM** — Enables sibling communication without prop threading.
 
@@ -340,7 +348,7 @@ Both `Sidebar` and `Detail` consume `useSelection()` directly.
 
 ---
 
-## 7. Use Polymorphic `as` Props for Flexible Elements
+### 7. Use Polymorphic `as` Props for Flexible Elements
 
 **Impact: MEDIUM** — One component, any underlying element or component.
 
@@ -373,7 +381,7 @@ function Box<C extends React.ElementType = 'div'>({
 
 ---
 
-## 8. React 19: Drop `forwardRef`, Use `ref` as a Prop
+### 8. React 19: Drop `forwardRef`, Use `ref` as a Prop
 
 **Impact: MEDIUM** — Simpler component definitions.
 
@@ -395,21 +403,21 @@ function Input({ ref, ...props }: InputProps & { ref?: React.Ref<HTMLInputElemen
 }
 ```
 
-Similarly, `use()` replaces `useContext()` and can be called conditionally:
+Similarly, `use()` can read either promises or context and can be called conditionally:
 
 ```tsx
 import { use } from 'react'
 
 function Panel({ themePromise }: { themePromise: Promise<Theme> }) {
   const theme = use(themePromise)  // unwraps promise
-  const user = use(UserContext)    // replaces useContext
+  const user = use(UserContext)    // conditional context read
   return <div className={theme.bg}>{user.name}</div>
 }
 ```
 
 ---
 
-## 9. Slot Pattern for Layout Components
+### 9. Slot Pattern for Layout Components
 
 **Impact: MEDIUM** — Named insertion points without render props.
 
@@ -452,7 +460,7 @@ AppLayout.Header = function Header({ children }: { children: React.ReactNode }) 
 
 ---
 
-## 10. Headless Components for Maximum Flexibility
+### 10. Headless Components for Maximum Flexibility
 
 **Impact: HIGH** — Logic without opinions about rendering.
 
