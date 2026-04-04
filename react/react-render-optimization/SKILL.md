@@ -832,6 +832,133 @@ useLayoutEffect(() => {
 
 ---
 
+### 22. Animate SVG Wrappers, Not SVG Elements Directly
+
+**Impact: MEDIUM** — Avoids repainting the entire SVG on every animation frame.
+
+Animating properties on an SVG element itself (e.g., `<svg>` or `<path>`) triggers a full SVG repaint. Wrap the SVG in a `<div>` and animate the wrapper instead.
+
+**Avoid — repaints entire SVG tree:**
+
+```tsx
+<motion.svg animate={{ rotate: 360 }} style={{ width: 200, height: 200 }}>
+  <ComplexChart />
+</motion.svg>
+```
+
+**Prefer — only the wrapper repaints:**
+
+```tsx
+<motion.div animate={{ rotate: 360 }} style={{ width: 200, height: 200 }}>
+  <svg viewBox="0 0 200 200">
+    <ComplexChart />
+  </svg>
+</motion.div>
+```
+
+This also applies to CSS animations. Use `transform` on a wrapper element rather than animating SVG attributes like `cx`, `cy`, or `d` directly.
+
+---
+
+### 23. Suppress Expected Hydration Mismatches
+
+**Impact: LOW-MEDIUM** — Silences known-safe warnings without hiding real bugs.
+
+Some content is intentionally different between server and client — timestamps, random IDs, user-agent-specific rendering. Use `suppressHydrationWarning` on those specific elements.
+
+```tsx
+function Comment({ createdAt }: { createdAt: Date }) {
+  return (
+    <article>
+      <p>{comment.body}</p>
+      <time suppressHydrationWarning>
+        {formatRelativeTime(createdAt)} {/* "2 minutes ago" differs server vs client */}
+      </time>
+    </article>
+  )
+}
+```
+
+Apply sparingly and only on leaf elements. Never suppress warnings on container elements — it masks real mismatches in children.
+
+---
+
+### 24. React DOM Resource Hints for Vite SPAs
+
+**Impact: HIGH** — Lets the browser start loading critical resources earlier without framework support.
+
+React 19 adds `preload()` and `preinit()` from `react-dom` — imperative resource hints that work in any React app. In Vite SPAs (which don't get framework-level prefetching), these are especially valuable.
+
+```tsx
+import { preload, preinit } from 'react-dom'
+
+function App() {
+  // Preload a font before it's needed
+  preload('/fonts/inter-var.woff2', { as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' })
+
+  // Preinit a critical CSS file (loads + applies it)
+  preinit('/critical.css', { as: 'style' })
+
+  return <RouterProvider router={router} />
+}
+```
+
+**On navigation — preload the next page's data and code:**
+
+```tsx
+function ProductLink({ id }: { id: string }) {
+  const handleHover = () => {
+    // Preload the image the next page will need
+    preload(`/api/products/${id}/image.webp`, { as: 'image' })
+    // Prefetch the route code
+    import('./pages/ProductDetail')
+  }
+
+  return <Link to={`/products/${id}`} onMouseEnter={handleHover}>View</Link>
+}
+```
+
+These are no-ops if the resource is already loaded, so calling them eagerly is safe. For Vite apps without a meta-framework, this is the primary mechanism for resource prioritization.
+
+---
+
+### 25. Use `useTransition` for Route Navigation
+
+**Impact: MEDIUM** — Keeps the current page interactive while the next route loads.
+
+In Vite SPAs with `React.lazy()` routes, clicking a navigation link can freeze the UI while the chunk loads and the component renders. Wrapping navigation in `startTransition` lets React show the old page until the new one is ready.
+
+```tsx
+import { useTransition } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
+  const navigate = useNavigate()
+  const [isPending, startTransition] = useTransition()
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    startTransition(() => {
+      navigate(to)
+    })
+  }
+
+  return (
+    <a
+      href={to}
+      onClick={handleClick}
+      style={{ opacity: isPending ? 0.7 : 1 }}
+    >
+      {children}
+    </a>
+  )
+}
+```
+
+This prevents the blank-screen flash between lazy-loaded routes and gives you `isPending` to show a subtle loading indicator on the current page.
+
+---
+
 ## Source
 
 Patterns from [patterns.dev](https://www.patterns.dev/) — framework-agnostic React performance guidance for the broader web engineering community.
