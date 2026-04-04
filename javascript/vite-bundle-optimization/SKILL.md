@@ -457,6 +457,149 @@ export default defineConfig({
 
 ---
 
+### 12. Configure Dev Server Proxy for API Development
+
+**Impact: MEDIUM** — Eliminates CORS issues and simplifies local development.
+
+Vite SPAs typically talk to a separate backend API. Configure `server.proxy` to forward API requests during development, avoiding CORS and matching production URL patterns.
+
+```typescript
+// vite.config.ts
+export default defineConfig({
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+      '/auth': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+      // WebSocket support for real-time features
+      '/ws': {
+        target: 'ws://localhost:3001',
+        ws: true,
+      },
+    },
+  },
+})
+```
+
+In your app code, use relative paths (`fetch('/api/users')`) — they hit Vite's dev server which proxies to your backend. In production, configure your reverse proxy (Nginx, Caddy) to do the same routing.
+
+---
+
+### 13. Add PWA Support with `vite-plugin-pwa`
+
+**Impact: MEDIUM** — Offline capability, installability, and cached assets for Vite SPAs.
+
+For SPAs that need offline support or installability, `vite-plugin-pwa` handles service worker generation, precaching, and manifest creation.
+
+```typescript
+// vite.config.ts
+import { VitePWA } from 'vite-plugin-pwa'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['favicon.svg', 'robots.txt'],
+      manifest: {
+        name: 'My App',
+        short_name: 'App',
+        theme_color: '#ffffff',
+        icons: [
+          { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+        ],
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/api\./,
+            handler: 'NetworkFirst',
+            options: { cacheName: 'api-cache', expiration: { maxEntries: 50 } },
+          },
+        ],
+      },
+    }),
+  ],
+})
+```
+
+Use `registerType: 'autoUpdate'` for apps that should silently update. Use `registerType: 'prompt'` to show users an update notification.
+
+---
+
+### 14. Choose a CSS Strategy
+
+**Impact: MEDIUM** — Vite supports multiple CSS approaches with zero config.
+
+Vite handles CSS Modules, PostCSS, and preprocessors out of the box. Choose based on your needs:
+
+**CSS Modules** — scoped styles, no runtime cost, built into Vite:
+
+```tsx
+// Button.module.css → automatically scoped
+import styles from './Button.module.css'
+
+function Button({ children }: { children: React.ReactNode }) {
+  return <button className={styles.primary}>{children}</button>
+}
+```
+
+**Tailwind CSS** — utility-first, works with Vite's PostCSS support:
+
+```typescript
+// vite.config.ts — no plugin needed, Tailwind uses PostCSS
+// Just install tailwindcss and add postcss.config.js
+
+// postcss.config.js
+export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+}
+```
+
+**CSS-in-JS considerations:** Libraries like styled-components and Emotion add runtime overhead. For Vite SPAs prioritizing performance, prefer CSS Modules or Tailwind. If you need CSS-in-JS, consider zero-runtime options like Vanilla Extract or Panda CSS.
+
+---
+
+### 15. Set Up the React Compiler as a Vite Plugin
+
+**Impact: HIGH** — Automatic memoization eliminates manual `useMemo`, `useCallback`, and `React.memo`.
+
+The React Compiler analyzes your components and auto-inserts memoization. In a Vite project, add it as a Babel plugin:
+
+```bash
+npm install -D babel-plugin-react-compiler
+```
+
+```typescript
+// vite.config.ts
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [
+    react({
+      babel: {
+        plugins: ['babel-plugin-react-compiler'],
+      },
+    }),
+  ],
+})
+```
+
+Once enabled, you can gradually remove manual `useMemo`, `useCallback`, and `React.memo` calls — the compiler handles them automatically. Verify behavior is preserved by running your test suite after enabling.
+
+The compiler requires React 19. It's opt-in and can be enabled per-file with a `'use memo'` directive if you prefer incremental adoption.
+
+---
+
 ## Source
 
 Patterns from [patterns.dev](https://www.patterns.dev/) — Vite-specific optimization guidance for the broader React web engineering community.
