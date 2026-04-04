@@ -70,29 +70,39 @@ function ProductList({ products }: { products: Product[] }) {
 }
 ```
 
-**Prefer — derive during render:**
+**Prefer — derive during render (cheap derivations use plain `const`):**
 
 ```tsx
 function ProductList({ products }: { products: Product[] }) {
   const [search, setSearch] = useState('')
 
+  // Cheap derivation — plain const, no useMemo needed
+  const hasSearch = search.length > 0
+  const normalizedSearch = search.toLowerCase()
+
+  // Expensive derivation — useMemo is justified when iterating large arrays
   const filtered = useMemo(
     () => products.filter(p =>
-      p.name.toLowerCase().includes(search.toLowerCase())
+      p.name.toLowerCase().includes(normalizedSearch)
     ),
-    [products, search]
+    [products, normalizedSearch]
   )
 
   return (
     <>
       <input value={search} onChange={e => setSearch(e.target.value)} />
+      {hasSearch && <ClearButton />}
       {filtered.map(p => <ProductCard key={p.id} product={p} />)}
     </>
   )
 }
 ```
 
-For cheap derivations (boolean flags, string formatting), skip `useMemo` entirely — a plain `const` is fine.
+**When to use `useMemo` vs a plain `const`:**
+- **Plain `const`** — boolean flags, string formatting, simple arithmetic, object property access, `.length` checks. These are essentially free and `useMemo` overhead is not worth it.
+- **`useMemo`** — filtering/sorting arrays, building data structures, `JSON.parse`, expensive transformations, anything that iterates collections or involves O(n) work.
+
+The rule: if the expression returns a primitive or is a single property access, skip `useMemo`. If it iterates or transforms data, wrap it.
 
 > **React Compiler note:** If React Compiler is enabled, it auto-memoizes expressions and you can skip manual `useMemo` calls.
 
