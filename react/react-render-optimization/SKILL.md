@@ -606,6 +606,116 @@ This approach works in any SSR setup — Next.js, Remix, or a custom Vite SSR pi
 
 ---
 
+### 16. Never Define Components Inside Components
+
+**Impact: HIGH** — Causes remounting, state loss, and wasted DOM work every render.
+
+When you define a component inside another component's render, React creates a new component type on every render. This means the entire subtree unmounts and remounts — losing all state, DOM nodes, and effect cleanup/setup.
+
+**Avoid — `Row` is a new type every render:**
+
+```tsx
+function Table({ data }: { data: Item[] }) {
+  // This creates a NEW component type on every render
+  function Row({ item }: { item: Item }) {
+    const [selected, setSelected] = useState(false)
+    return <tr onClick={() => setSelected(!selected)}>{item.name}</tr>
+  }
+
+  return <table>{data.map(item => <Row key={item.id} item={item} />)}</table>
+}
+```
+
+**Prefer — `Row` defined at module scope:**
+
+```tsx
+function Row({ item }: { item: Item }) {
+  const [selected, setSelected] = useState(false)
+  return <tr onClick={() => setSelected(!selected)}>{item.name}</tr>
+}
+
+function Table({ data }: { data: Item[] }) {
+  return <table>{data.map(item => <Row key={item.id} item={item} />)}</table>
+}
+```
+
+This also applies to components defined inside `useMemo`, `useCallback`, or any other hook. Always define components at module scope or as static properties.
+
+---
+
+### 17. Use `useDeferredValue` for Expensive Derived Renders
+
+**Impact: HIGH** — Keeps the UI responsive while expensive subtrees re-render in the background.
+
+`useDeferredValue` tells React to defer re-rendering components that depend on a fast-changing value. Unlike `useTransition` (which wraps the state update), `useDeferredValue` wraps the consumption — useful when you don't control the state setter.
+
+**Avoid — every keystroke blocks the UI:**
+
+```tsx
+function SearchPage({ query }: { query: string }) {
+  // Expensive: filters and renders 10,000 items on every keystroke
+  const results = filterItems(query)
+  return <ResultsList items={results} />
+}
+```
+
+**Prefer — input stays responsive, results update in background:**
+
+```tsx
+import { useDeferredValue, useMemo } from 'react'
+
+function SearchPage({ query }: { query: string }) {
+  const deferredQuery = useDeferredValue(query)
+  const isStale = query !== deferredQuery
+
+  const results = useMemo(() => filterItems(deferredQuery), [deferredQuery])
+
+  return (
+    <div style={{ opacity: isStale ? 0.7 : 1 }}>
+      <ResultsList items={results} />
+    </div>
+  )
+}
+```
+
+**When to use `useDeferredValue` vs `useTransition`:**
+- `useTransition` — you control the state setter and can wrap it in `startTransition`
+- `useDeferredValue` — the value comes from props, a parent, or a library you don't control
+
+---
+
+### 18. Use Explicit Checks in Conditional Rendering
+
+**Impact: MEDIUM** — Prevents rendering `0`, `NaN`, or empty strings to the DOM.
+
+The `&&` operator in JSX short-circuits on falsy values — but `0`, `NaN`, and `""` are falsy yet still render as visible text nodes.
+
+**Avoid — renders `0` to the DOM when count is zero:**
+
+```tsx
+function NotificationBadge({ count }: { count: number }) {
+  return <div>{count && <Badge>{count}</Badge>}</div>
+  // When count is 0, renders: <div>0</div>
+}
+```
+
+**Prefer — explicit boolean check:**
+
+```tsx
+function NotificationBadge({ count }: { count: number }) {
+  return <div>{count > 0 && <Badge>{count}</Badge>}</div>
+}
+
+// Or use a ternary for clarity
+function NotificationBadge({ count }: { count: number }) {
+  return <div>{count > 0 ? <Badge>{count}</Badge> : null}</div>
+}
+```
+
+This applies to any value that might be `0`, `NaN`, or `""` — array lengths, string values, numeric props. Always use an explicit boolean expression (`> 0`, `!== ''`, `!= null`) rather than relying on truthiness.
+
+---
+
 ## Source
 
 Patterns from [patterns.dev](https://www.patterns.dev/) — framework-agnostic React performance guidance for the broader web engineering community.
