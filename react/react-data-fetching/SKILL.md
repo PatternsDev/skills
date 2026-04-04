@@ -88,7 +88,43 @@ async function loadPage() {
 
 ---
 
-### 2. Use TanStack Query or SWR for Client-Side Data
+### 2. Defer Await Until the Value Is Needed
+
+**Impact: HIGH** — Starts work earlier without blocking on results you don't need yet.
+
+A common mistake is to `await` each promise immediately, even when subsequent code doesn't need the result right away. Start the promise early, then `await` it at the point where you actually read the value.
+
+**Avoid — blocks unnecessarily:**
+
+```typescript
+async function loadProfile(userId: string) {
+  const user = await fetchUser(userId)       // waits here
+  const prefs = await fetchPreferences()     // starts only after user resolves
+  const avatar = buildAvatarUrl(user.avatar)
+  return { user, prefs, avatar }
+}
+```
+
+**Prefer — start early, await late:**
+
+```typescript
+async function loadProfile(userId: string) {
+  const userPromise = fetchUser(userId)      // starts immediately
+  const prefsPromise = fetchPreferences()    // starts immediately
+
+  const user = await userPromise             // await when needed
+  const avatar = buildAvatarUrl(user.avatar)
+  const prefs = await prefsPromise           // may already be resolved
+
+  return { user, prefs, avatar }
+}
+```
+
+This is complementary to `Promise.all` — use defer-await when you need intermediate results between fetches, and `Promise.all` when you can wait for everything at once.
+
+---
+
+### 3. Use TanStack Query for Client-Side Data
 
 **Impact: CRITICAL** — Automatic caching, deduplication, revalidation, and error handling.
 
@@ -114,7 +150,7 @@ function UserProfile({ userId }: { userId: string }) {
 }
 ```
 
-**Prefer with TanStack Query (recommended for Vite apps):**
+**Prefer — TanStack Query (recommended for Vite + React apps):**
 
 ```tsx
 import { useQuery } from '@tanstack/react-query'
@@ -130,22 +166,9 @@ function UserProfile({ userId }: { userId: string }) {
 }
 ```
 
-**Prefer with SWR:**
+TanStack Query is the strongest choice for Vite apps — it's framework-agnostic, has built-in `useSuspenseQuery`, devtools, infinite queries, optimistic mutations, and offline support. SWR is a lighter alternative that covers the basics (dedup, caching, revalidation) but has fewer features for complex mutation workflows.
 
-```tsx
-import useSWR from 'swr'
-
-const fetcher = (url: string) => fetch(url).then(r => r.json())
-
-function UserProfile({ userId }: { userId: string }) {
-  const { data: user, isLoading } = useSWR(`/api/users/${userId}`, fetcher)
-
-  if (isLoading) return <Skeleton />
-  return <div>{user?.name}</div>
-}
-```
-
-Both libraries give you: request deduplication (multiple components sharing one request), stale-while-revalidate caching, automatic retries, background refresh, and optimistic updates.
+Both give you: request deduplication, stale-while-revalidate caching, automatic retries, and background refresh.
 
 **Setup for Vite apps:**
 
@@ -171,7 +194,7 @@ createRoot(document.getElementById('root')!).render(
 
 ---
 
-### 3. Use Suspense for Declarative Loading States
+### 4. Use Suspense for Declarative Loading States
 
 **Impact: HIGH** — Cleaner code, automatic loading coordination, streaming support.
 
@@ -238,7 +261,7 @@ TanStack Query provides `useSuspenseQuery` and SWR provides `{ suspense: true }`
 
 ---
 
-### 4. Prefetch Data Before Navigation
+### 5. Prefetch Data Before Navigation
 
 **Impact: HIGH** — Eliminates loading states on page transitions.
 
@@ -290,7 +313,7 @@ const routes = [
 
 ---
 
-### 5. Use `React.cache()` for Server-Side Deduplication
+### 6. Use `React.cache()` for Server-Side Deduplication
 
 **Impact: MEDIUM** — Deduplicates expensive operations within a single server render.
 
@@ -326,7 +349,7 @@ getUser('123') // hit
 
 ---
 
-### 6. Implement Optimistic Updates for Instant Feedback
+### 7. Implement Optimistic Updates for Instant Feedback
 
 **Impact: HIGH** — UI responds immediately without waiting for the server.
 
@@ -366,7 +389,7 @@ function LikeButton({ postId }: { postId: string }) {
 
 ---
 
-### 7. Avoid Fetch Waterfalls in Component Trees
+### 8. Avoid Fetch Waterfalls in Component Trees
 
 **Impact: CRITICAL** — Parent-then-child fetching is the #1 performance problem.
 
@@ -421,7 +444,7 @@ Or use a route-level loader to fetch all data before the component renders.
 
 ---
 
-### 8. Deduplicate Global Event Listeners
+### 9. Deduplicate Global Event Listeners
 
 **Impact: MEDIUM** — Prevents N listeners for N component instances.
 
@@ -453,7 +476,7 @@ export function useOnlineStatus() {
 
 ---
 
-### 9. Use Passive Event Listeners for Scroll and Touch
+### 10. Use Passive Event Listeners for Scroll and Touch
 
 **Impact: LOW-MEDIUM** — Prevents scroll jank from blocking listeners.
 
@@ -481,7 +504,7 @@ useEffect(() => {
 
 ---
 
-### 10. Schema-Version Your Client Storage
+### 11. Schema-Version Your Client Storage
 
 **Impact: LOW-MEDIUM** — Prevents crashes from stale localStorage data.
 

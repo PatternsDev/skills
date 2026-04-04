@@ -70,29 +70,39 @@ function ProductList({ products }: { products: Product[] }) {
 }
 ```
 
-**Prefer — derive during render:**
+**Prefer — derive during render (cheap derivations use plain `const`):**
 
 ```tsx
 function ProductList({ products }: { products: Product[] }) {
   const [search, setSearch] = useState('')
 
+  // Cheap derivation — plain const, no useMemo needed
+  const hasSearch = search.length > 0
+  const normalizedSearch = search.toLowerCase()
+
+  // Expensive derivation — useMemo is justified when iterating large arrays
   const filtered = useMemo(
     () => products.filter(p =>
-      p.name.toLowerCase().includes(search.toLowerCase())
+      p.name.toLowerCase().includes(normalizedSearch)
     ),
-    [products, search]
+    [products, normalizedSearch]
   )
 
   return (
     <>
       <input value={search} onChange={e => setSearch(e.target.value)} />
+      {hasSearch && <ClearButton />}
       {filtered.map(p => <ProductCard key={p.id} product={p} />)}
     </>
   )
 }
 ```
 
-For cheap derivations (boolean flags, string formatting), skip `useMemo` entirely — a plain `const` is fine.
+**When to use `useMemo` vs a plain `const`:**
+- **Plain `const`** — boolean flags, string formatting, simple arithmetic, object property access, `.length` checks. These are essentially free and `useMemo` overhead is not worth it.
+- **`useMemo`** — filtering/sorting arrays, building data structures, `JSON.parse`, expensive transformations, anything that iterates collections or involves O(n) work.
+
+The rule: if the expression returns a primitive or is a single property access, skip `useMemo`. If it iterates or transforms data, wrap it.
 
 > **React Compiler note:** If React Compiler is enabled, it auto-memoizes expressions and you can skip manual `useMemo` calls.
 
@@ -593,6 +603,359 @@ function ThemeRoot({ children }: { children: React.ReactNode }) {
 ```
 
 This approach works in any SSR setup — Next.js, Remix, or a custom Vite SSR pipeline.
+
+---
+
+### 16. Never Define Components Inside Components
+
+**Impact: HIGH** — Causes remounting, state loss, and wasted DOM work every render.
+
+When you define a component inside another component's render, React creates a new component type on every render. This means the entire subtree unmounts and remounts — losing all state, DOM nodes, and effect cleanup/setup.
+
+**Avoid — `Row` is a new type every render:**
+
+```tsx
+function Table({ data }: { data: Item[] }) {
+  // This creates a NEW component type on every render
+  function Row({ item }: { item: Item }) {
+    const [selected, setSelected] = useState(false)
+    return <tr onClick={() => setSelected(!selected)}>{item.name}</tr>
+  }
+
+  return <table>{data.map(item => <Row key={item.id} item={item} />)}</table>
+}
+```
+
+**Prefer — `Row` defined at module scope:**
+
+```tsx
+function Row({ item }: { item: Item }) {
+  const [selected, setSelected] = useState(false)
+  return <tr onClick={() => setSelected(!selected)}>{item.name}</tr>
+}
+
+function Table({ data }: { data: Item[] }) {
+  return <table>{data.map(item => <Row key={item.id} item={item} />)}</table>
+}
+```
+
+This also applies to components defined inside `useMemo`, `useCallback`, or any other hook. Always define components at module scope or as static properties.
+
+---
+
+### 17. Use `useDeferredValue` for Expensive Derived Renders
+
+**Impact: HIGH** — Keeps the UI responsive while expensive subtrees re-render in the background.
+
+`useDeferredValue` tells React to defer re-rendering components that depend on a fast-changing value. Unlike `useTransition` (which wraps the state update), `useDeferredValue` wraps the consumption — useful when you don't control the state setter.
+
+**Avoid — every keystroke blocks the UI:**
+
+```tsx
+function SearchPage({ query }: { query: string }) {
+  // Expensive: filters and renders 10,000 items on every keystroke
+  const results = filterItems(query)
+  return <ResultsList items={results} />
+}
+```
+
+**Prefer — input stays responsive, results update in background:**
+
+```tsx
+import { useDeferredValue, useMemo } from 'react'
+
+function SearchPage({ query }: { query: string }) {
+  const deferredQuery = useDeferredValue(query)
+  const isStale = query !== deferredQuery
+
+  const results = useMemo(() => filterItems(deferredQuery), [deferredQuery])
+
+  return (
+    <div style={{ opacity: isStale ? 0.7 : 1 }}>
+      <ResultsList items={results} />
+    </div>
+  )
+}
+```
+
+**When to use `useDeferredValue` vs `useTransition`:**
+- `useTransition` — you control the state setter and can wrap it in `startTransition`
+- `useDeferredValue` — the value comes from props, a parent, or a library you don't control
+
+---
+
+### 18. Use Explicit Checks in Conditional Rendering
+
+**Impact: MEDIUM** — Prevents rendering `0`, `NaN`, or empty strings to the DOM.
+
+The `&&` operator in JSX short-circuits on falsy values — but `0`, `NaN`, and `""` are falsy yet still render as visible text nodes.
+
+**Avoid — renders `0` to the DOM when count is zero:**
+
+```tsx
+function NotificationBadge({ count }: { count: number }) {
+  return <div>{count && <Badge>{count}</Badge>}</div>
+  // When count is 0, renders: <div>0</div>
+}
+```
+
+**Prefer — explicit boolean check:**
+
+```tsx
+function NotificationBadge({ count }: { count: number }) {
+  return <div>{count > 0 && <Badge>{count}</Badge>}</div>
+}
+
+// Or use a ternary for clarity
+function NotificationBadge({ count }: { count: number }) {
+  return <div>{count > 0 ? <Badge>{count}</Badge> : null}</div>
+}
+```
+
+This applies to any value that might be `0`, `NaN`, or `""` — array lengths, string values, numeric props. Always use an explicit boolean expression (`> 0`, `!== ''`, `!= null`) rather than relying on truthiness.
+
+---
+
+### 19. Narrow Effect Dependencies to Primitives
+
+**Impact: MEDIUM** — Prevents effects from re-running when unrelated object properties change.
+
+When an effect only needs one property from an object, extract it before the dependency array. Passing the whole object causes re-runs whenever any property changes.
+
+**Avoid — effect re-runs when `user.name` or `user.avatar` changes:**
+
+```tsx
+function UserStatus({ user }: { user: User }) {
+  useEffect(() => {
+    updatePresence(user.id)
+  }, [user]) // re-runs on ANY user property change
+}
+```
+
+**Prefer — only re-runs when the ID changes:**
+
+```tsx
+function UserStatus({ user }: { user: User }) {
+  const { id } = user
+  useEffect(() => {
+    updatePresence(id)
+  }, [id])
+}
+```
+
+This also applies to hook return values. If `useQuery` returns `{ data, status, fetchStatus }` and your effect only cares about `status`, destructure first.
+
+---
+
+### 20. Split Combined Hook Computations
+
+**Impact: MEDIUM** — Prevents re-renders for consumers that only need part of a hook's output.
+
+When a custom hook computes multiple unrelated values, a change in one forces re-renders in all consumers — even those that only read the unchanged value.
+
+**Avoid — changing `total` re-renders components that only need `average`:**
+
+```tsx
+function useStats(items: number[]) {
+  return useMemo(() => ({
+    total: items.reduce((a, b) => a + b, 0),
+    average: items.reduce((a, b) => a + b, 0) / items.length,
+    max: Math.max(...items),
+  }), [items])
+}
+```
+
+**Prefer — split into focused hooks:**
+
+```tsx
+function useTotal(items: number[]) {
+  return useMemo(() => items.reduce((a, b) => a + b, 0), [items])
+}
+
+function useAverage(items: number[]) {
+  return useMemo(() => items.reduce((a, b) => a + b, 0) / items.length, [items])
+}
+
+function useMax(items: number[]) {
+  return useMemo(() => Math.max(...items), [items])
+}
+```
+
+Components call only the hook they need. If a single component needs all three, combining them there is fine — the split prevents unnecessary coupling at the hook level.
+
+---
+
+### 21. Avoid Layout Thrashing with Batched DOM Reads/Writes
+
+**Impact: HIGH** — Prevents forced synchronous layouts that block the main thread.
+
+Reading a layout property (e.g., `offsetHeight`, `getBoundingClientRect()`) after writing to the DOM forces the browser to recalculate layout synchronously. In a loop, this creates layout thrashing.
+
+**Avoid — forces layout recalculation on every iteration:**
+
+```tsx
+function resizeCards(cards: HTMLElement[]) {
+  cards.forEach(card => {
+    const height = card.offsetHeight          // READ (forces layout)
+    card.style.minHeight = `${height + 20}px` // WRITE (invalidates layout)
+  })
+}
+```
+
+**Prefer — batch all reads, then all writes:**
+
+```tsx
+function resizeCards(cards: HTMLElement[]) {
+  // Read phase
+  const heights = cards.map(card => card.offsetHeight)
+
+  // Write phase
+  cards.forEach((card, i) => {
+    card.style.minHeight = `${heights[i] + 20}px`
+  })
+}
+```
+
+In React, this most commonly occurs in `useLayoutEffect` or `useEffect` callbacks that measure and mutate DOM elements. When you need to read layout inside an animation frame, use `requestAnimationFrame` to batch:
+
+```tsx
+useLayoutEffect(() => {
+  const measurements = items.map(el => el.getBoundingClientRect())
+
+  requestAnimationFrame(() => {
+    items.forEach((el, i) => {
+      el.style.transform = `translateY(${measurements[i].top}px)`
+    })
+  })
+}, [items])
+```
+
+---
+
+### 22. Animate SVG Wrappers, Not SVG Elements Directly
+
+**Impact: MEDIUM** — Avoids repainting the entire SVG on every animation frame.
+
+Animating properties on an SVG element itself (e.g., `<svg>` or `<path>`) triggers a full SVG repaint. Wrap the SVG in a `<div>` and animate the wrapper instead.
+
+**Avoid — repaints entire SVG tree:**
+
+```tsx
+<motion.svg animate={{ rotate: 360 }} style={{ width: 200, height: 200 }}>
+  <ComplexChart />
+</motion.svg>
+```
+
+**Prefer — only the wrapper repaints:**
+
+```tsx
+<motion.div animate={{ rotate: 360 }} style={{ width: 200, height: 200 }}>
+  <svg viewBox="0 0 200 200">
+    <ComplexChart />
+  </svg>
+</motion.div>
+```
+
+This also applies to CSS animations. Use `transform` on a wrapper element rather than animating SVG attributes like `cx`, `cy`, or `d` directly.
+
+---
+
+### 23. Suppress Expected Hydration Mismatches
+
+**Impact: LOW-MEDIUM** — Silences known-safe warnings without hiding real bugs.
+
+Some content is intentionally different between server and client — timestamps, random IDs, user-agent-specific rendering. Use `suppressHydrationWarning` on those specific elements.
+
+```tsx
+function Comment({ createdAt }: { createdAt: Date }) {
+  return (
+    <article>
+      <p>{comment.body}</p>
+      <time suppressHydrationWarning>
+        {formatRelativeTime(createdAt)} {/* "2 minutes ago" differs server vs client */}
+      </time>
+    </article>
+  )
+}
+```
+
+Apply sparingly and only on leaf elements. Never suppress warnings on container elements — it masks real mismatches in children.
+
+---
+
+### 24. React DOM Resource Hints for Vite SPAs
+
+**Impact: HIGH** — Lets the browser start loading critical resources earlier without framework support.
+
+React 19 adds `preload()` and `preinit()` from `react-dom` — imperative resource hints that work in any React app. In Vite SPAs (which don't get framework-level prefetching), these are especially valuable.
+
+```tsx
+import { preload, preinit } from 'react-dom'
+
+function App() {
+  // Preload a font before it's needed
+  preload('/fonts/inter-var.woff2', { as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' })
+
+  // Preinit a critical CSS file (loads + applies it)
+  preinit('/critical.css', { as: 'style' })
+
+  return <RouterProvider router={router} />
+}
+```
+
+**On navigation — preload the next page's data and code:**
+
+```tsx
+function ProductLink({ id }: { id: string }) {
+  const handleHover = () => {
+    // Preload the image the next page will need
+    preload(`/api/products/${id}/image.webp`, { as: 'image' })
+    // Prefetch the route code
+    import('./pages/ProductDetail')
+  }
+
+  return <Link to={`/products/${id}`} onMouseEnter={handleHover}>View</Link>
+}
+```
+
+These are no-ops if the resource is already loaded, so calling them eagerly is safe. For Vite apps without a meta-framework, this is the primary mechanism for resource prioritization.
+
+---
+
+### 25. Use `useTransition` for Route Navigation
+
+**Impact: MEDIUM** — Keeps the current page interactive while the next route loads.
+
+In Vite SPAs with `React.lazy()` routes, clicking a navigation link can freeze the UI while the chunk loads and the component renders. Wrapping navigation in `startTransition` lets React show the old page until the new one is ready.
+
+```tsx
+import { useTransition } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
+  const navigate = useNavigate()
+  const [isPending, startTransition] = useTransition()
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    startTransition(() => {
+      navigate(to)
+    })
+  }
+
+  return (
+    <a
+      href={to}
+      onClick={handleClick}
+      style={{ opacity: isPending ? 0.7 : 1 }}
+    >
+      {children}
+    </a>
+  )
+}
+```
+
+This prevents the blank-screen flash between lazy-loaded routes and gives you `isPending` to show a subtle loading indicator on the current page.
 
 ---
 
