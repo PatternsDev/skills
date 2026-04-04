@@ -716,6 +716,122 @@ This applies to any value that might be `0`, `NaN`, or `""` — array lengths, s
 
 ---
 
+### 19. Narrow Effect Dependencies to Primitives
+
+**Impact: MEDIUM** — Prevents effects from re-running when unrelated object properties change.
+
+When an effect only needs one property from an object, extract it before the dependency array. Passing the whole object causes re-runs whenever any property changes.
+
+**Avoid — effect re-runs when `user.name` or `user.avatar` changes:**
+
+```tsx
+function UserStatus({ user }: { user: User }) {
+  useEffect(() => {
+    updatePresence(user.id)
+  }, [user]) // re-runs on ANY user property change
+}
+```
+
+**Prefer — only re-runs when the ID changes:**
+
+```tsx
+function UserStatus({ user }: { user: User }) {
+  const { id } = user
+  useEffect(() => {
+    updatePresence(id)
+  }, [id])
+}
+```
+
+This also applies to hook return values. If `useQuery` returns `{ data, status, fetchStatus }` and your effect only cares about `status`, destructure first.
+
+---
+
+### 20. Split Combined Hook Computations
+
+**Impact: MEDIUM** — Prevents re-renders for consumers that only need part of a hook's output.
+
+When a custom hook computes multiple unrelated values, a change in one forces re-renders in all consumers — even those that only read the unchanged value.
+
+**Avoid — changing `total` re-renders components that only need `average`:**
+
+```tsx
+function useStats(items: number[]) {
+  return useMemo(() => ({
+    total: items.reduce((a, b) => a + b, 0),
+    average: items.reduce((a, b) => a + b, 0) / items.length,
+    max: Math.max(...items),
+  }), [items])
+}
+```
+
+**Prefer — split into focused hooks:**
+
+```tsx
+function useTotal(items: number[]) {
+  return useMemo(() => items.reduce((a, b) => a + b, 0), [items])
+}
+
+function useAverage(items: number[]) {
+  return useMemo(() => items.reduce((a, b) => a + b, 0) / items.length, [items])
+}
+
+function useMax(items: number[]) {
+  return useMemo(() => Math.max(...items), [items])
+}
+```
+
+Components call only the hook they need. If a single component needs all three, combining them there is fine — the split prevents unnecessary coupling at the hook level.
+
+---
+
+### 21. Avoid Layout Thrashing with Batched DOM Reads/Writes
+
+**Impact: HIGH** — Prevents forced synchronous layouts that block the main thread.
+
+Reading a layout property (e.g., `offsetHeight`, `getBoundingClientRect()`) after writing to the DOM forces the browser to recalculate layout synchronously. In a loop, this creates layout thrashing.
+
+**Avoid — forces layout recalculation on every iteration:**
+
+```tsx
+function resizeCards(cards: HTMLElement[]) {
+  cards.forEach(card => {
+    const height = card.offsetHeight          // READ (forces layout)
+    card.style.minHeight = `${height + 20}px` // WRITE (invalidates layout)
+  })
+}
+```
+
+**Prefer — batch all reads, then all writes:**
+
+```tsx
+function resizeCards(cards: HTMLElement[]) {
+  // Read phase
+  const heights = cards.map(card => card.offsetHeight)
+
+  // Write phase
+  cards.forEach((card, i) => {
+    card.style.minHeight = `${heights[i] + 20}px`
+  })
+}
+```
+
+In React, this most commonly occurs in `useLayoutEffect` or `useEffect` callbacks that measure and mutate DOM elements. When you need to read layout inside an animation frame, use `requestAnimationFrame` to batch:
+
+```tsx
+useLayoutEffect(() => {
+  const measurements = items.map(el => el.getBoundingClientRect())
+
+  requestAnimationFrame(() => {
+    items.forEach((el, i) => {
+      el.style.transform = `translateY(${measurements[i].top}px)`
+    })
+  })
+}, [items])
+```
+
+---
+
 ## Source
 
 Patterns from [patterns.dev](https://www.patterns.dev/) — framework-agnostic React performance guidance for the broader web engineering community.
