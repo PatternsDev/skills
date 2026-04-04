@@ -35,18 +35,27 @@ In Client-Side Rendering (CSR) only the barebones HTML container for a page is r
 
 Consider this simple example for showing and updating the current time on a page using React.
 
-```js
-function tick() {
-  const element = (
+```tsx
+import { createRoot } from 'react-dom/client'
+import { useEffect, useState } from 'react'
+
+function Clock() {
+  const [time, setTime] = useState(new Date())
+
+  useEffect(() => {
+    const id = setInterval(() => setTime(new Date()), 1000)
+    return () => clearInterval(id)
+  }, [])
+
+  return (
     <div>
       <h1>Hello, world!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
+      <h2>It is {time.toLocaleTimeString()}.</h2>
     </div>
-  );
-  ReactDOM.render(element, document.getElementById("root"));
+  )
 }
 
-setInterval(tick, 1000);
+createRoot(document.getElementById('root')!).render(<Clock />)
 ```
 
 ```html
