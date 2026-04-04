@@ -79,6 +79,27 @@ Choosing a **starting point** for a React project in 2025 often means choosing a
 - **Remix** for apps that emphasize progressive enhancement and web fundamentals
 - **Vite + React Router/TanStack Router** for SPAs, dashboards, internal tools, and any app where SSR isn't a requirement
 
+**Custom Vite SSR (without a meta-framework):** If you need SSR but don't want a full framework, Vite has built-in SSR support. Tools like **Vike** (formerly vite-plugin-ssr) provide a thin layer on top of Vite for file-based routing with SSR, giving you framework-like DX while keeping full control.
+
+```typescript
+// server.ts — minimal custom Vite SSR setup
+import express from 'express'
+import { createServer as createViteServer } from 'vite'
+
+const app = express()
+const vite = await createViteServer({ server: { middlewareMode: true } })
+app.use(vite.middlewares)
+
+app.use('*', async (req, res) => {
+  const template = await vite.transformIndexHtml(req.originalUrl, indexHtml)
+  const { render } = await vite.ssrLoadModule('/src/entry-server.tsx')
+  const appHtml = await render(req.originalUrl)
+  res.send(template.replace('<!--app-->', appHtml))
+})
+```
+
+This is a good fit when you need SSR for SEO or performance but your app's routing and data loading are simple enough that a framework adds more complexity than value.
+
 Many successful React apps in 2025 run on Vite without a meta-framework. The key is choosing the right tool for your constraints, not defaulting to the most feature-rich option.
 
 ### Routing Solutions: React Router vs. TanStack Router
@@ -139,7 +160,49 @@ function TodoList() {
 
 **Form State:** **React Hook Form** has established itself as a great library. Coupled with **Zod** for schemas, you can validate inputs declaratively.
 
-**Key Libraries:** MUI, Chakra UI, Radix UI, Headless UI for components. **react-window** for list virtualization. **Jest + React Testing Library** for testing, **Cypress** or **Playwright** for E2E.
+**Key Libraries:** MUI, Chakra UI, Radix UI, Headless UI for components. **@tanstack/react-virtual** for list virtualization. **Vitest + React Testing Library** for testing in Vite projects, **Jest + React Testing Library** for other setups, **Cypress** or **Playwright** for E2E.
+
+### Testing with Vitest
+
+For Vite projects, **Vitest** is the natural testing companion — it shares Vite's config, transforms, and plugin pipeline, so there's no separate test bundler to configure or keep in sync.
+
+```typescript
+// vite.config.ts — Vitest uses this directly
+/// <reference types="vitest/config" />
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './src/test/setup.ts',
+    css: true,
+  },
+})
+```
+
+```typescript
+// src/test/setup.ts
+import '@testing-library/jest-dom/vitest'
+```
+
+```tsx
+// src/components/Button.test.tsx
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { Button } from './Button'
+
+test('calls onClick when clicked', async () => {
+  const onClick = vi.fn()
+  render(<Button onClick={onClick}>Save</Button>)
+  await userEvent.click(screen.getByRole('button', { name: 'Save' }))
+  expect(onClick).toHaveBeenCalledOnce()
+})
+```
+
+Vitest gives you: instant watch mode (shared with Vite's transform cache), native ESM support, Jest-compatible API (`describe`, `it`, `expect`, `vi.fn()`), in-source testing, and built-in code coverage with `v8` or `istanbul`.
 
 ### React 19 and Modern APIs
 
@@ -196,7 +259,24 @@ function TodoList({ todos }: { todos: Todo[] }) {
 }
 ```
 
-**React Compiler:** An opt-in compiler that auto-memoizes components and expressions, eliminating the need for manual `useMemo`, `useCallback`, and `React.memo` in most cases. Available as a Babel/Vite plugin.
+**React Compiler:** An opt-in compiler that auto-memoizes components and expressions, eliminating the need for manual `useMemo`, `useCallback`, and `React.memo` in most cases. For Vite projects, add it as a Babel plugin:
+
+```typescript
+// vite.config.ts
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [
+    react({
+      babel: {
+        plugins: ['babel-plugin-react-compiler'],
+      },
+    }),
+  ],
+})
+```
+
+Requires React 19. Can be adopted incrementally per-file with a `'use memo'` directive.
 
 ### Vite-Specific Best Practices
 
