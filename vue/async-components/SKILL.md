@@ -1,6 +1,6 @@
 ---
 name: async-components
-description: Optimize web app performance by loading components asynchronously only when they are needed.
+description: Teaches async component loading in Vue for performance optimization. Use when you have heavy components that aren't needed on initial render and can be loaded on demand.
 paths:
   - "**/*.vue"
 license: MIT
@@ -14,6 +14,15 @@ related_skills:
 
 # Async Components
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+
 When developing large web applications, performance is paramount. The speed with which a page loads and the responsiveness of its interactive elements can greatly impact user experience. As web applications grow in size and complexity, it can become important to ensure that large bundles of code are loaded only when needed. Enter asynchronous components in Vue.
 
 Components are the fundamental building blocks for constructing the UI. Typically, when we use components, they're automatically loaded and parsed, even if they aren't immediately needed.
@@ -22,6 +31,12 @@ Components are the fundamental building blocks for constructing the UI. Typicall
 
 - Use this when components have large bundle sizes and aren't needed on initial page load
 - This is helpful for modals, dialogs, or any UI that is conditionally rendered based on user action
+
+## When NOT to Use
+
+- For small components where the async loading overhead (chunk request, parsing) outweighs the bundle savings
+- For components that are always visible on initial render — async loading delays their appearance
+- When the component is already part of the main chunk and splitting it out wouldn't meaningfully reduce bundle size
 
 ## Instructions
 

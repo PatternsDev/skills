@@ -1,6 +1,6 @@
 ---
 name: react-server-components
-description: Render components on the server without sending their JavaScript to the client, dramatically reducing bundle sizes.
+description: Teaches React Server Components for zero-bundle server rendering. Use when components only need server-side data access and don't require client-side interactivity like state or event handlers.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -15,12 +15,27 @@ related_skills:
 
 # React Server Components
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+
 React's [Server Components](https://react.dev/reference/rsc/server-components) enable **modern UX with a server-driven mental model**. This is quite different from Server-side Rendering (SSR) of components and results in significantly smaller client-side JavaScript bundles.
 
 ## When to Use
 
 - Use this when you want to reduce client-side JavaScript by running data-fetching and rendering on the server
 - This is helpful for improving performance with zero-JS-cost server-rendered components in Next.js 13+ App Router
+
+## When NOT to Use
+
+- When the component needs client-side interactivity — state (`useState`), effects (`useEffect`), and event handlers require Client Components
+- For components that depend on browser-only APIs (e.g., `window`, `localStorage`, `IntersectionObserver`)
+- When the component is already small and the server/client boundary adds more complexity than it saves
 
 ## Instructions
 
@@ -159,10 +174,13 @@ Some of the early integration work for Server Components will be done via a webp
 
 As Dan notes, one of the goals of this work is to enable meta-frameworks to get much better.
 
-### Learn more
-
-To go deeper, read the [React Server Components reference](https://react.dev/reference/rsc/server-components), the [Server Functions reference](https://react.dev/reference/rsc/server-functions), the [RFC](https://github.com/reactjs/rfcs/blob/bf51f8755ddb38d92e23ad415fc4e3c02b95b331/text/0188-server-components.md), and the [server components demo](https://github.com/reactjs/server-components-demo).
-
 ## Source
 
 - [patterns.dev/react/react-server-components](https://patterns.dev/react/react-server-components)
+
+### References
+
+- [React Server Components reference](https://react.dev/reference/rsc/server-components)
+- [Server Functions reference](https://react.dev/reference/rsc/server-functions)
+- [RFC](https://github.com/reactjs/rfcs/blob/bf51f8755ddb38d92e23ad415fc4e3c02b95b331/text/0188-server-components.md)
+- [Server components demo](https://github.com/reactjs/server-components-demo)

@@ -1,6 +1,6 @@
 ---
 name: streaming-ssr
-description: Stream server-rendered HTML to the client in chunks for faster Time to First Byte and First Contentful Paint.
+description: Teaches streaming server-side rendering for chunked HTML delivery. Use when you need faster Time to First Byte and First Contentful Paint by streaming HTML as it's generated on the server.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -23,6 +23,12 @@ Modern React streaming uses `renderToPipeableStream()` on Node runtimes or `rend
 
 - Use this when you want to improve TTFB and FCP by sending HTML incrementally as it's generated
 - This is helpful for large pages where waiting for the full HTML would delay the initial paint
+
+## When NOT to Use
+
+- When your hosting environment doesn't support streaming responses (some serverless platforms buffer the full response)
+- For simple static pages where the HTML is small enough that streaming provides no meaningful improvement
+- When middleware or reverse proxies in your stack buffer the response, negating the streaming benefit
 
 ## Instructions
 

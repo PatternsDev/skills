@@ -1,6 +1,6 @@
 ---
 name: state-management
-description: Manage application-level state between components using stores, Pinia, or the Composition API.
+description: Teaches Vue state management with stores, Pinia, and the Composition API. Use when you need to share and synchronize state across multiple components beyond what props and events can handle.
 paths:
   - "**/*.vue"
 license: MIT
@@ -13,6 +13,14 @@ related_skills:
 ---
 
 # State Management
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 
 **Vue components are the building blocks of Vue apps** by allowing us to couple markup (HTML), logic (JS), and styles (CSS) within them.
 
@@ -279,13 +287,13 @@ Each method for managing application-level state comes with its advantages and d
 
 At the end of the day, it's up to us to understand what's needed in our application and what the best approach may be.
 
-### Helpful resources
+## Source
+
+- [patterns.dev/vue/state-management](https://patterns.dev/vue/state-management)
+
+### References
 
 - [Props | Vue Documentation](https://vuejs.org/guide/components/props.html#props)
 - [Component Events | Vue Documentation](https://vuejs.org/guide/components/events.html#component-events)
 - [Simple State Management with Reactivity API | Vue Documentation](https://vuejs.org/guide/scaling-up/state-management.html#simple-state-management-with-reactivity-api)
 - [Core concepts | Pinia](https://pinia.vuejs.org/core-concepts/)
-
-## Source
-
-- [patterns.dev/vue/state-management](https://patterns.dev/vue/state-management)

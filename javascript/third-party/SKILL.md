@@ -1,21 +1,29 @@
 ---
 name: third-party
-description: Reduce the performance impact of third-party scripts on your site using optimized loading strategies.
+description: Teaches strategies for mitigating third-party script performance impact. Use when third-party scripts like analytics, ads, or widgets are degrading your page load times or Core Web Vitals.
 context: fork
 allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
 ---
 
 # Optimize loading third-parties
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 
 > tl;dr: Third-party resources can slow down sites and can be a challenge to optimize. You can follow certain best practices to load or delay different types of third-parties efficiently. You can also use framework-level components such as the [Next.js Script component](https://nextjs.org/docs/basic-features/script), which provides a template for framing the "when" and "how" for loading third-party scripts. Alternatively, experimental ideas like [Partytown](https://github.com/BuilderIO/partytown) may be of interest.
 

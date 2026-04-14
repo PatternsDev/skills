@@ -1,19 +1,28 @@
 ---
 name: module-pattern
-description: Split your code into smaller, reusable pieces with proper encapsulation using ES2015 modules.
+description: Teaches the module pattern for code organization and encapsulation. Use when structuring JavaScript into reusable, maintainable pieces with clear public and private boundaries.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "singleton-pattern"
   - "observer-pattern"
 ---
 
 # Module Pattern
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 
 As your application and codebase grow, it becomes increasingly important to keep your code maintainable and separated. The module pattern allows you to split up your code into smaller, reusable pieces.
 
@@ -24,6 +33,12 @@ Besides being able to split your code into smaller reusable pieces, modules allo
 - Use this when you need to organize code into maintainable, encapsulated units
 - This is helpful when you want to keep certain values private to a module and avoid global scope pollution
 - Use this to enable tree-shaking and reduce bundle sizes
+
+## When NOT to Use
+
+- When ES2015 native modules with static `import`/`export` are available — prefer static imports for better tooling and tree-shaking
+- When the IIFE-based module pattern is used purely for encapsulation in a codebase that already uses a bundler
+- For trivial scripts where module overhead adds unnecessary complexity
 
 ## Instructions
 

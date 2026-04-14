@@ -1,13 +1,13 @@
 ---
 name: static-import
-description: Import code that has been exported by another module using static ES2015 import syntax.
+description: Teaches static ES2015 import syntax for module dependencies. Use when you need to import code that is required at load time and benefits from static analysis and tree shaking.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"

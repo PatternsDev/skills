@@ -1,13 +1,13 @@
 ---
 name: mixin-pattern
-description: Add functionality to objects or classes without inheritance using mixins.
+description: Teaches the mixin pattern for sharing functionality without inheritance. Use when you need to add reusable behavior to multiple objects or classes that don't share a common ancestor.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -23,6 +23,12 @@ Let's say that for our application, we need to create multiple dogs. However, th
 
 - Use this when you need to add reusable functionality to multiple classes without creating an inheritance chain
 - This is helpful when you want to compose behavior from multiple sources
+
+## When NOT to Use
+
+- When composition via hooks (React) or composables (Vue) achieves the same result with better traceability
+- When prototype pollution is a risk — mixins modify shared prototypes and can cause naming collisions
+- When the added functionality is simple enough that a utility function or module import suffices
 
 ## Instructions
 

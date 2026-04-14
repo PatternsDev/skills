@@ -1,13 +1,13 @@
 ---
 name: flyweight-pattern
-description: Conserve memory by reusing existing instances when working with large numbers of similar objects.
+description: Teaches the flyweight pattern for memory optimization. Use when your application creates large numbers of similar objects and memory consumption is a concern.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -23,6 +23,12 @@ In our application, we want users to be able to add books. All books have a `tit
 
 - Use this when creating a huge number of objects that could potentially drain available memory
 - This is helpful when many objects share the same intrinsic properties (e.g., books with the same ISBN)
+
+## When NOT to Use
+
+- When the number of objects is small enough that memory is not a concern
+- When objects have few or no shared intrinsic properties — the separation of intrinsic and extrinsic state adds complexity without savings
+- When the added lookup/management overhead outweighs the memory benefit
 
 ## Instructions
 

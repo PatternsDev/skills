@@ -1,6 +1,6 @@
 ---
 name: ai-ui-patterns
-description: Design patterns for building AI-powered interfaces like chatbots and intelligent assistants in React.
+description: Teaches design patterns for building AI-powered React interfaces. Use when creating chatbots, intelligent assistants, streaming UIs, or any AI-driven user experience in React.
 context: fork
 allowed-tools: Read, Grep, Glob
 paths:
@@ -16,6 +16,14 @@ related_skills:
 ---
 
 # AI UI Patterns
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 
 Building AI-powered interfaces – from chatbots to intelligent assistants – requires careful integration of backend AI services with reactive UI components. In this chapter, we explore design patterns in React for such interfaces, focusing on **two implementations**: a plain React app (using Vite) and a Next.js app. We'll use **OpenAI's API** (via the Vercel AI SDK) as our AI engine, and TailwindCSS for styling. Key topics include prompt management, streaming responses, input debouncing, error handling, and how these patterns differ between Vite and Next.js. We also highlight reusable component patterns and **Vercel's AI UI components (AI Elements)** for building polished chat UIs.
 

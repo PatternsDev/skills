@@ -1,13 +1,13 @@
 ---
 name: preload
-description: Inform the browser of critical resources before they are naturally discovered to speed up loading.
+description: Teaches resource preloading to prioritize critical assets. Use when critical resources like fonts, hero images, or key scripts are discovered late in the loading waterfall.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -15,12 +15,27 @@ related_skills:
 
 # Preload
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+
 [Preload](https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content) (`<link rel="preload">`) is a [browser optimization](https://web.dev/uses-rel-preload/) that allows critical resources (that may be discovered late) to be requested earlier. If you are comfortable thinking about how to manually order the loading of your key resources, it can have a positive impact on loading performance and metrics in the [Core Web Vitals](https://web.dev/vitals). That said, preload is not a panacea and requires an awareness of some trade-offs.
 
 ## When to Use
 
 - Use this when critical resources (fonts, scripts, images) are discovered late in the loading process
 - This is helpful for improving Time To Interactive (TTI) and Largest Contentful Paint (LCP)
+
+## When NOT to Use
+
+- For non-critical resources — preloading too many assets delays the resources that actually matter for initial render
+- When resources are already discovered early by the browser's preload scanner (e.g., inline `<script>` tags in `<head>`)
+- When overuse leads to browser warnings about unused preloaded resources, indicating wasted bandwidth
 
 ## Instructions
 
@@ -139,7 +154,7 @@ Thanks to some [fixes](https://twitter.com/patmeenan/status/1436374668450177026)
 
 ### Conclusions
 
-Again, use preload sparingly and always measure its impact in production. If the preload for your image is earlier in the document than it is, this can help browsers discover it (and order relative to other resources). When used incorrectly, preloading can cause your image to delay First Contentful Paint (e.g CSS, Fonts) - the opposite of what you want. Also note that for such reprioritization efforts to be effective, it also depends on [servers prioritizing requests](https://github.com/andydavies/http2-prioritization-issues#cdns--cloud-hosting-services) correctly.
+Again, use preload sparingly and measure its impact in production. If the preload for your image is earlier in the document than it is, this can help browsers discover it (and order relative to other resources). When used incorrectly, preloading can cause your image to delay First Contentful Paint (e.g CSS, Fonts) - the opposite of what you want. Also note that for such reprioritization efforts to be effective, it also depends on [servers prioritizing requests](https://github.com/andydavies/http2-prioritization-issues#cdns--cloud-hosting-services) correctly.
 
 You may also find `<link rel="preload">` to be helpful for cases where you need to fetch scripts [without executing](https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content#scripting_and_preloads) them.
 

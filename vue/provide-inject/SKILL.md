@@ -1,6 +1,6 @@
 ---
 name: provide-inject
-description: Have nested components access data without prop drilling using Vue's provide/inject mechanism.
+description: Teaches Vue's provide/inject API for dependency injection across components. Use when deeply nested components need access to ancestor data without threading props through intermediate layers.
 paths:
   - "**/*.vue"
 license: MIT
@@ -22,6 +22,12 @@ Using props works well in most cases. However, when working in large application
 
 - Use this when you need to pass data through deeply nested component trees without prop drilling
 - This is helpful for application-wide data like themes, locale, or authentication state
+
+## When NOT to Use
+
+- For parent-child communication where props are simpler, more explicit, and easier to trace
+- When the implicit dependency makes components harder to test in isolation or reuse outside the provider tree
+- When a state management solution (Pinia) is already in place and provides the same shared state capability
 
 ## Instructions
 
@@ -113,10 +119,10 @@ The provide/inject pattern is most suitable for application-wide client data, su
 
 On the other hand, props are ideal when data needs to be isolated within a specific set of components only.
 
-### Helpful resources
-
-- [Provide / Inject | Vue Documentation](https://vuejs.org/guide/components/provide-inject.html)
-
 ## Source
 
 - [patterns.dev/vue/provide-inject](https://patterns.dev/vue/provide-inject)
+
+### References
+
+- [Provide / Inject | Vue Documentation](https://vuejs.org/guide/components/provide-inject.html)

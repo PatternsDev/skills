@@ -1,6 +1,6 @@
 ---
 name: hooks-pattern
-description: Use functions to reuse stateful logic among multiple components throughout the app.
+description: Teaches React Hooks for reusing stateful logic across components. Use when extracting shared behavior like form handling, subscriptions, or side effects into reusable custom hooks.
 context: fork
 allowed-tools: Read, Grep, Glob
 paths:
@@ -16,6 +16,14 @@ related_skills:
 ---
 
 # Hooks Pattern
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 
 React 16.8 introduced a new feature called [**Hooks**](https://react.dev/reference/react/hooks). Hooks make it possible to use React state and lifecycle methods, without having to use an ES2015 class component.
 

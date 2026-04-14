@@ -1,6 +1,6 @@
 ---
 name: client-side-rendering
-description: Render your application's UI entirely on the client using JavaScript.
+description: Teaches client-side rendering (CSR) for React applications. Use when building highly interactive apps where SEO is not a priority and the UI is driven by user actions.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -21,6 +21,12 @@ In Client-Side Rendering (CSR) only the barebones HTML container for a page is r
 
 - Use this for internal tools, dashboards, or SPAs where SEO is not a priority
 - This is helpful when you need a fully interactive single-page application experience
+
+## When NOT to Use
+
+- For SEO-critical pages where search engines need server-rendered HTML to index content
+- For content-heavy sites where users see a blank page until JavaScript loads and executes
+- When Time to First Contentful Paint is a key metric — CSR defers all rendering to the client
 
 ## Instructions
 

@@ -1,6 +1,6 @@
 ---
 name: compound-pattern
-description: Create multiple components that work together to perform a single task by sharing implicit state.
+description: Teaches the compound component pattern for shared implicit state. Use when building related components like tabs, accordions, or dropdowns that need to coordinate without explicit prop passing.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -15,12 +15,27 @@ related_skills:
 
 # Compound Pattern
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+
 In our application, we often have components that belong to each other. They're dependent on each other through the shared state, and share logic together. You often see this with components like `select`, dropdown components, or menu items. The **compound component pattern** allows you to create components that all work together to perform a task.
 
 ## When to Use
 
 - Use this when building components like dropdowns, tabs, or menus with related sub-components
 - This is helpful when you want to provide a clean component API without exposing internal state management
+
+## When NOT to Use
+
+- When the sub-components don't share meaningful state — the pattern adds unnecessary Context overhead
+- For simple one-off UIs where a single component with props is clearer
+- When the implicit state sharing makes the component behavior hard to predict for consumers
 
 ## Instructions
 

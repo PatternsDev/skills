@@ -1,13 +1,13 @@
 ---
 name: mediator-pattern
-description: Use a central mediator object to handle communication between components instead of direct coupling.
+description: Teaches the mediator pattern for centralized component communication. Use when multiple components need to communicate and direct coupling between them creates complexity or tight dependencies.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -23,6 +23,12 @@ You can compare this pattern to the relationship between an air traffic controll
 
 - Use this when multiple objects need to communicate but direct many-to-many relationships would be chaotic
 - This is helpful for implementing middleware chains (e.g., Express.js middleware)
+
+## When NOT to Use
+
+- When direct communication between two components is simpler and the system has few participants
+- When the mediator itself becomes a monolithic "god object" that's hard to maintain
+- When event-driven patterns (observer/pub-sub) provide sufficient decoupling without a central coordinator
 
 ## Instructions
 

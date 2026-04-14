@@ -1,6 +1,6 @@
 ---
 name: renderless-components
-description: Components that don't render their own markup, providing logic to children via scoped slots.
+description: Teaches the renderless component pattern for logic-only Vue components. Use when you want to encapsulate behavior without dictating markup, letting consumers control rendering via scoped slots.
 paths:
   - "**/*.vue"
 license: MIT
@@ -14,6 +14,15 @@ related_skills:
 
 # Renderless Components
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+
 Renderless components are a pattern in Vue that **separates the logic of a component from its presentation**. The pattern provides a way to encapsulate functionality without _dictating the visual representation of the component_. In other words, a renderless component focuses solely on the logic and behavior, while leaving the rendering to the parent component.
 
 Renderless components are particularly useful when we need to create reusable logic that can be applied to different UI implementations. By abstracting the logic into a renderless component, we can easily reuse it in various contexts without duplicating code.
@@ -22,6 +31,12 @@ Renderless components are particularly useful when we need to create reusable lo
 
 - Use this when you need to reuse logic across components with completely different visual representations
 - This is helpful for providing a component-based API in a component library
+
+## When NOT to Use
+
+- When composables achieve the same logic reuse without extra component nesting (Vue 3+)
+- When the renderless component wraps trivial logic that a simple function or composable handles more clearly
+- When the scoped slot API becomes harder to understand than a direct composable return value
 
 ## Instructions
 

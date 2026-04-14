@@ -1,6 +1,6 @@
 ---
 name: hoc-pattern
-description: Pass reusable logic down as props to components using Higher Order Components.
+description: Teaches the Higher-Order Component (HOC) pattern for logic reuse. Use when you need to share cross-cutting concerns like authentication, logging, or data fetching across multiple components.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -15,6 +15,15 @@ related_skills:
 
 # HOC Pattern
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+
 Within our application, we often want to use the same logic in multiple components. This logic can include applying a certain styling to components, requiring authorization, or adding a global state.
 
 One way of being able to reuse the same logic in multiple components, is by using the **higher order component** pattern. This pattern allows us to reuse component logic throughout our application.
@@ -23,6 +32,12 @@ One way of being able to reuse the same logic in multiple components, is by usin
 
 - Use this when the same uncustomized behavior needs to be applied to many components
 - This is helpful when a component should work standalone without the added custom logic
+
+## When NOT to Use
+
+- When custom hooks can achieve the same result with less nesting and better readability
+- In new React 18+ code where hooks are the idiomatic approach to sharing stateful logic
+- When the HOC wrapper adds prop-name collisions or obscures the component tree in DevTools
 
 ## Instructions
 

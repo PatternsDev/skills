@@ -1,6 +1,6 @@
 ---
 name: incremental-static-rendering
-description: Update static content after you have built your site using Incremental Static Regeneration (ISR).
+description: Teaches Incremental Static Regeneration (ISR) for updating static content post-build. Use when you have static pages that need periodic updates without a full site rebuild.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -23,6 +23,12 @@ Think of a growing blog with multiple posts. You wouldn't possibly want to rebui
 
 - Use this when you have mostly static pages that need periodic data updates without full rebuilds
 - This is helpful for large sites (blogs, e-commerce) where rebuilding every page on each change is impractical
+
+## When NOT to Use
+
+- When content changes in real-time and stale data is unacceptable (e.g., live scores, stock tickers)
+- For pages that are fully dynamic and personalized per user — SSR is a better fit
+- When the revalidation window creates a confusing experience where different users see different content versions
 
 ## Instructions
 

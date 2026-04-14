@@ -1,13 +1,13 @@
 ---
 name: dynamic-import
-description: Import parts of your code on demand using dynamic import() to reduce initial bundle size.
+description: Teaches dynamic import() for on-demand code loading. Use when you need to reduce initial bundle size by lazily loading modules that aren't required at startup.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"

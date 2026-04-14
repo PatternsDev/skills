@@ -1,6 +1,6 @@
 ---
 name: dynamic-components
-description: Dynamically switch between components using Vue's special `<component>` element with the `is` attribute.
+description: Teaches dynamic component switching with Vue's <component> element. Use when you need to render different components conditionally based on runtime state using the is attribute.
 paths:
   - "**/*.vue"
 license: MIT
@@ -13,6 +13,14 @@ related_skills:
 ---
 
 # Dynamic Components
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 
 Dynamic components constitute the ability to dynamically change (i.e. switch) between components by binding an `is` attribute to the reserved `<component>` element.
 

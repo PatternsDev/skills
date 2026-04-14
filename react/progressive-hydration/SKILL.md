@@ -1,6 +1,6 @@
 ---
 name: progressive-hydration
-description: Delay loading JavaScript for less important parts of the page to improve Time to Interactive.
+description: Teaches progressive hydration for prioritized client-side interactivity. Use when server-rendered pages have non-critical sections whose JavaScript can be deferred to improve Time to Interactive.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -23,6 +23,12 @@ Although server rendering provides a faster First Contentful Paint, it doesn't a
 
 - Use this when your SSR application has non-critical sections that don't need immediate interactivity
 - This is helpful for reducing the JavaScript required to make the page interactive on initial load
+
+## When NOT to Use
+
+- When the entire page is interactive and all components need immediate hydration
+- When the complexity of managing hydration boundaries outweighs the performance benefit
+- For small pages where the total JavaScript is already minimal and hydration is fast
 
 ## Instructions
 

@@ -1,13 +1,13 @@
 ---
 name: prefetch
-description: Fetch and cache resources that may be requested soon to reduce future loading times.
+description: Teaches resource prefetching strategies for faster navigation. Use when you can predict which resources the user will need next and want to load them during idle time.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -21,6 +21,12 @@ Prefetch (`<link rel="prefetch">`) is a browser optimization which allows us to 
 
 - Use this when you know users will likely navigate to certain routes or need certain resources soon
 - This is helpful for reducing perceived loading time on subsequent navigations
+
+## When NOT to Use
+
+- For resources unlikely to be needed — unnecessary prefetching wastes bandwidth and competes with critical requests
+- On low-bandwidth or metered connections where prefetching consumes the user's data budget
+- When the prefetched resources change frequently and would be stale by the time they're used
 
 ## Instructions
 

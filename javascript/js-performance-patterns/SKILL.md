@@ -1,19 +1,27 @@
 ---
 name: js-performance-patterns
-description: JavaScript runtime performance patterns for hot paths, loops, DOM operations, caching, and data structures. Framework-agnostic.
+description: Provides framework-agnostic JavaScript runtime performance patterns. Use when optimizing hot paths, loops, DOM operations, caching, or data structure choices in performance-critical code.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
 ---
 
 # JavaScript Performance Patterns
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 
 Runtime performance micro-patterns for JavaScript hot paths. These patterns matter most in tight loops, frequent callbacks (scroll, resize, animation frames), and data-heavy operations. They apply to any JavaScript environment — React, Vue, vanilla, Node.js.
 
@@ -34,7 +42,7 @@ Reference these patterns when:
 
 ### Overview
 
-Micro-optimizations are **not** a substitute for algorithmic improvements. Always address the algorithm first (O(n^2) to O(n), removing waterfalls, reducing DOM mutations). Once the algorithm is right, these patterns squeeze additional performance from hot paths.
+Micro-optimizations are **not** a substitute for algorithmic improvements. Address the algorithm first (O(n^2) to O(n), removing waterfalls, reducing DOM mutations). Once the algorithm is right, these patterns squeeze additional performance from hot paths.
 
 ---
 

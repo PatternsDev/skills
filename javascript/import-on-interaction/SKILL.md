@@ -1,21 +1,30 @@
 ---
 name: import-on-interaction
-description: Load non-critical resources when a user interacts with UI requiring it.
+description: Teaches interaction-based lazy loading for non-critical resources. Use when you have heavy components or libraries that are only needed after user interaction like clicks, hovers, or form input.
 context: fork
 allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
 ---
 
 # Import On Interaction
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 
 > tl;dr: lazy-load non-critical resources when a user interacts with UI requiring it
 
@@ -26,6 +35,12 @@ Your page may contain code or data for a component or resource that isn't immedi
 - Use this when you have third-party widgets (video players, chat widgets) that are costly to load eagerly
 - This is helpful for deferring non-critical code until the user actually needs it
 - Use this to improve First Input Delay (FID) and Time to Interactive (TTI)
+
+## When NOT to Use
+
+- When the resource is needed immediately on page load and isn't gated behind a user interaction
+- When the loading delay after interaction creates a noticeably poor user experience (consider prefetch/preload instead)
+- For small modules where the dynamic import overhead exceeds the savings from deferring
 
 ## Instructions
 

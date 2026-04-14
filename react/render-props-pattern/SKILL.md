@@ -1,6 +1,6 @@
 ---
 name: render-props-pattern
-description: Pass JSX elements to components through props for flexible, reusable component composition.
+description: Teaches the render props pattern for flexible component composition. Use when you need to share rendering logic between components by passing a function that returns JSX as a prop.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -15,6 +15,15 @@ related_skills:
 
 # Render Props Pattern
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+
 Another way of making components very reusable, is by using the **render prop** pattern. A render prop is a prop on a component, which value is a function that returns a JSX element. The component itself does not render anything besides the render prop. Instead, the component simply calls the render prop, instead of implementing its own rendering logic.
 
 Imagine that we have a `Title` component. In this case, the `Title` component shouldn't do anything besides rendering the value that we pass. We can use a render prop for this! Let's pass the value that we want the `Title` component to render to the `render` prop.
@@ -23,6 +32,12 @@ Imagine that we have a `Title` component. In this case, the `Title` component sh
 
 - Use this when you need to share stateful logic between components with different rendering needs
 - This is helpful when the HOC pattern creates naming collision issues or overly deep nesting
+
+## When NOT to Use
+
+- When custom hooks can replace the pattern — hooks provide the same logic reuse without render prop nesting
+- When it creates deeply nested JSX that becomes hard to read and maintain
+- When the shared logic is simple enough for a plain utility function or hook
 
 ## Instructions
 

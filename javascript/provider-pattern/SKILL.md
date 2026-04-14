@@ -1,19 +1,27 @@
 ---
 name: provider-pattern
-description: Make data available to multiple child components without prop drilling using React Context.
+description: Teaches the provider pattern for sharing data across component trees. Use when multiple nested components need access to the same data and prop drilling becomes unwieldy.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
 ---
 
 # Provider Pattern
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 
 In some cases, we want to make available data to many (if not all) components in an application. Although we can pass data to components using `props`, this can be difficult to do if almost all components in your application need access to the value of the props.
 

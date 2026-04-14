@@ -1,6 +1,6 @@
 ---
 name: server-side-rendering
-description: Generate HTML on the server in response to user requests for faster initial page loads and SEO.
+description: Teaches server-side rendering (SSR) for React applications. Use when you need faster initial page loads, better SEO, or dynamic per-request HTML generation.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -15,6 +15,15 @@ related_skills:
 
 # Server-side Rendering
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+
 Server-side rendering (SSR) is one of the oldest methods of rendering web content. SSR generates the full HTML for the page content to be rendered in response to a user request. The content may include data from a datastore or external API.
 
 The connect and fetch operations are handled on the server. HTML required to format the content is also generated on the server. Thus, with SSR we can avoid making additional round trips for data fetching and templating. As such, rendering code is not required on the client and the JavaScript corresponding to this need not be sent to the client.
@@ -23,6 +32,12 @@ The connect and fetch operations are handled on the server. HTML required to for
 
 - Use this when SEO and fast First Contentful Paint are important for your application
 - This is helpful for content-heavy pages that need to be quickly visible to users and search engines
+
+## When NOT to Use
+
+- For purely static content where static rendering (SSG) is sufficient and avoids per-request server cost
+- For internal dashboards or tools where SEO is irrelevant and CSR provides a simpler architecture
+- When the server rendering overhead per request is too high and caching isn't feasible
 
 ## Instructions
 

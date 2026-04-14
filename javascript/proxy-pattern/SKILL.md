@@ -1,13 +1,13 @@
 ---
 name: proxy-pattern
-description: Intercept and control interactions with target objects using JavaScript Proxies.
+description: Teaches the proxy pattern for intercepting object operations. Use when you need validation, logging, formatting, or access control on property access, assignment, or function invocation.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -21,6 +21,12 @@ With a Proxy object, we get more control over the interactions with certain obje
 
 - Use this when you need to add validation, formatting, notifications, or debugging to object access
 - This is helpful for controlling and intercepting property gets and sets on objects
+
+## When NOT to Use
+
+- In performance-critical hot paths where Proxy overhead on every property access matters
+- When simple getter/setter methods or Object.defineProperty achieve the same validation with less indirection
+- When the target objects are rarely accessed and the interception logic isn't needed
 
 ## Instructions
 

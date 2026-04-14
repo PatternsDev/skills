@@ -1,21 +1,29 @@
 ---
 name: compression
-description: Reduce the time needed to transfer JavaScript over the network using compression techniques like Gzip and Brotli.
+description: Teaches JavaScript compression techniques including Gzip and Brotli. Use when optimizing network transfer times or configuring server-side compression for production builds.
 context: fork
 allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
 ---
 
 # Compressing JavaScript
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 
 > Compress your JavaScript and keep an eye on your chunk sizes for optimal performance. Overly high JavaScript bundle granularity can help with deduplication & caching, but can suffer from poorer compression & impact loading in the 50-100 chunks range (due to browser processes, cache checks etc). Ultimately, pick the compression strategy that works best for you.
 
@@ -32,7 +40,7 @@ JavaScript is the second biggest [contributor to page size](https://almanac.http
 - Prefer Brotli compression over Gzip for better compression ratios at similar speed
 - Use static compression for assets that don't change frequently and dynamic compression for frequently changing content
 - Enable compression at the server or CDN level (e.g., Nginx, Vercel, Netlify)
-- Always minify JavaScript before applying compression
+- Minify JavaScript before applying compression
 - Be mindful of the granularity trade-off: larger bundles compress better, but smaller chunks cache better
 
 ## Details

@@ -1,6 +1,6 @@
 ---
 name: presentational-container-pattern
-description: Enforce separation of concerns by separating the view from the application logic.
+description: Teaches the presentational/container pattern for separating view and logic. Use when you want to isolate data fetching and business logic from UI rendering for better testability and reuse.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -21,6 +21,12 @@ In React, one way to enforce separation of concerns is by using the **Container/
 
 - Use this when you want a clear separation between data-fetching logic and UI rendering
 - This is helpful for making presentational components reusable and easy to test
+
+## When NOT to Use
+
+- For small components where the separation into two files adds overhead without meaningful benefit
+- When hooks already encapsulate the data logic, making a separate container component redundant
+- When the component is a one-off view with no reuse potential for either layer
 
 ## Instructions
 

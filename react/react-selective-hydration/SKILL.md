@@ -1,6 +1,6 @@
 ---
 name: react-selective-hydration
-description: Combine streaming server-side rendering with selective hydration for faster interactivity in React 18+.
+description: Teaches selective hydration combined with streaming SSR in React 18+. Use when you need to prioritize hydrating interactive components while streaming the rest of the page.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"

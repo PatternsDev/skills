@@ -1,6 +1,6 @@
 ---
 name: static-rendering
-description: Deliver pre-rendered HTML content that was generated at build time for fast, cacheable pages.
+description: Teaches static rendering (SSG) for build-time HTML generation. Use when your pages don't change per request and can be pre-rendered at build time for maximum cacheability and performance.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -23,6 +23,12 @@ Static rendering or static generation (SSG) attempts to resolve these issues by 
 
 - Use this for static content like About pages, blog posts, and product listings that don't change per-request
 - This is helpful when you want the fastest possible TTFB via CDN-served static HTML
+
+## When NOT to Use
+
+- For highly dynamic, personalized content that changes per request (e.g., user dashboards, real-time feeds)
+- When the dataset is so large that build times become impractical without ISR
+- For pages requiring authentication-gated content that can't be pre-rendered at build time
 
 ## Instructions
 

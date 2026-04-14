@@ -1,13 +1,13 @@
 ---
 name: singleton-pattern
-description: Share a single global instance throughout your application to manage global state.
+description: Teaches the singleton pattern for managing a single shared instance. Use when exactly one instance of a class or object is needed to coordinate actions across your application.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "observer-pattern"
@@ -15,12 +15,27 @@ related_skills:
 
 # Singleton Pattern
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+
 Singletons are classes which can be instantiated once, and can be accessed globally. This _single instance_ can be shared throughout our application, which makes Singletons great for managing global state in an application.
 
 ## When to Use
 
 - Use this when you need exactly one instance of a class shared across the entire application
 - This is helpful for managing global state, configuration, or shared resources
+
+## When NOT to Use
+
+- When you need multiple instances of a class — singletons enforce a single shared instance by design
+- When it introduces hidden global state coupling that makes testing and reasoning about code harder
+- When dependency injection or module-scoped variables achieve the same result with better testability
 
 ## Instructions
 

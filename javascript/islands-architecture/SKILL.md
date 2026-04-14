@@ -1,21 +1,29 @@
 ---
 name: islands-architecture
-description: Render small, focused chunks of interactivity within server-rendered web pages to reduce JavaScript overhead.
+description: Teaches the islands architecture pattern for partial hydration. Use when building content-heavy sites where most of the page is static and only small regions need interactivity.
 context: fork
 allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
 ---
 
 # Islands Architecture
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 
 > tl;dr: The islands architecture encourages small, focused chunks of interactivity within server-rendered web pages. The output of islands is progressively enhanced HTML, with more specificity around how the enhancement occurs. Rather than a single application being in control of full-page rendering, there are multiple entry points. The script for these "islands" of interactivity can be delivered and hydrated independently, allowing the rest of the page to be just static HTML.
 
@@ -161,12 +169,12 @@ Despite the advantages, the concept is still in a nascent stage. The limited sup
 
 The Islands architecture concept is relatively new but likely to gain speed due to its performance advantages. It underscores the use of SSR for rendering static content while supporting interactivity through dynamic components with minimal impact on the page's performance. We hope to see many more players in this space in the future and have a wider choice of implementation options available.
 
-### Further reading
+## Source
+
+- [patterns.dev/vanilla/islands-architecture](https://patterns.dev/vanilla/islands-architecture)
+
+### References
 
 - [Islands Architecture](https://jasonformat.com/islands-architecture/)
 - [Is 0KB of JavaScript in your future](https://dev.to/this-is-learning/is-0kb-of-javascript-in-your-future-48og)
 - [Modernizing Etsy's codebase with React](https://changelog.com/jsparty/105)
-
-## Source
-
-- [patterns.dev/vanilla/islands-architecture](https://patterns.dev/vanilla/islands-architecture)

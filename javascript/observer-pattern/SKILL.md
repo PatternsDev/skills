@@ -1,13 +1,13 @@
 ---
 name: observer-pattern
-description: Use observables to notify subscribers when an event occurs for decoupled event-driven communication.
+description: Teaches the observer pattern for event-driven communication. Use when you need decoupled publish/subscribe behavior where multiple parts of your system react to state changes or events.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -15,12 +15,27 @@ related_skills:
 
 # Observer Pattern
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+
 With the **observer pattern**, we can _subscribe_ certain objects, the **observers**, to another object, called the **observable**. Whenever an event occurs, the observable notifies all its observers!
 
 ## When to Use
 
 - Use this when you need to notify multiple parts of an application about state changes or events
 - This is helpful for implementing event-driven, asynchronous communication between components
+
+## When NOT to Use
+
+- When the subscriber count is very high and notification performance becomes critical
+- When simpler callbacks or direct function calls suffice for one-to-one communication
+- When debugging difficulty from implicit event chains outweighs the decoupling benefit
 
 ## Instructions
 
