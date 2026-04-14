@@ -23,7 +23,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Within our application, we often want to use the same logic in multiple components. This logic can include applying a certain styling to components, requiring authorization, or adding a global state.
 
 One way of being able to reuse the same logic in multiple components, is by using the **higher order component** pattern. This pattern allows us to reuse component logic throughout our application.
@@ -146,8 +145,6 @@ As the React docs tell us, using Hooks can reduce the depth of the component tre
 ```
 
 By adding a Hook to the component directly, we no longer have to wrap components.
-
-> **Note (React 18+):** Modern React strongly prefers **Hooks or other composition patterns** to reuse logic with less nesting. Excessive layering of HOCs leads to "wrapper hell" with deeply nested wrappers, making debugging difficult and cluttering React DevTools. Libraries like [Recompose](https://github.com/acdlite/recompose) are no longer maintained because Hooks can largely replace their functionality. For example, instead of a `withHover` HOC, you can create a `useHover` hook that returns whether an element is hovered and a ref to attach. This avoids an extra component layer and meshes well with React's upcoming features — the React Compiler can better analyze component code when logic isn't hidden in HOCs.
 
 Using Higher Order Components makes it possible to provide the same logic to many components, while keeping that logic all in one single place. Hooks allow us to add custom behavior from within the component, which could potentially increase the risk of introducing bugs compared to the HOC pattern if multiple components rely on this behavior.
 

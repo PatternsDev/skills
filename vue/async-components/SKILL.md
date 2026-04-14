@@ -22,7 +22,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 When developing large web applications, performance is paramount. The speed with which a page loads and the responsiveness of its interactive elements can greatly impact user experience. As web applications grow in size and complexity, it can become important to ensure that large bundles of code are loaded only when needed. Enter asynchronous components in Vue.
 
 Components are the fundamental building blocks for constructing the UI. Typically, when we use components, they're automatically loaded and parsed, even if they aren't immediately needed.

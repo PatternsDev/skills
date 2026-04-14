@@ -24,7 +24,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Composition patterns for building flexible, maintainable React components that scale. These patterns replace boolean-prop proliferation, rigid component APIs, and tangled state with composable, explicit designs.
 
 ## When to Use

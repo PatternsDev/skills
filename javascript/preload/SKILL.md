@@ -23,7 +23,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 [Preload](https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content) (`<link rel="preload">`) is a [browser optimization](https://web.dev/uses-rel-preload/) that allows critical resources (that may be discovered late) to be requested earlier. If you are comfortable thinking about how to manually order the loading of your key resources, it can have a positive impact on loading performance and metrics in the [Core Web Vitals](https://web.dev/vitals). That said, preload is not a panacea and requires an awareness of some trade-offs.
 
 ## When to Use

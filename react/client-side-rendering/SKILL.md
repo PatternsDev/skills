@@ -82,14 +82,6 @@ With React most of the application logic is executed on the client and it intera
 
 CSR allows us to have a Single-Page Application that supports navigation without page refresh and provides a great user experience. As the data processed to change the view is limited, routing between pages is generally faster making the CSR application seem more responsive. CSR also allows developers to achieve a clear separation between client and server code.
 
-> **Note (React 18+): Reevaluate Pure CSR for Initial Loads**
->
-> While CSR yields a rich interactive experience after load, it has well-known drawbacks for first-page load performance and SEO. Today's best practice is to **avoid pure-CSR for content-rich or public-facing pages**. Instead, use hybrid approaches (SSR/SSG plus hydration) for the initial render. Frameworks like Next.js now default to pre-rendering pages on the server (or at build time) and then hydrating on the client.
->
-> Server-rendering HTML can drastically improve FCP and make content indexable for search engines. React 18's improvements (automatic batching, Suspense, streaming) make SSR + hydration very performant. React 18 also introduced **Progressive Hydration** and **Selective Hydration** which mitigate the traditional TTI gap—React can hydrate parts of the UI as their scripts arrive or as the user interacts.
->
-> **Conclusion:** Pure CSR (loading a big bundle and rendering everything on client) is generally **discouraged for large apps**. Use SSR/SSG for initial content and hydrate on the client. If you *do* use CSR (e.g., an internal dashboard where SEO doesn't matter), apply aggressive code-splitting and use React 18's `<Suspense>` with lazy-loaded components to defer loading non-critical parts of the UI.
-
 Despite the great interactive experience that it provides, there are a few pitfalls to CSR:
 
 1. **SEO considerations:** Most web crawlers can interpret server rendered websites in a straight-forward manner. Things get slightly complicated in the case of client-side rendering as large payloads and a waterfall of network requests (e.g for API responses) may result in meaningful content not being rendered fast enough for a crawler to index it. Crawlers may understand JavaScript but there are limitations. As such, some workarounds are required to make a client-rendered website SEO friendly.

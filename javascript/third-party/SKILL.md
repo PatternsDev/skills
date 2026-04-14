@@ -24,9 +24,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
-> tl;dr: Third-party resources can slow down sites and can be a challenge to optimize. You can follow certain best practices to load or delay different types of third-parties efficiently. You can also use framework-level components such as the [Next.js Script component](https://nextjs.org/docs/basic-features/script), which provides a template for framing the "when" and "how" for loading third-party scripts. Alternatively, experimental ideas like [Partytown](https://github.com/BuilderIO/partytown) may be of interest.
-
 ## When to Use
 
 - Use this when third-party scripts (analytics, ads, chat widgets, social embeds) are slowing down your site
@@ -72,6 +69,7 @@ You can use a combination of techniques to find how third-party code is affectin
   - [Avoid enormous network payloads](https://web.dev/total-byte-weight/) for large scripts
 
 - Use the WebPageTest (WPT) waterfall chart to identify [third-party blocking scripts](https://nooshu.com/blog/2019/10/02/how-to-read-a-wpt-waterfall-chart/#third-party-blocking-javascript) or WPT side-by-side comparison to [measure the impact of 3rd party tags](https://andydavies.me/blog/2018/02/19/using-webpagetest-to-measure-the-impact-of-3rd-party-tags/).
+
 - Sites like [Bundlephobia](https://bundlephobia.com/) help to assess the cost of adding available npm packages to your bundles. You can also find size and dependencies included in any package using [npm package search](https://www.npmjs.com/package/).
 
 ### Optimization strategies
@@ -100,8 +98,6 @@ JavaScript download and execution is synchronous by default and can block the HT
 <script src="https://example.com/asyncthis.js" async></script>
 ```
 
-> Credit: [developers.google.com](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/loading-third-party-javascript)
-
 One caveat worth mentioning here is that async and defer lower the browser assigned priority of the resources causing it to load significantly later. A new feature for [priority hints](https://web.dev/priority-hints/) can help to work around this problem.
 
 #### Establish early connections to required origins using resource hints
@@ -120,8 +116,6 @@ Including a [dns-prefetch](https://developer.mozilla.org/en-US/docs/Web/Performa
 ```
 
 Benefits of using resource hints are evident in this case study where Andy Davies discusses how using [preconnect helped reduce the loading time](https://andydavies.me/blog/2019/03/22/improving-perceived-performance-with-a-link-rel-equals-preconnect-http-header/) for the main product image by initiating an early connection to the third-party image CDN.
-
-> "The real-world metrics showed a 400ms improvement at the median and greater than 1s improvement at the 95th percentile."
 
 Similarly, you may use resource hints to optimize loading time for critical third-parties like bot detection (reCaptcha) and consent management.
 
@@ -161,7 +155,6 @@ Self-hosting may not be an option for scripts that change frequently. You can us
 #### Follow the ideal loading sequence
 
 Consider the above guidance for different types of third-parties and their value to the page. Based on the intended use for each resource, you can follow the ideal resource loading sequence to interlace first-party and third-party resources optimally for faster page loads.
-
 
 ### Best practices by script type
 
@@ -204,7 +197,6 @@ These embeds are heavy, and developers must explore lazy-loading or click-to-loa
 #### Social media embeds
 
 Some social media embeds provide an option to lazy-load their scripts (e.g., [data-lazy in Facebook](https://developers.facebook.com/docs/plugins/embedded-posts/) embeds). You can explore this to improve performance. Another alternative is to use image facades created manually or using tools like [tweetpik](https://tweetpik.com/).
-
 
 ### Out-of-the-box optimization
 
@@ -263,7 +255,6 @@ export default class MyDocument extends Document {
    );
  }
 ```
-
 
 ### Next.js `Script` component
 

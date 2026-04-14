@@ -23,7 +23,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 In our application, we often have components that belong to each other. They're dependent on each other through the shared state, and share logic together. You often see this with components like `select`, dropdown components, or menu items. The **compound component pattern** allows you to create components that all work together to perform a task.
 
 ## When to Use
@@ -233,8 +232,6 @@ All children components are cloned, and passed the value of `open` and `toggle`.
 Compound components manage their own internal state, which they share among the several child components. When implementing a compound component, we don't have to worry about managing the state ourselves.
 
 When importing a compound component, we don't have to explicitly import the child components that are available on that component.
-
-> **Note (React 18+):** The compound component pattern using React's Context API remains a **recommended pattern** for related components that share state. The implementation using Hooks (`useState`, `useContext`) is modern and aligns with current best practices. When using context, avoid unnecessary re-renders by not re-creating context values each render. In complex scenarios, you might optimize by memoizing the context value or splitting context (e.g., a context for the `open` boolean and another for the `toggle` function). The pattern is fully compatible with React's upcoming features like Server Components — just ensure the context provider and consumers are all either server or client components as needed.
 
 ```js
 import { FlyOut } from "./FlyOut";

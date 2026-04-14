@@ -25,9 +25,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
-> tl;dr: lazy-load non-critical resources when a user interacts with UI requiring it
-
 Your page may contain code or data for a component or resource that isn't immediately necessary. For example, part of the user-interface a user doesn't see unless they click or scroll on parts of the page. This can apply to many kinds of first-party code you author, but this also applies to third-party widgets such as video players or chat widgets where you typically need to click a button to display the main interface.
 
 ## When to Use
@@ -67,8 +64,6 @@ The different ways to load resources are, at a high-level:
 - [Prefetch](https://web.dev/link-prefetch/) - load prior to needed, but after critical resources are loaded
 - [Preload](https://web.dev/preload-critical-assets/) - eagerly, with a greater level of urgency
 
-> Import-on-interaction for first-party code should only be done if you're unable to prefetch resources prior to interaction. The pattern is however very relevant for third-party code, where you generally want to defer it if non-critical to a later point in time. This can be achieved in many ways (defer until interaction, until the browser is idle or using other heuristics).
-
 Lazily importing feature code on interaction is a pattern used in many contexts. One place you may have used it before is Google Docs, where they save loading 500KB of script for the share feature by deferring its load until user-interaction.
 
 Another place where import-on-interaction can be a good fit is loading third-party widgets.
@@ -78,8 +73,6 @@ Another place where import-on-interaction can be a good fit is loading third-par
 You might be importing a third-party script and have less control over what it renders or when it loads code. One option for implementing load-on-interaction is straight-forward: use a [facade](https://github.com/patrickhulce/third-party-web/blob/10ec0f8f30bbbb73e2de5640cb652a07dd4d7d11/facades.md). A facade is a simple "preview" or "placeholder" for a more costly component where you simulate the basic experience, such as with an image or screenshot. It's terminology we've been using for this idea on the Lighthouse team.
 
 When a user clicks on the "preview" (the facade), the code for the resource is loaded. This limits users needing to pay the experience cost for a feature if they're not going to use it. Similarly, facades can [preconnect](https://web.dev/uses-rel-preconnect/) to necessary resources on hover.
-
-> Third-party resources are often added to pages without full consideration for how they fit into the overall loading of a site. Synchronously-loaded third-party scripts block the browser parser and can delay hydration. If possible, 3P script should be loaded with async/defer (or other approaches) to ensure 1P scripts aren't starved of network bandwidth. Unless they are critical, they can be a good candidate for shifting to deferred late-loading using patterns like import-on-interaction.
 
 ### Video Player Embeds
 

@@ -22,7 +22,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Production-ready patterns for optimizing bundle size and build performance in Vite + React applications. These patterns leverage Vite's architecture (native ESM in dev, Rollup in production) to deliver smaller, faster bundles.
 
 ## When to Use

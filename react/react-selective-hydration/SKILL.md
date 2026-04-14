@@ -60,14 +60,6 @@ Streaming rendering allows you to start streaming components as soon as they're 
 
 Components can be hydrated as soon as they're streamed to the client, since we no longer have to wait for all JavaScript to load to start hydrating and can start interacting with the app before all components have been hydrated.
 
-> **Note (React 18+): Best Practices for Selective Hydration**
->
-> Use Suspense boundaries in your SSR code to delineate independent chunks of UI—each Suspense boundary can hydrate independently. Structure your code so that any heavy data-fetching component is inside a Suspense, so it doesn't delay the initial HTML or hydration of siblings. Next.js automatically wraps each route segment in a Suspense boundary for you (via `loading.js`).
->
-> If writing your own SSR, use `renderToPipeableStream()` (or `renderToReadableStream`) instead of the older `renderToNodeStream`, and provide an `onShellReady` callback to flush early HTML. React will attach event listeners progressively as chunks come in.
->
-> **Ensure critical interactive components are not inside a loading fallback** when they appear on screen, or if they are, that the fallback is very short-lived. If a user sees a button, it should be hydratable immediately. Verify you're not using legacy APIs—use `hydrateRoot` correctly for React 18+ to benefit from these performance boosts.
-
 ## Source
 
 - [patterns.dev/react/react-selective-hydration](https://patterns.dev/react/react-selective-hydration)

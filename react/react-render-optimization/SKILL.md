@@ -24,7 +24,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Practical patterns for eliminating unnecessary re-renders, reducing rendering cost, and keeping React UIs responsive. These patterns apply to any React application — whether you're using Vite, Next.js, Remix, or a custom setup.
 
 ## When to Use

@@ -21,7 +21,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Dynamic components constitute the ability to dynamically change (i.e. switch) between components by binding an `is` attribute to the reserved `<component>` element.
 
 We'll go through an example to best understand how dynamic components work. Assume we have separate components titled `Home`, `Feed`, and `History` that simply display text dictating what component it is.

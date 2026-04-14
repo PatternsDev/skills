@@ -111,7 +111,6 @@ Perfect! We can track and modify the request object all the way to the response 
 
 Every time the user hits a root endpoint `'/'`, the two middleware callbacks will be invoked.
 
-
 The middleware pattern makes it easy for us to simplify many-to-many relationships between objects, by letting all communication flow through one central point.
 
 ## Source

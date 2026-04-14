@@ -124,22 +124,6 @@ Progressive hydration provides server-side rendering with client-side hydration 
 
 3. **Reduces bundle size:** Code-splitting automatically results in a reduction of bundle size. Less code to execute on load helps reduce the time between FCP and TTI.
 
-> **Note (React 18+): Use `<Suspense>` with `lazy()` for Hydration Control**
->
-> React 18's Concurrent Features now address the progressive hydration requirements: selective hydration on interaction means if the user tries to interact with a not-yet-hydrated part, React will prioritize hydrating that part—this is built-in.
->
-> A practical pattern is to wrap non-critical components in a `<Suspense fallback={...}>`. On the server, render a lightweight placeholder, and code-split the real component with `React.lazy`. For example:
->
-> ```js
-> const Comments = React.lazy(() => import('./Comments'));
-> // ...
-> <Suspense fallback={null}>
->   <Comments {...props} />
-> </Suspense>
-> ```
->
-> This streams a placeholder in the SSR output and doesn't block the rest of the page. The `Comments` component hydrates once its code is fetched. In Next.js, use `next/dynamic` with `{ ssr: false }` for truly client-only widgets, or Suspense for parts that can be temporarily left as loading.
-
 On the downside, progressive hydration may not be suitable for dynamic apps where every element on the screen is available to the user and needs to be made interactive on load. This is because, if developers do not know where the user is likely to click first, they may not be able to identify which components to hydrate first.
 
 ## Source

@@ -24,9 +24,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
-**Note**: The View Transitions API for Single-Page Applications is available in Chrome 111+
-
 ## When to Use
 
 - Use this when you want to animate transitions between different page states or navigations

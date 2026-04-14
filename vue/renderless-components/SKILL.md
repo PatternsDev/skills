@@ -22,7 +22,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Renderless components are a pattern in Vue that **separates the logic of a component from its presentation**. The pattern provides a way to encapsulate functionality without _dictating the visual representation of the component_. In other words, a renderless component focuses solely on the logic and behavior, while leaving the rendering to the parent component.
 
 Renderless components are particularly useful when we need to create reusable logic that can be applied to different UI implementations. By abstracting the logic into a renderless component, we can easily reuse it in various contexts without duplicating code.

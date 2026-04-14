@@ -22,7 +22,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Vue recommends for us to use templates (i.e. the `<template></template>` syntax) to construct the markup of our Vue components. However, we're also given the opportunity to directly use something known as **render functions** to build the markup of our components as well.
 
 Vue, at build time, takes the templates we create for our components and compiles them to render functions. It's at these compiled render functions, where Vue builds a virtual representation of nodes that make up the virtual DOM.
@@ -46,8 +45,6 @@ Vue, at build time, takes the templates we create for our components and compile
 - Remember that Vue JSX uses `class` (not `className`) and single curly braces `{}`
 
 ## Details
-
-> If you're interested, the [Rendering Mechanism](https://vuejs.org/guide/extras/rendering-mechanism.html) section of the Vue documentation goes into more detail on the concept of the virtual DOM and Vue's internal rendering mechanism.
 
 By using render functions, we skip the compile step that Vue takes to compile our templates, and are able to construct our component templates with the help of programmatic JavaScript.
 

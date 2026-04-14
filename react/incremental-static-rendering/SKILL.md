@@ -129,14 +129,6 @@ iSSG provides all the advantages of SSG and then some more:
 4. **Consistent**: As the regeneration takes place on the server one page at a time, the load on the database and the backend is low and performance is consistent. As a result, there are no spikes in latency.
 5. **Ease of Distribution**: Just like SSG sites, iSSG sites can also be distributed through a network of CDN's used to serve pre-rendered web pages.
 
-> **Note (React 18+ / Next.js 13+): On-Demand Revalidation**
->
-> A new best practice is to use **On-Demand Revalidation** when possible. Next.js provides APIs (e.g., `res.revalidate` in API routes, or `revalidatePath` and `revalidateTag` in App Router) to trigger revalidation of specific pages immediately after content changes, rather than waiting for the next timed interval.
->
-> For **fallback pages**, the pattern of using `fallback: true` in `getStaticPaths` remains valid. In Next.js 13 App Router, fallback behavior is handled by the `loading.js` conventions automatically.
->
-> **Edge caching and ISR:** Platforms like Vercel and Cloudflare let you run ISR on the edge. ISR is now a **standard practice** for large sites—refine it with targeted revalidation and good loading states.
-
 ## Source
 
 - [patterns.dev/react/incremental-static-rendering](https://patterns.dev/react/incremental-static-rendering)

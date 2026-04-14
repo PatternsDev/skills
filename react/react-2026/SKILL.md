@@ -24,7 +24,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 React has come a long way since its early days of simple component libraries. By late 2025, the React ecosystem is **rich but complex**, offering multiple ways to choose your stack for building apps. Modern React developers face choices at every layer of the stack - from **build tools** and **frameworks** to **routers** and other libraries. The official React documentation (now at **react.dev**) encourages using higher-level frameworks for new projects. In fact, **Create React App (CRA)** - once the go-to bootstrap tool - was deprecated in early 2025, signaling a shift in how we start React apps.
 
 Instead of stitching together your own tooling from scratch, the recommendation is to either **use a React framework** (like Next.js or Remix) or, if you have special requirements, start from a modern **build tool** like Vite or Parcel. In this opinionated guide, we'll explore the 2025 React landscape: the **toolchain and stack** we suggest for mid-to-senior developers, covering build tools (Vite, Turbopack, Webpack), routing solutions (React Router vs. TanStack Router), popular frameworks (Next.js, Remix, etc.), key libraries for state and data management, and even how **AI is influencing React development**.

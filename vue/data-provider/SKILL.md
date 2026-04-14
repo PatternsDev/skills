@@ -22,7 +22,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 In a previous article, we've come to learn how renderless components help separate the logic of a component from its presentation. This becomes useful when we need to create reusable logic that can be applied to different UI implementations.
 
 Renderless components also allow us to leverage another helpful pattern known as the **data provider pattern**.

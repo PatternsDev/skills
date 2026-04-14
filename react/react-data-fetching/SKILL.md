@@ -24,7 +24,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Production-ready patterns for fetching, caching, and synchronizing server data in React applications. These patterns are framework-agnostic — they work whether you're using Vite + React Router, Next.js, Remix, or a custom setup.
 
 ## When to Use

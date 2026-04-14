@@ -23,7 +23,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 With the **observer pattern**, we can _subscribe_ certain objects, the **observers**, to another object, called the **observable**. Whenever an event occurs, the observable notifies all its observers!
 
 ## When to Use
@@ -188,11 +187,7 @@ Although we can use the observer pattern in many ways, it can be very useful whe
 
 ### Case study
 
-A popular library that uses the observable pattern is RxJS.
-
-> ReactiveX combines the Observer pattern with the Iterator pattern and functional programming with collections to fill the need for an ideal way of managing sequences of events. - RxJS
-
-RxJS has tons of built-in features and examples that work with the observable pattern.
+A popular library that uses the observable pattern is RxJS. RxJS has tons of built-in features and examples that work with the observable pattern.
 
 ### Pros
 

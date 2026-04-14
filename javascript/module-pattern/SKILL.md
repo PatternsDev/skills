@@ -23,7 +23,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 As your application and codebase grow, it becomes increasingly important to keep your code maintainable and separated. The module pattern allows you to split up your code into smaller, reusable pieces.
 
 Besides being able to split your code into smaller reusable pieces, modules allow you to keep certain values within your file _private_. Declarations within a module are scoped (_encapsulated_) to that module, by default. If we don't explicitly export a certain value, that value is not available outside that module. This reduces the risk of name collisions for values declared in other parts of your codebase, since the values are not available on the global scope.
@@ -110,7 +109,6 @@ export function square(x) {
 Notice how we didn't add the `export` keyword in front of `privateValue`. Since we didn't export the `privateValue` variable, we don't have access to this value outside of the `math.js` module!
 
 By keeping the value private to the module, there is a reduced risk of accidentally polluting the global scope. You don't have to fear that you will accidentally overwrite values created by developers using your module, that may have had the same name as your private value: it prevents naming collisions.
-
 
 Sometimes, the names of the exports could collide with local values. In this case, we can _rename_ the imported values, by using the `as` keyword.
 

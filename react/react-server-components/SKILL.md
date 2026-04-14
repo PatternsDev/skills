@@ -23,7 +23,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 React's [Server Components](https://react.dev/reference/rsc/server-components) enable **modern UX with a server-driven mental model**. This is quite different from Server-side Rendering (SSR) of components and results in significantly smaller client-side JavaScript bundles.
 
 ## When to Use
@@ -70,8 +69,6 @@ However, JavaScript still needs to be fetched for interactivity which is often a
 
 With React Server Components, our components can be refetched regularly. An application with components which rerender when there is new data can be run on the server, limiting how much code needs to be sent to the client.
 
-> [RFC]: Developers constantly have to make choices about using third-party packages. Using a package to render some markdown or format a date is convenient for us as developers, but it increases code size and hurts performance for our users
-
 Before Server Components, using a markdown renderer and sanitizer would add to the bundle:
 
 ```js
@@ -92,8 +89,6 @@ React's new Server Components complement Server-side rendering, enabling renderi
 Server Components are not a replacement for SSR. When paired together, they support quickly rendering in an intermediate format, then having Server-side rendering infrastructure rendering this into HTML enabling early paints to still be fast. We SSR the Client components which the Server components emit, similar to how SSR is used with other data-fetching mechanisms.
 
 This time however, the JavaScript bundle will be significantly smaller. Early explorations have shown that bundle size wins could be significant (-18-29%), but the React team will have a clearer idea of wins in the wild once further infrastructure work is complete.
-
-> [RFC]: If we migrate the above example to a Server Component we can use the exact same code for our feature but avoid sending it to the client - a code savings of over 240K (uncompressed):
 
 ```js
 import marked from "marked"; // zero bundle size
@@ -153,7 +148,6 @@ function Photo(props) {
   }
 }
 ```
-
 
 ### Will Server Components replace Next.js SSR?
 

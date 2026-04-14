@@ -108,8 +108,6 @@ The Container/Presentational pattern makes it easy to separate application logic
 
 Although we can still use the Container/Presentational pattern, even with React Hooks, this pattern can easily be an overkill in smaller sized application.
 
-> **Note (React 18+):** Modern React strongly favors **Hooks over container components** for separating logic from views. Custom Hooks can replace class-based containers entirely — for example, a `useDogImages` hook can fetch data using `useState` and `useEffect`, then any component can simply call `const dogs = useDogImages()` to get the data. This achieves the same separation of concerns (data fetching vs UI) with less boilerplate and no wrapper component. This Hook-based approach is also friendly to React's upcoming optimizations — the React Compiler can better optimize functional components and Hooks than class lifecycles.
-
 ## Source
 
 - [patterns.dev/react/presentational-container-pattern](https://patterns.dev/react/presentational-container-pattern)

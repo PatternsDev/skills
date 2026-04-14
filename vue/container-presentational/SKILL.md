@@ -21,7 +21,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 In 2015, Dan Abramov wrote an article titled ["Presentational and Container Components"](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) that changed the way many developers thought about component architecture in React. He introduced a pattern that separated components into two categories:
 
 1. **Presentational Components (or Dumb Components)**: These are concerned with how things look. They don't specify how the data is loaded or mutated but rather receive data and callbacks exclusively via props.

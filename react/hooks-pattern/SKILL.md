@@ -24,7 +24,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 React 16.8 introduced a new feature called [**Hooks**](https://react.dev/reference/react/hooks). Hooks make it possible to use React state and lifecycle methods, without having to use an ES2015 class component.
 
 Although Hooks are not necessarily a design pattern, Hooks play a very important role in your application design. Many traditional design patterns can be replaced by Hooks.
@@ -221,7 +220,6 @@ function Input() {
 
 The value of the `input` field is equal to the current value of the `input` state, just like in the class component example. When the user types in the input field, the value of the `input` state updates accordingly, using the `setInput` method.
 
-
 #### Effect Hook
 
 We've seen we can use the `useState` component to handle state within a functional component, but another benefit of class components was the possibility to add lifecycle methods to a component.
@@ -250,7 +248,6 @@ useEffect(() => {
 ```
 
 The value of the input now gets logged to the console whenever the user types a value.
-
 
 ### Custom Hooks
 
@@ -425,14 +422,6 @@ There are of course some potential downsides to Hooks worth keeping in mind:
 - Have to respect its rules, without a linter plugin, it is difficult to know which rule has been broken.
 - Need a considerable time practicing to use properly (Exp: useEffect).
 - Be aware of the wrong use (Exp: useCallback, useMemo).
-
-> **Note (React 18+): Avoiding Unnecessary Effects**
->
-> Modern best practices refine *how* we use effects and event handlers. It's easy to overuse `useEffect` — the new React docs caution: *"If there is no external system involved, you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone."* ([react.dev](https://react.dev/learn/you-might-not-need-an-effect))
->
-> Instead of using an effect to set derived state (e.g., `useEffect(() => setFullName(firstName + ' ' + lastName), [firstName, lastName])`), compute it directly in the component body: `const fullName = firstName + ' ' + lastName`. Similarly, handle user events like form submission or logging directly in event handlers rather than in effects. This reduces double renders and "stale closure" bugs.
->
-> **Automatic Memoization via React Compiler:** New in React 19 is the **React Optimizing Compiler** (sometimes called React Forget) which can handle many `useCallback` and `useMemo` optimizations for you. When enabled, the compiler statically analyzes your component code and **automatically hoists stable functions and memoizes values** that don't need to change. The [official React docs](https://react.dev/learn/react-compiler) note that the compiler "handles memoization for you, eliminating the need for manual useMemo, useCallback, and React.memo" in many cases. Writing clean functional components (no side-effects in render, pure computations) will allow the compiler to maximize optimizations.
 
 ### React Hooks vs Classes
 

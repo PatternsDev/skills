@@ -21,7 +21,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 **Vue components are the building blocks of Vue apps** by allowing us to couple markup (HTML), logic (JS), and styles (CSS) within them.
 
 ## When to Use

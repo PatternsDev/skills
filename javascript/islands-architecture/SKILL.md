@@ -24,9 +24,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
-> tl;dr: The islands architecture encourages small, focused chunks of interactivity within server-rendered web pages. The output of islands is progressively enhanced HTML, with more specificity around how the enhancement occurs. Rather than a single application being in control of full-page rendering, there are multiple entry points. The script for these "islands" of interactivity can be delivered and hydrated independently, allowing the rest of the page to be just static HTML.
-
 ## When to Use
 
 - Use this for primarily static websites that need sprinkles of interactivity (blogs, product pages, news sites)
@@ -80,7 +77,9 @@ Jason's post suggests the use of [`requestIdleCallback()`](https://developer.moz
 Different frameworks today are capable of supporting the Islands architecture. Notable among them are:
 
 1. **Marko**: [Marko](https://markojs.com/) is an open-source framework [developed](https://tech.ebayinc.com/engineering/the-future-of-marko/) and [maintained](https://tech.ebayinc.com/engineering/ebay-launches-marko-5/) by eBay to improve server rendering performance. It supports Islands architecture by combining streaming rendering with automatic partial hydration. HTML and other static assets are streamed to the client as soon as they are ready. Automatic partial hydration allows interactive components to hydrate themselves. Hydration code is only [shipped for interactive components](https://medium.com/@mlrawlings/maybe-you-dont-need-that-spa-f2c659bc7fec), which can change the state on the browser. It is isomorphic, and the Marko compiler generates optimized code depending on where it will run (client or server).
+
 2. **Astro**: [Astro](https://astro.build/) is a static site builder that can generate lightweight static HTML pages from UI components built in other frameworks such as React, Preact, Svelte, Vue, and others. Components that need client-side JavaScript are loaded individually with their dependencies. Thus it provides built-in partial hydration. Astro can also lazy-load components depending on when they become visible.
+
 3. **Eleventy + Preact:** [Markus Oberlehner](https://markus.oberlehner.net/blog/building-partially-hydrated-progressively-enhanced-static-websites-with-isomorphic-preact-and-eleventy/#lazy-hydration) demonstrates the use of Eleventy, a static site generator with isomorphic Preact components that can be partially hydrated. It also supports lazy hydration. The component itself declaratively controls the hydration of the component. Interactive components use a `WithHydration` wrapper so that they are hydrated on the client.
 
 Note that Marko and Eleventy pre-date the definition of Islands provided by Jason but contain some of the features required to support it. **Astro**, however, was built based on the definition and inherently supports the Islands architecture.
@@ -153,11 +152,12 @@ The Islands architecture combines ideas from different rendering techniques such
 
 1. **Performance**: Reduces the amount of JavaScript code shipped to the client. The code sent only consists of the script required for interactive components, which is much less than the script needed to recreate the virtual DOM for the entire page and rehydrate all the elements on the page. The smaller size of JavaScript automatically corresponds to faster page loads and Time to Interactive (TTI).
 
-> Comparisons for Astro with documentation websites created for Next.js and Nuxt.js have shown an 83% reduction in JavaScript code. Other users have also reported performance improvements with Astro.
-
 2. **SEO:** Since all of the static content is rendered on the server; pages are SEO friendly.
+
 3. **Prioritizes important content:** Key content (especially for blogs, news articles, and product pages) is available almost immediately to the user. Secondary functionality for interactivity is usually required after consuming the key content becomes available gradually.
+
 4. **Accessibility:** The use of standard static HTML links to access other pages helps to improve the accessibility of the website.
+
 5. **Component-based:** The architecture offers all advantages of component-based architecture, such as reusability and maintainability.
 
 Despite the advantages, the concept is still in a nascent stage. The limited support results in some disadvantages.

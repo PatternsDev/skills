@@ -23,7 +23,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Singletons are classes which can be instantiated once, and can be accessed globally. This _single instance_ can be shared throughout our application, which makes Singletons great for managing global state in an application.
 
 ## When to Use
@@ -193,7 +192,6 @@ Consider an application that implements the `Counter` example with the following
 Both `blueButton.js` and `redButton.js` import the **same instance** from `counter.js`. This instance is imported as **`Counter`** in both files.
 
 When we invoke the `increment` method in either `redButton.js` or `blueButton.js`, the value of the `counter` property on the `Counter` instance updates in both files. It doesn't matter whether we click on the red or blue button: the same value is shared among all instances. This is why the counter keeps incrementing by one, even though we're invoking the method in different files.
-
 
 ### Tradeoffs
 

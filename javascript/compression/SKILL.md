@@ -24,9 +24,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
-> Compress your JavaScript and keep an eye on your chunk sizes for optimal performance. Overly high JavaScript bundle granularity can help with deduplication & caching, but can suffer from poorer compression & impact loading in the 50-100 chunks range (due to browser processes, cache checks etc). Ultimately, pick the compression strategy that works best for you.
-
 JavaScript is the second biggest [contributor to page size](https://almanac.httparchive.org/en/2020/page-weight#fig-2) and the second most [requested web resource](https://almanac.httparchive.org/en/2020/page-weight#fig-4) on the internet after images. We use patterns that reduce the transfer, load, and execution time for JavaScript to improve website performance. Compression can help reduce the time needed to transfer scripts over the network.
 
 ## When to Use
@@ -172,10 +169,6 @@ In an ideal world, the granularity and chunking strategy should aim to achieve t
 1. **Improve download speed:** As seen in the previous sections, download speeds can be improved using compression. However, compressing one large chunk will yield a better result or smaller file size than compressing multiple small chunks with the same code.
 
 `compress(a + b) <= compress(a) + compress(b)`
-
-> Limited local data suggests a 5% to 10% loss for smaller chunks. The extreme case of unbundled chunks shows a 20% increase in size. Additional IPC, I/O, and processing costs are attached to each chunk that gets shared in the case of larger chunks. The v8 engine has a 30K streaming/parsing threshold. This means that all chunks smaller than 30K will parse on the critical loading path even if it is non-critical.
-
-> For the above reasons, larger chunks may prove to be more efficient than smaller chunks for the same code for optimizing download and browser performance.
 
 2. **Improve cache hits and caching efficiency:** Smaller-sized chunks result in better caching efficiency, especially for apps that load JS incrementally.
 

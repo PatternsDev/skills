@@ -23,7 +23,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 List virtualization (also known as windowing) is the idea of rendering only visible rows of content in a dynamic list instead of the entire list. The rows rendered are only a small subset of the full list with what is visible (the window) moving as the user scrolls. This can improve rendering performance.
 
 If you use React and need to **display large lists of data efficiently**, you may be familiar with [react-virtualized](https://bvaughn.github.io/react-virtualized/). It's a windowing library by [Brian Vaughn](https://twitter.com/brian_d_vaughn) that renders only the items currently visible in a list (within a scrolling "viewport"). This means you don't need to pay the cost of thousands of rows of data being rendered at once.

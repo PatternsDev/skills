@@ -15,7 +15,7 @@ related_skills:
 
 # Dynamic Import
 
-In our chat application, we have four key components: `UserInfo`, `ChatList`, `ChatInput` and `EmojiPicker`. However, only _three_ of these components are used instantly on the initial page load: `UserInfo`, `ChatList` and `ChatInput`. The `EmojiPicker` isn't directly visible, and may not even be rendered at all if the user won't even click on the `Emoji` in order to toggle the `EmojiPicker`. This would mean that we unnecessarily added the `EmojiPicker` module to our initial bundle, which potentially increased the loading time!
+In a chat application, we have four key components: `UserInfo`, `ChatList`, `ChatInput` and `EmojiPicker`. However, only _three_ of these components are used instantly on the initial page load: `UserInfo`, `ChatList` and `ChatInput`. The `EmojiPicker` isn't directly visible, and may not even be rendered at all if the user won't even click on the `Emoji` in order to toggle the `EmojiPicker`. This would mean that we unnecessarily added the `EmojiPicker` module to our initial bundle, which potentially increased the loading time!
 
 In order to solve this, we can _dynamically import_ the `EmojiPicker` component. Instead of statically importing it, we'll only import it when we want to show the `EmojiPicker`. An easy way to dynamically import components in React is by using **React Suspense**. The `React.Suspense` component receives the component that should be dynamically loaded, which makes it possible for the `App` component to render its contents faster by suspending the import of the `EmojiPicker` module!
 

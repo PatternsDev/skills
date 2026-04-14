@@ -22,7 +22,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Runtime performance micro-patterns for JavaScript hot paths. These patterns matter most in tight loops, frequent callbacks (scroll, resize, animation frames), and data-heavy operations. They apply to any JavaScript environment — React, Vue, vanilla, Node.js.
 
 ## When to Use

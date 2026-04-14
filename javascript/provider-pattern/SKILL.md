@@ -22,7 +22,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 In some cases, we want to make available data to many (if not all) components in an application. Although we can pass data to components using `props`, this can be difficult to do if almost all components in your application need access to the value of the props.
 
 We often end up with something called _prop drilling_, which is the case when we pass props far down the component tree. Refactoring the code that relies on the props becomes almost impossible, and knowing where certain data comes from is difficult.
@@ -215,7 +214,6 @@ export default function TextBox() {
 
 Perfect! We didn't have to pass down any data to components that didn't care about the current value of the theme.
 
-
 ### Hooks
 
 We can create a hook to provide context to components. Instead of having to import `useContext` and the Context in each component, we can use a hook that returns the context we need.
@@ -288,8 +286,6 @@ By creating hooks for the different contexts, it's easy to separate the provider
 ### Case Study
 
 Some libraries provide built-in providers, which values we can use in the consuming components. A good example of this, is [styled-components](https://styled-components.com/docs/advanced).
-
-> No experience with styled-components is needed to understand this example.
 
 The styled-components library provides a `ThemeProvider` for us. Each _styled component_ will have access to the value of this provider! Instead of creating a context API ourselves, we can use the one that's been provided to us!
 

@@ -23,7 +23,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Server-side rendering (SSR) is one of the oldest methods of rendering web content. SSR generates the full HTML for the page content to be rendered in response to a user request. The content may include data from a datastore or external API.
 
 The connect and fetch operations are handled on the server. HTML required to format the content is also generated on the server. Thus, with SSR we can avoid making additional round trips for data fetching and templating. As such, rendering code is not required on the client and the JavaScript corresponding to this need not be sent to the client.
@@ -96,14 +95,6 @@ Development teams are required to work with a JS budget that limits the amount o
 #### SEO enabled
 
 Search engine crawlers are easily able to crawl the content of an SSR application thus ensuring higher search engine optimization on the page.
-
-> **Note (React 18+): Adopt Streaming SSR with Suspense**
->
-> Traditional SSR renders the full HTML on the server for each request. React 18 introduced **Streaming Server-Side Rendering**, which sends HTML to the client in chunks as it's generated, rather than waiting for the whole render to finish. This significantly improves TTFB and LCP—users see the page shell almost immediately.
->
-> If your SSR implementation uses older APIs like `ReactDOMServer.renderToString` or `renderToNodeStream`, consider upgrading to `renderToPipeableStream` (Node) or `renderToReadableStream` (for edge environments) introduced in React 18. These APIs support Suspense boundaries, allowing you to send partial content and display a `<Suspense fallback>` for slow parts.
->
-> **React Server Components:** Perhaps the biggest change is the rise of **React Server Components (RSC)**. RSCs allow you to render part of your UI on the server *ahead of time* without sending the associated JS to the client, dramatically shrinking client JS bundles.
 
 SSR works great for static content due to the above advantages. However, it does have a few disadvantages because of which it is not perfect for all scenarios.
 

@@ -21,7 +21,6 @@ related_skills:
 - [Details](#details)
 - [Source](#source)
 
-
 Vue components are the building blocks of Vue apps by allowing us to couple markup (HTML), logic (JS), and styles (CSS) within them.
 
 When working within a Vue application, it's important to understand that almost every element displayed in the UI is oftentimes part of a Vue component. This is because a Vue application is often composed of components nested within components, forming a hierarchical structure.
