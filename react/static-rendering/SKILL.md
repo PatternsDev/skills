@@ -1,6 +1,6 @@
 ---
 name: static-rendering
-description: Deliver pre-rendered HTML content that was generated at build time for fast, cacheable pages.
+description: Teaches static rendering (SSG) for build-time HTML generation. Use when your pages don't change per request and can be pre-rendered at build time for maximum cacheability and performance.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -23,6 +23,12 @@ Static rendering or static generation (SSG) attempts to resolve these issues by 
 
 - Use this for static content like About pages, blog posts, and product listings that don't change per-request
 - This is helpful when you want the fastest possible TTFB via CDN-served static HTML
+
+## When NOT to Use
+
+- For highly dynamic, personalized content that changes per request (e.g., user dashboards, real-time feeds)
+- When the dataset is so large that build times become impractical without ISR
+- For pages requiring authentication-gated content that can't be pre-rendered at build time
 
 ## Instructions
 
@@ -127,14 +133,6 @@ export default function Product({ product }) {
 ```
 
 ### SSG - Key Considerations
-
-> **Note (React 18+ / Next.js 13+): Modern Static Generation**
->
-> In Next.js 13's App Router, `getStaticProps` and `getStaticPaths` have their equivalents in **`generateStaticParams`** (for dynamic routes) and the ability to fetch data in an async component for static generation.
->
-> **Use Incremental Static Regeneration (ISR) for Freshness:** If you have pages that are mostly static but need periodic updates, set a `revalidate` interval or use on-demand revalidation.
->
-> **Partial Prerendering (PPR):** A recent development in Next.js 14+ is Partial Prerendering, which allows a page to be *partially* statically rendered at build time and partially filled in at request time.
 
 1. **A large number of HTML files:** Individual HTML files need to be generated for every possible route that the user may access. Maintaining a large number of HTML files can be challenging.
 

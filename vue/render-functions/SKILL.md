@@ -1,6 +1,6 @@
 ---
 name: render-functions
-description: Create component templates programmatically with JavaScript using Vue's `h()` render function or JSX.
+description: Teaches Vue render functions and JSX for programmatic template creation. Use when templates are too limiting and you need the full power of JavaScript to construct component output dynamically.
 paths:
   - "**/*.vue"
 license: MIT
@@ -14,6 +14,14 @@ related_skills:
 
 # Render Functions
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 Vue recommends for us to use templates (i.e. the `<template></template>` syntax) to construct the markup of our Vue components. However, we're also given the opportunity to directly use something known as **render functions** to build the markup of our components as well.
 
 Vue, at build time, takes the templates we create for our components and compiles them to render functions. It's at these compiled render functions, where Vue builds a virtual representation of nodes that make up the virtual DOM.
@@ -23,6 +31,12 @@ Vue, at build time, takes the templates we create for our components and compile
 - Use this when you need complex dynamic rendering logic that's hard to express with template directives
 - This is helpful for component library development where flexibility and low-level control are needed
 
+## When NOT to Use
+
+- When templates handle the use case — templates are more readable and benefit from compile-time optimizations
+- For standard component markup where `v-if`, `v-for`, and slots cover the rendering needs
+- When the team is unfamiliar with `h()` / JSX and the maintenance cost outweighs the flexibility gain
+
 ## Instructions
 
 - Use the `h()` function with three arguments: tag/component, props/attributes, and children
@@ -31,8 +45,6 @@ Vue, at build time, takes the templates we create for our components and compile
 - Remember that Vue JSX uses `class` (not `className`) and single curly braces `{}`
 
 ## Details
-
-> If you're interested, the [Rendering Mechanism](https://vuejs.org/guide/extras/rendering-mechanism.html) section of the Vue documentation goes into more detail on the concept of the virtual DOM and Vue's internal rendering mechanism.
 
 By using render functions, we skip the compile step that Vue takes to compile our templates, and are able to construct our component templates with the help of programmatic JavaScript.
 

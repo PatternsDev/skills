@@ -1,13 +1,13 @@
 ---
 name: tree-shaking
-description: Reduce bundle size by eliminating dead code that is never used in your application.
+description: Teaches tree shaking for dead code elimination in JavaScript bundles. Use when your bundle includes unused exports and you want to reduce the final bundle size during the build step.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"

@@ -1,13 +1,13 @@
 ---
 name: prpl
-description: Optimize initial load through precaching, lazy loading, and minimizing roundtrips using the PRPL pattern.
+description: Teaches the PRPL pattern for optimizing initial page load. Use when building Progressive Web Apps or when you need to push critical resources, render the initial route, pre-cache remaining routes, and lazy-load on demand.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"

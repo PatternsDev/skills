@@ -1,6 +1,6 @@
 ---
 name: data-provider
-description: Utilize renderless components for managing and providing data to child components via scoped slots.
+description: Teaches the data provider pattern using renderless components and scoped slots. Use when you need to abstract data fetching or state management logic and expose it to child components via slots.
 paths:
   - "**/*.vue"
 license: MIT
@@ -14,6 +14,14 @@ related_skills:
 
 # Data Provider Pattern
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 In a previous article, we've come to learn how renderless components help separate the logic of a component from its presentation. This becomes useful when we need to create reusable logic that can be applied to different UI implementations.
 
 Renderless components also allow us to leverage another helpful pattern known as the **data provider pattern**.
@@ -22,6 +30,12 @@ Renderless components also allow us to leverage another helpful pattern known as
 
 - Use this when multiple components need to consume the same data but display it differently
 - This is helpful for centralizing data-fetching logic without coupling it to specific UI components
+
+## When NOT to Use
+
+- When composables can handle the data logic without the extra component layer (Vue 3+)
+- When only one component consumes the data — a composable or inline fetch is simpler
+- When the data-provider nesting adds indirection that makes the template harder to follow
 
 ## Instructions
 

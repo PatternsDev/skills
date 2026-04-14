@@ -1,19 +1,27 @@
 ---
 name: virtual-lists
-description: Optimize rendering of large lists by only displaying items visible in the viewport (windowing).
+description: Teaches virtual list (windowing) techniques for rendering large datasets. Use when rendering lists or tables with hundreds or thousands of items that cause scroll jank or slow initial render.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
 ---
 
 # List Virtualization
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
 
 List virtualization (also known as windowing) is the idea of rendering only visible rows of content in a dynamic list instead of the entire list. The rows rendered are only a small subset of the full list with what is visible (the window) moving as the user scrolls. This can improve rendering performance.
 
@@ -23,6 +31,12 @@ If you use React and need to **display large lists of data efficiently**, you ma
 
 - Use this when rendering large lists or grids (hundreds/thousands of items) that cause performance issues
 - This is helpful for reducing initial render time and improving scroll performance
+
+## When NOT to Use
+
+- For short lists (under ~100 items) where native rendering is fast enough without virtualization
+- When accessibility requirements demand all list items be in the DOM for screen readers
+- When the list items have unpredictable, content-dependent heights that make virtualization measurements unreliable
 
 ## Instructions
 
@@ -294,15 +308,13 @@ Some modern browsers now support [CSS content-visibility](https://web.dev/conten
 
 For rendering lists of dynamic content, I still recommend using a library like react-window. It would be hard to have a `content-visibility:hidden` version of such a library that beats a version aggressively using `display:none` or removing DOM nodes when offscreen like many list virtualization libraries may do today.
 
-### Further reading
+## Source
 
-For further reading about react-window and react-virtualized, check out:
+- [patterns.dev/vanilla/virtual-lists](https://patterns.dev/vanilla/virtual-lists)
+
+### References
 
 - [Rendering performant lists with react-window](https://alligator.io/react/lists-with-react-window/)
 - [Creating More Efficient React Views with Windowing](https://www.youtube.com/watch?v=t4tuhg7b50I)
 - [Rendering lists with react-virtualized](https://css-tricks.com/rendering-lists-using-react-virtualized/)
 - [Rendering large lists with react-virtualized](https://blog.logrocket.com/rendering-large-lists-with-react-virtualized-82741907a6b3)
-
-## Source
-
-- [patterns.dev/vanilla/virtual-lists](https://patterns.dev/vanilla/virtual-lists)

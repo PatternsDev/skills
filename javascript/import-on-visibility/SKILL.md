@@ -1,13 +1,13 @@
 ---
 name: import-on-visibility
-description: Load non-critical components when they become visible in the viewport.
+description: Teaches visibility-based lazy loading using Intersection Observer. Use when you have below-the-fold components or images that don't need to load until the user scrolls to them.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -23,6 +23,12 @@ As we're not requesting all images instantly, we can reduce the initial loading 
 
 - Use this for components that aren't visible on the initial page (e.g., below-the-fold content)
 - This is helpful for lazy loading images, widgets, or heavy components as the user scrolls
+
+## When NOT to Use
+
+- For above-the-fold content that must render immediately — deferring it causes visible layout shifts and slow LCP
+- When the component is lightweight enough that lazy loading adds more overhead than it saves
+- When the content is critical for SEO and needs to be present in the initial HTML
 
 ## Instructions
 

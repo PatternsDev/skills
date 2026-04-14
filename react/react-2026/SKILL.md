@@ -1,6 +1,6 @@
 ---
 name: react-2026
-description: A comprehensive guide to building React apps with a modern 2026 stack, covering frameworks, build tools, routing, state management, and AI integration.
+description: Provides a comprehensive guide to the modern React 2026 stack. Use when starting a new React project or modernizing an existing one with current frameworks, build tools, routing, state management, or AI integration.
 context: fork
 allowed-tools: Read, Grep, Glob
 paths:
@@ -16,6 +16,13 @@ related_skills:
 ---
 
 # React Stack Patterns
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
 
 React has come a long way since its early days of simple component libraries. By late 2025, the React ecosystem is **rich but complex**, offering multiple ways to choose your stack for building apps. Modern React developers face choices at every layer of the stack - from **build tools** and **frameworks** to **routers** and other libraries. The official React documentation (now at **react.dev**) encourages using higher-level frameworks for new projects. In fact, **Create React App (CRA)** - once the go-to bootstrap tool - was deprecated in early 2025, signaling a shift in how we start React apps.
 

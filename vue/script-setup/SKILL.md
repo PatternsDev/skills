@@ -1,6 +1,6 @@
 ---
 name: script-setup
-description: Compile-time syntactic sugar for a more concise Composition API syntax in Vue single-file components.
+description: Teaches Vue's script setup syntax for concise Composition API usage. Use when writing Vue 3 single-file components and you want a more ergonomic, less boilerplate syntax for the Composition API.
 paths:
   - "**/*.vue"
 license: MIT
@@ -13,6 +13,15 @@ related_skills:
 ---
 
 # `<script setup>`
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+`<script setup>` is compile-time syntactic sugar for using the Composition API in Vue single-file components. It eliminates boilerplate by automatically exposing top-level bindings to the template without an explicit `return` statement.
 
 ## When to Use
 

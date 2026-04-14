@@ -1,21 +1,28 @@
 ---
 name: loading-sequence
-description: Optimize the loading sequence of critical resources to improve Core Web Vitals like FCP, LCP, and FID.
+description: Teaches resource loading sequence optimization for Core Web Vitals. Use when you need to improve FCP, LCP, or FID by reordering how critical resources are discovered and loaded.
 context: fork
 allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
 ---
 
 # Optimize your loading sequence
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
 
 In every successful web page load, some critical components and resources become available at just the right time to give you a smooth loading experience. This ensures users perceive the performance of the application to be excellent. This excellent user experience should generally also translate to passing the [Core Web Vitals](https://web.dev/vitals/).
 

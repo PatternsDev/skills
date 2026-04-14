@@ -1,15 +1,15 @@
 ---
 name: import-on-interaction
-description: Load non-critical resources when a user interacts with UI requiring it.
+description: Teaches interaction-based lazy loading for non-critical resources. Use when you have heavy components or libraries that are only needed after user interaction like clicks, hovers, or form input.
 context: fork
 allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -17,7 +17,13 @@ related_skills:
 
 # Import On Interaction
 
-> tl;dr: lazy-load non-critical resources when a user interacts with UI requiring it
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
 
 Your page may contain code or data for a component or resource that isn't immediately necessary. For example, part of the user-interface a user doesn't see unless they click or scroll on parts of the page. This can apply to many kinds of first-party code you author, but this also applies to third-party widgets such as video players or chat widgets where you typically need to click a button to display the main interface.
 
@@ -26,6 +32,12 @@ Your page may contain code or data for a component or resource that isn't immedi
 - Use this when you have third-party widgets (video players, chat widgets) that are costly to load eagerly
 - This is helpful for deferring non-critical code until the user actually needs it
 - Use this to improve First Input Delay (FID) and Time to Interactive (TTI)
+
+## When NOT to Use
+
+- When the resource is needed immediately on page load and isn't gated behind a user interaction
+- When the loading delay after interaction creates a noticeably poor user experience (consider prefetch/preload instead)
+- For small modules where the dynamic import overhead exceeds the savings from deferring
 
 ## Instructions
 
@@ -52,8 +64,6 @@ The different ways to load resources are, at a high-level:
 - [Prefetch](https://web.dev/link-prefetch/) - load prior to needed, but after critical resources are loaded
 - [Preload](https://web.dev/preload-critical-assets/) - eagerly, with a greater level of urgency
 
-> Import-on-interaction for first-party code should only be done if you're unable to prefetch resources prior to interaction. The pattern is however very relevant for third-party code, where you generally want to defer it if non-critical to a later point in time. This can be achieved in many ways (defer until interaction, until the browser is idle or using other heuristics).
-
 Lazily importing feature code on interaction is a pattern used in many contexts. One place you may have used it before is Google Docs, where they save loading 500KB of script for the share feature by deferring its load until user-interaction.
 
 Another place where import-on-interaction can be a good fit is loading third-party widgets.
@@ -63,8 +73,6 @@ Another place where import-on-interaction can be a good fit is loading third-par
 You might be importing a third-party script and have less control over what it renders or when it loads code. One option for implementing load-on-interaction is straight-forward: use a [facade](https://github.com/patrickhulce/third-party-web/blob/10ec0f8f30bbbb73e2de5640cb652a07dd4d7d11/facades.md). A facade is a simple "preview" or "placeholder" for a more costly component where you simulate the basic experience, such as with an image or screenshot. It's terminology we've been using for this idea on the Lighthouse team.
 
 When a user clicks on the "preview" (the facade), the code for the resource is loaded. This limits users needing to pay the experience cost for a feature if they're not going to use it. Similarly, facades can [preconnect](https://web.dev/uses-rel-preconnect/) to necessary resources on hover.
-
-> Third-party resources are often added to pages without full consideration for how they fit into the overall loading of a site. Synchronously-loaded third-party scripts block the browser parser and can delay hydration. If possible, 3P script should be loaded with async/defer (or other approaches) to ensure 1P scripts aren't starved of network bandwidth. Unless they are critical, they can be a good candidate for shifting to deferred late-loading using patterns like import-on-interaction.
 
 ### Video Player Embeds
 

@@ -1,6 +1,6 @@
 ---
 name: ai-ui-patterns
-description: Design patterns for building AI-powered interfaces like chatbots and intelligent assistants in React.
+description: Teaches design patterns for building AI-powered React interfaces. Use when creating chatbots, intelligent assistants, streaming UIs, or any AI-driven user experience in React.
 context: fork
 allowed-tools: Read, Grep, Glob
 paths:
@@ -16,6 +16,13 @@ related_skills:
 ---
 
 # AI UI Patterns
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
 
 Building AI-powered interfaces – from chatbots to intelligent assistants – requires careful integration of backend AI services with reactive UI components. In this chapter, we explore design patterns in React for such interfaces, focusing on **two implementations**: a plain React app (using Vite) and a Next.js app. We'll use **OpenAI's API** (via the Vercel AI SDK) as our AI engine, and TailwindCSS for styling. Key topics include prompt management, streaming responses, input debouncing, error handling, and how these patterns differ between Vite and Next.js. We also highlight reusable component patterns and **Vercel's AI UI components (AI Elements)** for building polished chat UIs.
 
@@ -153,7 +160,6 @@ The `useChat` hook handles a lot for us: it manages the `messages` state (an arr
 
 **Single-turn vs multi-turn:** If your interface is a single question answering (no conversation memory), you could use the `useCompletion` hook from the Vercel SDK instead. For chatbots and multi-turn dialogs, `useChat` is the go-to pattern, since it retains and sends the message history on each request.
 
-
 ### Streaming AI Responses to the UI
 
 One hallmark of modern AI UI is **streaming output**: as the AI generates tokens, the user sees the reply appearing in real-time. This is crucial for better UX because model-generated answers can be lengthy or slow. Instead of waiting many seconds in silence, streaming lets us display partial results immediately.
@@ -179,7 +185,6 @@ while(true) {
 
 **Partial rendering and completion:** Show a visual indicator during streaming – for example, a blinking cursor or "AI is typing…" message. Once the stream finishes, finalize the message display.
 
-
 ### Input Handling and Debouncing
 
 For chat interactions, you usually send the query when the user submits the form. In some AI applications, however, you might want to react to input continuously – for example, **autocomplete suggestions** or **real-time validation by AI**. In such cases, **debouncing** is important.
@@ -199,7 +204,6 @@ useEffect(() => {
 ```
 
 For a simple chatbot with explicit "send" action, debouncing is usually not needed – you send when the user hits Enter. However, it's still useful to **disable the input** or **prevent multiple submissions** while an AI response is in progress.
-
 
 ### Error Handling and Resilience
 
@@ -222,7 +226,6 @@ try {
 - **Retry mechanism:** Consider allowing the user to retry with a "Try again" button.
 
 - **Validation errors:** Validate on the client before calling the API. Disable send on empty input, or truncate inputs that exceed some length.
-
 
 ### Building the UI: Components and Styling Patterns
 
@@ -290,7 +293,6 @@ function ChatInterface() {
 ```
 
 This separation of concerns makes it easy to test and swap UI parts. The logic (`useChat`) is decoupled from the display components.
-
 
 ### Vercel AI Elements (Pre-Built Chat UI Components)
 

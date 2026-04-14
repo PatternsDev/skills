@@ -1,13 +1,13 @@
 ---
 name: command-pattern
-description: Decouple methods that execute tasks by sending commands to a commander object.
+description: Teaches the command pattern for decoupling task execution from invocation. Use when you need undo/redo functionality, queued operations, or want to decouple the object that invokes an operation from the one that performs it.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -23,6 +23,12 @@ Let's say we have an online food delivery platform. Users can place, track, and 
 
 - Use this when you need to decouple the object invoking an operation from the object performing it
 - This is helpful when commands need a certain lifespan or should be queued and executed at specific times
+
+## When NOT to Use
+
+- For simple one-off operations that don't need undo/redo, queuing, or logging
+- When direct function calls are clear enough and the extra abstraction adds complexity without benefit
+- When the system has few operations and the command infrastructure would be over-engineering
 
 ## Instructions
 

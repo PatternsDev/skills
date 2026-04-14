@@ -1,13 +1,13 @@
 ---
 name: factory-pattern
-description: Use factory functions to create new objects without the `new` keyword.
+description: Teaches the factory pattern for flexible object creation. Use when you need to create objects dynamically without using the new keyword or when object creation logic should be centralized.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -23,6 +23,12 @@ Say that we need many users for our application. We can create new users with a 
 
 - Use this when you need to create multiple objects that share the same properties
 - This is helpful when object creation depends on a certain environment or configuration
+
+## When NOT to Use
+
+- For simple objects where a plain object literal suffices — a factory adds unnecessary indirection
+- When class constructors are the established convention in your project and the team expects `new`
+- When there's no conditional logic or configuration driving object creation
 
 ## Instructions
 

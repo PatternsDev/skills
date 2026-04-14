@@ -1,13 +1,13 @@
 ---
 name: singleton-pattern
-description: Share a single global instance throughout your application to manage global state.
+description: Teaches the singleton pattern for managing a single shared instance. Use when exactly one instance of a class or object is needed to coordinate actions across your application.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "observer-pattern"
@@ -15,12 +15,26 @@ related_skills:
 
 # Singleton Pattern
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 Singletons are classes which can be instantiated once, and can be accessed globally. This _single instance_ can be shared throughout our application, which makes Singletons great for managing global state in an application.
 
 ## When to Use
 
 - Use this when you need exactly one instance of a class shared across the entire application
 - This is helpful for managing global state, configuration, or shared resources
+
+## When NOT to Use
+
+- When you need multiple instances of a class — singletons enforce a single shared instance by design
+- When it introduces hidden global state coupling that makes testing and reasoning about code harder
+- When dependency injection or module-scoped variables achieve the same result with better testability
 
 ## Instructions
 
@@ -178,7 +192,6 @@ Consider an application that implements the `Counter` example with the following
 Both `blueButton.js` and `redButton.js` import the **same instance** from `counter.js`. This instance is imported as **`Counter`** in both files.
 
 When we invoke the `increment` method in either `redButton.js` or `blueButton.js`, the value of the `counter` property on the `Counter` instance updates in both files. It doesn't matter whether we click on the red or blue button: the same value is shared among all instances. This is why the counter keeps incrementing by one, even though we're invoking the method in different files.
-
 
 ### Tradeoffs
 

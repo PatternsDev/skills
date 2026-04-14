@@ -1,6 +1,6 @@
 ---
 name: vite-bundle-optimization
-description: Vite-specific bundle optimization patterns. Use when configuring builds, code splitting, managing dependencies, or troubleshooting slow Vite builds.
+description: Teaches Vite-specific bundle optimization patterns. Use when configuring Vite builds, code splitting, managing dependencies, or troubleshooting slow Vite builds.
 paths:
   - "**/*.js"
   - "**/*.ts"
@@ -14,6 +14,13 @@ related_skills:
 ---
 
 # Vite Bundle Optimization
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
 
 Production-ready patterns for optimizing bundle size and build performance in Vite + React applications. These patterns leverage Vite's architecture (native ESM in dev, Rollup in production) to deliver smaller, faster bundles.
 

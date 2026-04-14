@@ -1,6 +1,6 @@
 ---
 name: render-props-pattern
-description: Pass JSX elements to components through props for flexible, reusable component composition.
+description: Teaches the render props pattern for flexible component composition. Use when you need to share rendering logic between components by passing a function that returns JSX as a prop.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -15,6 +15,14 @@ related_skills:
 
 # Render Props Pattern
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 Another way of making components very reusable, is by using the **render prop** pattern. A render prop is a prop on a component, which value is a function that returns a JSX element. The component itself does not render anything besides the render prop. Instead, the component simply calls the render prop, instead of implementing its own rendering logic.
 
 Imagine that we have a `Title` component. In this case, the `Title` component shouldn't do anything besides rendering the value that we pass. We can use a render prop for this! Let's pass the value that we want the `Title` component to render to the `render` prop.
@@ -23,6 +31,12 @@ Imagine that we have a `Title` component. In this case, the `Title` component sh
 
 - Use this when you need to share stateful logic between components with different rendering needs
 - This is helpful when the HOC pattern creates naming collision issues or overly deep nesting
+
+## When NOT to Use
+
+- When custom hooks can replace the pattern — hooks provide the same logic reuse without render prop nesting
+- When it creates deeply nested JSX that becomes hard to read and maintain
+- When the shared logic is simple enough for a plain utility function or hook
 
 ## Instructions
 
@@ -61,11 +75,9 @@ The render prop can now receive this value that we passed as its argument.
 <Component render={data => <ChildComponent data={data} />}
 ```
 
-
 Let's look at an example! We have a simple app, where a user can type a temperature in Celsius. The app shows the value of this temperature in Fahrenheit and Kelvin.
 
 Currently there's a problem. The stateful `Input` component contains the value of the user's input, meaning that the `Fahrenheit` and `Kelvin` component don't have access to the user's input!
-
 
 ### Lifting state
 
@@ -235,8 +247,6 @@ We can separate our app's logic from rendering components through render props. 
 The issues that we tried to solve with render props, have largely been replaced by React Hooks. As Hooks changed the way we can add reusability and data sharing to components, they can replace the render props pattern in many cases.
 
 Since we can't add lifecycle methods to a `render` prop, we can only use it on components that don't need to alter the data they receive.
-
-> **Note (React 18+):** The render props pattern is now largely supplanted by Hooks in React's best practices. Render props often resulted in deeply nested JSX "callback hell" — for example, nesting multiple `<Mutation>` components to get multiple pieces of data. Modern libraries like Apollo Client now provide Hooks (e.g., `useMutation`, `useQuery`) that allow you to fetch or compute needed data *inside* the component, eliminating the need for wrapper components. Hooks don't create new component boundaries, so state can be shared more directly and the React Compiler can statically analyze the code more easily. While render props are still possible, if you find yourself writing a component whose sole purpose is to call `props.render()` or use children-as-a-function, ask if a custom Hook could achieve the same result more directly.
 
 ## Source
 

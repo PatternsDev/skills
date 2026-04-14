@@ -1,6 +1,6 @@
 ---
 name: react-composition-2026
-description: Modern React composition patterns for 2025/2026. Use when designing component APIs, building shared UI libraries, or refactoring prop-heavy components.
+description: Teaches modern React composition patterns for 2025/2026. Use when designing component APIs, building shared UI libraries, or refactoring prop-heavy components.
 context: fork
 allowed-tools: Read, Grep, Glob
 paths:
@@ -16,6 +16,13 @@ related_skills:
 ---
 
 # Modern React Composition Patterns
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
 
 Composition patterns for building flexible, maintainable React components that scale. These patterns replace boolean-prop proliferation, rigid component APIs, and tangled state with composable, explicit designs.
 

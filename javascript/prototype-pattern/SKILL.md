@@ -1,13 +1,13 @@
 ---
 name: prototype-pattern
-description: Share properties among many objects of the same type through JavaScript's prototype chain.
+description: Teaches the prototype pattern for property sharing via the prototype chain. Use when creating many objects of the same type that should share methods or properties efficiently.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"

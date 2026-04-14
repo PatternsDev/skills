@@ -1,6 +1,6 @@
 ---
 name: components
-description: Self-contained modules that couple markup (HTML), logic (JS), and styles (CSS) as the building blocks of Vue apps.
+description: Teaches Vue component fundamentals including markup, logic, and styles. Use when building or structuring Vue single-file components as the foundational building blocks of your application.
 paths:
   - "**/*.vue"
 license: MIT
@@ -13,6 +13,13 @@ related_skills:
 ---
 
 # Components
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
 
 Vue components are the building blocks of Vue apps by allowing us to couple markup (HTML), logic (JS), and styles (CSS) within them.
 

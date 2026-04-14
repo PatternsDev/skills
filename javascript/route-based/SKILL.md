@@ -1,13 +1,13 @@
 ---
 name: route-based
-description: Dynamically load components based on the current route to reduce initial bundle size.
+description: Teaches route-based code splitting for single-page applications. Use when different routes load distinct feature sets and you want to avoid loading all route code upfront.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -29,6 +29,12 @@ By lazily loading the components per route, we're only requesting the bundle tha
 - Combine React Suspense or `loadable-components` with routing libraries like `react-router`
 - Lazily load page-level components per route for optimal code splitting
 - Take advantage of natural loading pauses during route transitions for a seamless experience
+
+## Details
+
+By lazily loading the components per route, only the bundle containing code necessary for the current route is requested. Since users expect some loading time during navigation, route transitions are a natural place to introduce code splitting without degrading the experience.
+
+Most modern frameworks (Next.js, Remix, React Router) support route-based splitting out of the box. In a custom setup, use `React.lazy()` with `Suspense` to wrap route-level components, or configure your bundler's entry points per route.
 
 ## Source
 

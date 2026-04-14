@@ -1,6 +1,6 @@
 ---
 name: composables
-description: Functions that encapsulate and reuse stateful logic among multiple components using the Composition API.
+description: Teaches Vue composables for reusable stateful logic with the Composition API. Use when extracting shared reactive state, side effects, or computed logic that multiple components need.
 paths:
   - "**/*.vue"
 license: MIT
@@ -13,6 +13,15 @@ related_skills:
 ---
 
 # Composables
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
+Composables are functions that encapsulate and reuse stateful logic using Vue's Composition API. They replace the Options API's fragmented code organization with clean, composable functions that can be shared across components.
 
 ## When to Use
 

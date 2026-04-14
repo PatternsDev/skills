@@ -1,6 +1,6 @@
 ---
 name: compound-pattern
-description: Create multiple components that work together to perform a single task by sharing implicit state.
+description: Teaches the compound component pattern for shared implicit state. Use when building related components like tabs, accordions, or dropdowns that need to coordinate without explicit prop passing.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -15,12 +15,26 @@ related_skills:
 
 # Compound Pattern
 
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [When NOT to Use](#when-not-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
+
 In our application, we often have components that belong to each other. They're dependent on each other through the shared state, and share logic together. You often see this with components like `select`, dropdown components, or menu items. The **compound component pattern** allows you to create components that all work together to perform a task.
 
 ## When to Use
 
 - Use this when building components like dropdowns, tabs, or menus with related sub-components
 - This is helpful when you want to provide a clean component API without exposing internal state management
+
+## When NOT to Use
+
+- When the sub-components don't share meaningful state — the pattern adds unnecessary Context overhead
+- For simple one-off UIs where a single component with props is clearer
+- When the implicit state sharing makes the component behavior hard to predict for consumers
 
 ## Instructions
 
@@ -218,8 +232,6 @@ All children components are cloned, and passed the value of `open` and `toggle`.
 Compound components manage their own internal state, which they share among the several child components. When implementing a compound component, we don't have to worry about managing the state ourselves.
 
 When importing a compound component, we don't have to explicitly import the child components that are available on that component.
-
-> **Note (React 18+):** The compound component pattern using React's Context API remains a **recommended pattern** for related components that share state. The implementation using Hooks (`useState`, `useContext`) is modern and aligns with current best practices. When using context, avoid unnecessary re-renders by not re-creating context values each render. In complex scenarios, you might optimize by memoizing the context value or splitting context (e.g., a context for the `open` boolean and another for the `toggle` function). The pattern is fully compatible with React's upcoming features like Server Components — just ensure the context provider and consumers are all either server or client components as needed.
 
 ```js
 import { FlyOut } from "./FlyOut";

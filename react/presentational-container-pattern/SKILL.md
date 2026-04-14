@@ -1,6 +1,6 @@
 ---
 name: presentational-container-pattern
-description: Enforce separation of concerns by separating the view from the application logic.
+description: Teaches the presentational/container pattern for separating view and logic. Use when you want to isolate data fetching and business logic from UI rendering for better testability and reuse.
 paths:
   - "**/*.tsx"
   - "**/*.jsx"
@@ -21,6 +21,12 @@ In React, one way to enforce separation of concerns is by using the **Container/
 
 - Use this when you want a clear separation between data-fetching logic and UI rendering
 - This is helpful for making presentational components reusable and easy to test
+
+## When NOT to Use
+
+- For small components where the separation into two files adds overhead without meaningful benefit
+- When hooks already encapsulate the data logic, making a separate container component redundant
+- When the component is a one-off view with no reuse potential for either layer
 
 ## Instructions
 
@@ -101,8 +107,6 @@ Testing presentational components is easy, as they are usually pure functions. W
 The Container/Presentational pattern makes it easy to separate application logic from rendering logic. However, Hooks make it possible to achieve the same result without having to use the Container/Presentational pattern, and without having to rewrite a stateless functional component into a class component. Note that today, we don't need to create class components to use state anymore.
 
 Although we can still use the Container/Presentational pattern, even with React Hooks, this pattern can easily be an overkill in smaller sized application.
-
-> **Note (React 18+):** Modern React strongly favors **Hooks over container components** for separating logic from views. Custom Hooks can replace class-based containers entirely — for example, a `useDogImages` hook can fetch data using `useState` and `useEffect`, then any component can simply call `const dogs = useDogImages()` to get the data. This achieves the same separation of concerns (data fetching vs UI) with less boilerplate and no wrapper component. This Hook-based approach is also friendly to React's upcoming optimizations — the React Compiler can better optimize functional components and Hooks than class lifecycles.
 
 ## Source
 

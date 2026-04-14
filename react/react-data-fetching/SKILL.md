@@ -1,6 +1,6 @@
 ---
 name: react-data-fetching
-description: Modern React data fetching patterns. Use when implementing caching, deduplication, optimistic updates, or parallel loading with TanStack Query, SWR, or Suspense.
+description: Teaches modern React data fetching patterns with TanStack Query, SWR, and Suspense. Use when implementing caching, deduplication, optimistic updates, or parallel loading in React applications.
 context: fork
 allowed-tools: Read, Grep, Glob
 paths:
@@ -16,6 +16,13 @@ related_skills:
 ---
 
 # React Data Fetching Patterns
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
 
 Production-ready patterns for fetching, caching, and synchronizing server data in React applications. These patterns are framework-agnostic — they work whether you're using Vite + React Router, Next.js, Remix, or a custom setup.
 
@@ -480,7 +487,7 @@ export function useOnlineStatus() {
 
 **Impact: LOW-MEDIUM** — Prevents scroll jank from blocking listeners.
 
-Non-passive scroll/touch listeners block the browser's compositor thread. Always mark them passive when you don't call `preventDefault()`.
+Non-passive scroll/touch listeners block the browser's compositor thread. Mark them passive when you don't call `preventDefault()`.
 
 **Avoid — blocks scrolling:**
 

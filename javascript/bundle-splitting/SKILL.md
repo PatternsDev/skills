@@ -1,13 +1,13 @@
 ---
 name: bundle-splitting
-description: Split your code into smaller bundles to reduce initial load time and improve performance.
+description: Teaches bundle splitting techniques for web performance. Use when your application has a large JavaScript bundle that affects load times or when you need to reduce FCP/LCP.
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"

@@ -1,6 +1,6 @@
 ---
 name: container-presentational
-description: Enforce separation of concerns by separating the view from the application logic in Vue components.
+description: Teaches the container/presentational pattern for Vue components. Use when you want to separate data fetching and business logic from presentation for better testability and reuse.
 paths:
   - "**/*.vue"
 license: MIT
@@ -13,6 +13,13 @@ related_skills:
 ---
 
 # Container/Presentational Pattern
+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
 
 In 2015, Dan Abramov wrote an article titled ["Presentational and Container Components"](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) that changed the way many developers thought about component architecture in React. He introduced a pattern that separated components into two categories:
 

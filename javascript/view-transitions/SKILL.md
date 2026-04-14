@@ -1,15 +1,15 @@
 ---
 name: view-transitions
-description: Animate page transitions using the View Transitions API for smooth visual DOM changes.
+description: Teaches the View Transitions API for animating DOM changes. Use when you want smooth animated transitions between pages or UI states without manual animation code.
 context: fork
 allowed-tools: Read, Grep, Glob
+paths:
+  - "**/*.js"
+  - "**/*.ts"
 license: MIT
 metadata:
   author: patterns.dev
   version: "1.1"
-paths:
-  - "**/*.js"
-  - "**/*.ts"
 related_skills:
   - "module-pattern"
   - "singleton-pattern"
@@ -17,7 +17,12 @@ related_skills:
 
 # Animating View Transitions
 
-**Note**: The View Transitions API for Single-Page Applications is available in Chrome 111+
+## Table of Contents
+
+- [When to Use](#when-to-use)
+- [Instructions](#instructions)
+- [Details](#details)
+- [Source](#source)
 
 ## When to Use
 
