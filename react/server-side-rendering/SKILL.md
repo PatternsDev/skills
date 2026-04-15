@@ -161,12 +161,16 @@ const Users = ({ users, error }) => {
 };
 
 export async function getServerSideProps() {
- // Fetch data from external API
- const res = await fetch("https://jsonplaceholder.typicode.com/users")
- const data = await res.json();
+ try {
+   // Fetch data from external API
+   const res = await fetch("https://jsonplaceholder.typicode.com/users");
+   const data = await res.json();
 
- // Pass data to the page via props
- return { props: { data } }
+   // Pass data to the page via props
+   return { props: { users: data, error: null } };
+ } catch (error) {
+   return { props: { users: null, error: true } };
+ }
 }
 
 export default Users;
