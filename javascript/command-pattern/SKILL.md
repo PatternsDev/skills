@@ -39,7 +39,7 @@ Let's say we have an online food delivery platform. Users can place, track, and 
 ## Details
 
 ```js
-class OrderManager() {
+class OrderManager {
   constructor() {
     this.orders = []
   }
@@ -54,7 +54,7 @@ class OrderManager() {
   }
 
   cancelOrder(id) {
-    this.orders = this.orders.filter(order => order.id !== id)
+    this.orders = this.orders.filter(order => order !== id)
     return `You have canceled your order ${id}`
   }
 }
@@ -112,7 +112,8 @@ function PlaceOrderCommand(order, id) {
 
 function CancelOrderCommand(id) {
   return new Command((orders) => {
-    orders = orders.filter((order) => order.id !== id);
+    const index = orders.indexOf(id);
+    if (index > -1) orders.splice(index, 1);
     return `You have canceled your order ${id}`;
   });
 }

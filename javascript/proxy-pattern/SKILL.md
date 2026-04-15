@@ -74,10 +74,12 @@ Let's add handlers to the `personProxy` Proxy. When trying to modify a property,
 const personProxy = new Proxy(person, {
   get: (obj, prop) => {
     console.log(`The value of ${prop} is ${obj[prop]}`);
+    return obj[prop];
   },
   set: (obj, prop, value) => {
     console.log(`Changed ${prop} from ${obj[prop]} to ${value}`);
     obj[prop] = value;
+    return true;
   },
 });
 ```
@@ -98,6 +100,7 @@ const personProxy = new Proxy(person, {
     } else {
       console.log(`The value of ${prop} is ${obj[prop]}`);
     }
+    return obj[prop];
   },
   set: (obj, prop, value) => {
     if (prop === "age" && typeof value !== "number") {
@@ -108,6 +111,7 @@ const personProxy = new Proxy(person, {
       console.log(`Changed ${prop} from ${obj[prop]} to ${value}.`);
       obj[prop] = value;
     }
+    return true;
   },
 });
 ```
@@ -126,10 +130,11 @@ Instead of accessing properties through `obj[prop]` or setting properties throug
 const personProxy = new Proxy(person, {
   get: (obj, prop) => {
     console.log(`The value of ${prop} is ${Reflect.get(obj, prop)}`);
+    return Reflect.get(obj, prop);
   },
   set: (obj, prop, value) => {
     console.log(`Changed ${prop} from ${obj[prop]} to ${value}`);
-    Reflect.set(obj, prop, value);
+    return Reflect.set(obj, prop, value);
   },
 });
 ```
