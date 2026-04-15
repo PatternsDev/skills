@@ -59,7 +59,7 @@ function withStyles(Component) {
   }
 }
 
-const Button = () = <button>Click me!</button>
+const Button = () => <button>Click me!</button>
 const Text = () => <p>Hello World!</p>
 
 const StyledButton = withStyles(Button)
@@ -189,7 +189,7 @@ function withStyles(Component) {
   }
 }
 
-const Button = () = <button style={{ color: 'red' }}>Click me!</button>
+const Button = () => <button style={{ color: 'red' }}>Click me!</button>
 const StyledButton = withStyles(Button)
 ```
 
@@ -208,7 +208,7 @@ function withStyles(Component) {
   }
 }
 
-const Button = () = <button style={{ color: 'red' }}>Click me!</button>
+const Button = () => <button style={{ color: 'red' }}>Click me!</button>
 const StyledButton = withStyles(Button)
 ```
 

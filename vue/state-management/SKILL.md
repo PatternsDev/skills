@@ -212,7 +212,7 @@ export const useNumbersStore = defineStore("numbers", () => {
   const numbers = ref([1, 2, 3]);
 
   function addNumber(newNumber) {
-    this.numbers.push(newNumber);
+    numbers.value.push(newNumber);
   }
 
   return { numbers, addNumber };
